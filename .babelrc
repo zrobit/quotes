@@ -1,0 +1,20 @@
+{
+  "presets": ["es2015","es2017", "react"],
+    plugins: [
+        'transform-decorators-legacy',
+        'transform-class-properties',
+  ],
+    "env": {
+        "____server": {
+            "plugins": [
+                [
+                    "css-modules-transform", {
+                        "preprocessCss": "./loaders/stylus-loader.js",
+                        "generateScopedName": "[name]-[local]-[hash:base64:5]",
+                        "extensions": [".styl"]
+                    }
+                ]
+            ]
+        }
+    }
+}

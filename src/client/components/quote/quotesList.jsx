@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import {inject, observer} from "mobx-react";
 
-import QuoteView from './quoteView'
+import QuoteItem from './quoteItem'
 
 @inject('quoteStore') @observer
-class QuotesView extends Component {
+class QuotesList extends Component {
   render() {
     const {quotes} = this.props.quoteStore
     return (
       <div>
       {quotes.map(quote =>
-        <QuoteView key={quote.id} quote={quote} />
+        <QuoteItem key={quote.id} quote={quote} />
       )}
       </div>
     );
   }
 }
 
-export default QuotesView
+export default QuotesList

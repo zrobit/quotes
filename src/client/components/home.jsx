@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
-import QuotesView from './quote/quotesView'
+import QuotesList from './quote/quotesList'
 import SideBar from './layout/sidebar'
 // import color from './test.css'
 
@@ -19,7 +19,7 @@ class Home extends Component {
         <div className={home.wrap}>
           <div className={cx(home.inner, 'clearfix')}>
             <div className={home.main}>
-              <QuotesView />
+              <QuotesList />
             </div>
             <div className={home.sidebar}>
               {/* sideBar*/}

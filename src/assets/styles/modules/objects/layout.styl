@@ -1,0 +1,123 @@
+body
+  background body_bg
+.svg-container
+  width 0
+  height 0
+//header
+.header
+  position fixed
+  height 35px
+  top 0
+  right 0
+  left 0
+  padding 0 10px 0 10px
+  background #fff
+  border-bottom 1px solid gray(5)
+  z-index 1000
+  // transition all 0.3s ease
+
+  &.ghost
+    // transition all 0.3s ease
+    background none
+    border none
+    .header-search
+      display none
+
+    a
+      color #fff
+      &:hover
+        background rgba(255,255,255,0.1)
+
+.header-nav
+  @media screen and (min-width: 1200px)
+    max-width 1200px
+    margin 0 auto
+
+  ul
+    display block
+    padding 0
+    margin 0
+  li
+    display inline-block
+    list-style none
+  a
+    text-decoration none
+    color gray(40)
+    display inline-block
+
+  .login
+  .signup
+    float right
+    font-size 14px
+    a
+      padding 10px 20px
+
+
+
+
+.header-logo
+  float left
+  width 70px
+  height 35px
+  // background-image url('../images/logo.png')
+  margin-right 10px
+  //reeplace with logo image
+  text-decoration none
+  font-size 18px
+  color #fff
+
+  @media screen and (max-width: 600px)
+    position absolute
+    left 0
+
+.header-search
+  float left
+  height 35px
+  box-sizing border-box
+  @media screen and (max-width: 320px)
+    display none
+
+
+  @media screen and (max-width: 600px)
+    position absolute
+    left 80px
+    right 50px
+  @media screen and (min-width: 601px)
+    width 433px
+
+
+.footer
+  clear both
+  height 200px
+
+.content
+  @extend $clearfix
+// height 100%
+// margin 36px auto 0
+// padding 0
+
+// .home-wrap-content
+//   margin 0 auto
+//   @media screen and (min-width: 1190px)
+//     width 1190px
+
+
+// .home-inner-content
+//   @extend .clearfix
+//   padding-bottom 10px
+
+//   @media screen and (min-width: 800px)
+//     padding-right 410px
+
+// .home-main-content
+//   width 100%
+//   margin-bottom 10px
+
+//   @media screen and (min-width: 800px)
+//     float left
+
+// .home-sidebar
+//   @media screen and (min-width: 800px)
+//     width 400px
+//     float right
+//     margin-right -410px

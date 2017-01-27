@@ -1,0 +1,89 @@
+.auth-form
+  max-width 350px
+  height 380px
+  margin 0 auto
+  margin-top 50px
+  // background #fff
+  padding 0 20px
+  .or
+    display block
+    margin-top 20px
+    color gray(60)
+    font-size 17px
+    text-align center
+
+.auth-form form
+  @extend $clearfix
+  // width 280px
+  margin 0 auto
+  z-index 13
+
+  label
+    display block
+    font-size 14px
+    padding 24px 0 8px
+    // color darken(#fff, 60)
+    color gray(60)
+    font-weight 900
+    letter-spacing 1px
+    font-weight 100
+
+  .in-text
+    box-sizing border-box
+    display block
+    width 100%
+    border-radius 4px
+    border 2px solid gray(15)
+    padding 12px 14px 12px
+    margin 0
+    font-size 16px
+    color gray(60)
+    font-weight 100
+    background none
+    &:focus
+      // background #fff
+      // opacity .1
+      border-color lighten(#000, 70)
+      transition border-color .1s cubic-bezier(.5, 0, 1, .5)
+      outline none
+
+  input[type='text']
+    letter-spacing 2px
+
+  input[type='password']
+    letter-spacing 5px
+  input[type="checkbox"]
+    visibility hidden
+
+  input[type="checkbox"]:checked + .checkbox
+    .icon
+      visibility visible
+
+  .checkbox
+    display inline-block
+    position relative
+    left -13px
+    width 20px
+    height 20px
+    border 2px solid gray(15)
+    border-radius 4px
+    .icon
+      visibility hidden
+      box(20px)
+      fill #00d6a1
+
+  .label-inline
+    display block
+    color gray(60)
+    font-size 13px
+    padding 0
+    margin 20px 0 0
+    .up
+      position relative
+      top 1px
+
+    a
+      color gray(60)
+      text-decoration none
+      float right
+      margin-top 4px

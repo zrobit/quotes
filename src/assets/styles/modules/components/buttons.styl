@@ -1,0 +1,177 @@
+$btn
+  display inline-block
+  // margin-bottom 0 // For input.btn
+  font-weight 100
+  text-align center
+  // vertical-align middle
+  cursor pointer
+  background-image none // Reset unusual Firefox-on-Android default style see https//github.com/necolas/normalize.css/issues/214
+  // border 1px solid transparent
+  white-space nowrap
+  user-select none
+  box-sizing border-box
+  text-decoration none
+  // padding 0
+
+
+.btn-search
+  @extend $btn
+  position absolute
+  border none
+  background none
+  top 1px
+  right 0
+  width 40px
+  height 26px
+  font-size 16px
+
+  .icon-search
+    box(22px)
+    fill gray(60)
+    // vertical-align sub
+
+
+.btn-delete
+  @extend $btn
+  position absolute
+  top 1px
+  right 1px
+  width 24px
+  height 26px
+  padding 4px 0 0
+  i
+    color gray(35)
+
+  &:hover
+    i
+      color gray(60)
+
+.btn-medium
+  @extend $btn
+  display inline-block
+  border 1px solid gray(10)
+  color gray(60)
+  padding 4px 5px
+  margin 0 5px
+  font-weight 100
+  font-size 15px
+  letter-spacing 1px
+  border-radius 4px
+  background #fff
+  &:hover
+    color gray(80)
+    border-color gray(25)
+  .icon
+    position relative
+    fill gray(60)
+    box(14px)
+    top -1px
+
+.btn-high
+  background #00d6a1
+  color #fff
+  border none
+  &:hover
+    color #fff
+
+.btn-next-pic
+  @extend $btn
+  width 80px
+  height 35px
+  float right
+  padding 4px 0 0
+  border-left 1px solid line
+  font-size 18px
+  color darken(#fff,50)
+  i
+    font-size 24px
+    vertical-align middle
+
+.btn-source
+.btn-full
+  @extend $btn
+  height 100%
+  padding 6px 10px
+  color gray(60)
+  font-size 16px
+  font-weight 400
+  .icon
+    fill gray(60)
+
+.btn-like
+  float left
+  margin-left 35px
+
+.btn-add-review
+  float right
+  margin-right 0
+
+.btn-full
+  float left
+  .icon
+    box(16px)
+
+.btn-source
+  float right
+  i
+    font-size 18px
+
+
+.btn-auth
+  width 100%
+  background #00d6a1
+  border none
+  cursor pointer
+  color #fff
+  font-size 16px
+  padding 12px 10px
+  border-radius 4px
+  float right
+  margin-top 30px
+
+
+.btn-facebook
+.btn-twitter
+  box-sizing border-box
+  display block
+  width 100%
+  height 42px
+  margin-top 20px
+  color #fff
+  text-decoration none
+  border-radius 4px
+  padding 12px 5px 5px 20px
+
+  .icon
+    box(18px)
+    fill #fff
+
+  span
+    font-size 16px
+    margin 1px 0 0 10px
+
+.btn-facebook
+  background #3b5998
+.btn-twitter
+  background #1da1f3
+
+
+.btn-download
+.bnt-download-external
+  @extends $btn
+  background _green
+  float right
+  color #fff
+  height 40px
+  padding 10px 20px
+  font-size 18px
+  .icon
+    fill #fff
+    box(20px)
+
+  &:hover
+    background lighten(_green, 5)
+
+
+.btn-download
+  border-right 1px solid darken(_green, 5);

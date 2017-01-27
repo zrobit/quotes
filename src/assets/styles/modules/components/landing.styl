@@ -1,0 +1,30 @@
+.landing
+  overflow hidden
+  width 100%
+  height 400px
+  // background url('../media/cover.jpg')
+  img
+    filter: blur(4px);
+
+  h1
+    color #fff
+    padding-top 100px
+    text-align center
+    font-weight 100
+
+  &:before
+    content ''
+    width 100%
+    height 400px
+    display block
+    position absolute
+    background #000
+    z-index 998
+    opacity .7
+
+.landing-inner
+  position relative
+  top -400px
+  max-width 650px
+  margin 0 auto
+  z-index 999

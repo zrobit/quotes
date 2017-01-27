@@ -1,0 +1,242 @@
+.detail
+  margin 36px auto
+  width 100%
+  padding 0 5px
+  box-sizing border-box
+
+.view-pic-wrap
+  margin 0 auto
+  @media screen and (min-width: 1190px)
+    width 1190px
+
+.view-pic
+  @extend .clearfix
+  padding-bottom 10px
+
+  @media screen and (min-width: 800px)
+    padding-right 410px
+
+.pic-main
+  width 100%
+  margin-bottom 10px
+
+  @media screen and (min-width: 800px)
+    float left
+
+.pic-aside
+  @media screen and (min-width: 800px)
+    width 400px
+    float right
+    margin-right -410px
+.pic
+  @extend $clearfix
+  @extend $card
+  margin 10px 0 0
+
+.pic-actions
+  height 40px
+  box-sizing border-box
+  border-bottom 1px solid line
+
+.pic-img
+  margin 0 auto
+  img
+    display block
+    width 100%
+
+.pic-info
+  @extend $clearfix
+  border-top 1px solid line
+  box-sizing border-box
+  padding 5px 10px 10px
+
+.pic-title
+  clear both
+  color darken(#fff, 60)
+  margin 5px 0 0
+  line-height 30px
+  font-size 22px
+  font-weight 100
+
+.pic-meta
+  font-size 18px
+  margin 0
+  font-size 12px
+  list-style none
+  padding 0
+  color gray(30)
+
+  li
+    float left
+    margin-right 5px
+  a
+    color darken(#fff,40)
+    text-decoration none
+    &:hover
+      color darken(#fff, 50)
+      text-decoration underline
+
+.pic-body
+  padding-top 5px
+  color darken(#fff, 55)
+  margin 5px 0 0
+  font-size 16px
+
+.pic-hashtag
+  text-decoration none
+  color darken(#fff, 90)
+
+.pic-tags
+  list-style none
+  margin 0
+  padding 15px 0 0
+  font-size 14px
+
+  li
+    float left
+    padding 0 10px 0 0
+
+  a
+    text-decoration none
+    color gray(40)
+    &:hover
+      text-decoration underline
+
+.detail-tool
+  @extend $clearfix
+  @extend $card
+  padding 10px 10px 20px
+  margin 10px 0 0
+
+.detail-head
+  @extend .clearfix
+
+.detail-tool-logo
+  box(110px)
+  float left
+
+.detail-tool-name
+  font-size 21px
+  margin 0 0 0 140px
+  padding 10px 0 5px 0
+  color gray(80)
+  text-transform capitalize
+  font-weight 100
+
+.detail-tool-tagline
+  font-size 16px
+  margin 0 0 20px 140px
+  padding 0
+  color gray(65)
+
+.detail-tool-description
+  margin-top 25px
+  color gray(60)
+
+.reviews
+  @extend $clearfix
+  @extend $card
+  padding 10px 10px 20px
+  margin 10px 0 0
+  h2
+    display inline-block
+    font-size 12px
+    color gray(60)
+    // font-weight 100
+    letter-spacing 2px
+    text-transform uppercase
+
+.review
+  @extends $clearfix
+  display table
+  h3
+    font-size 14px
+    padding 0px 0 0
+    margin 10px 0 0
+  a
+    color gray(70)
+    text-decoration none
+    &:hover
+      color _blue
+
+
+  p
+    font-size 14px
+    margin 10px 0 20px 0
+    color gray(75)
+
+
+
+
+.review-main
+  width 100%
+  display table-cell
+  padding-left 10px
+
+.user-avatar
+  display table-cell
+  float left
+  width 40px
+  height 40px
+  border-radius 20px
+  img
+    display block
+    width 100%
+    border-radius 25px
+
+.featured
+  @extend .reviews
+
+.featured-tool
+  height 100px
+  overflow hidden
+
+.featured-tool-thumnail
+  float left
+  box(80px)
+  background gray(10)
+
+.featured-tool-info
+  margin-left 90px
+
+  h3
+    padding 0
+    margin 0
+    font-size 16px
+    color gray(90)
+
+  p
+    font-size 14px
+    margin-top 10px
+    color gray(80)
+
+
+.related
+  @extend .reviews
+
+.related-tool
+  height 80px
+  overflow hidden
+
+.related-tool-thumbnail
+  float left
+  box(60px)
+  background gray(10)
+
+.related-tool-info
+  // float left
+  margin-left 70px
+
+  h3
+    padding 0
+    margin 0
+    font-size 14px
+    color gray(80)
+  p
+    font-size 14px
+    color gray(70)
+    margin 10px 0 0 0
+
+/*
+@media screen and (min-width: 600px)
+*/

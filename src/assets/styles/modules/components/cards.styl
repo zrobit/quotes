@@ -1,0 +1,44 @@
+$card
+  border-bottom 1px solid darken(body_bg, 10)
+  border-radius 4px
+  background #fff
+
+
+//tiles
+.cards-pic
+  overflow hidden
+  @media screen and (min-width: 601px)
+    max-width 1200px
+    margin 0 auto
+
+  .col
+    @extend $c1-1
+    padding 0 5px
+
+    @media screen and (min-width: 481px) and (max-width: 768px)
+      width 50%
+
+    @media screen and (min-width: 769px) and (max-width: 1024px)
+      width 33.333%
+
+    @media screen and (min-width: 1025px)
+      width 25%
+
+  .row
+    margin 10px 0 0
+
+
+.card-pic
+  @extend $card
+  img
+    display block
+    border-top-left-radius 4px
+    border-top-right-radius 4px
+    width 100%
+    border-bottom 1px solid darken(#fff, 5)
+    border 0px
+
+.card-quote
+  @extend $card
+  padding 10px
+  margin 10px

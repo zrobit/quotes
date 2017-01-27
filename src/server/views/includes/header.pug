@@ -1,0 +1,17 @@
+header.header(class={ghost: current==='/home'})
+  nav.header-nav
+    ul
+      li.header-logo
+        a(href='/') Dot
+
+      li.header-search
+        form.form-search.js-search(action='/search' method="POST")
+          .wrap-input
+            input.hell(type='text' name="search" placeholder="buscar herramientas...")
+            button.btn-search()
+              +icon('search')
+
+      li.signup
+        a(href="/signup") Sign up
+      li.login
+        a(href="/login") Log in

@@ -1,0 +1,36 @@
+block vars
+
+include includes/mixins
+
+doctype html
+
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    title 'Dot'
+    meta(name='description', content='page.description')
+    meta(name='keywords', content='page.keywords')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    block styles
+      link(href=static_url('styles/main.css'), rel='stylesheet' )
+
+  body#body
+    include includes/icons.pug
+    #page.page
+      block page
+        block header
+          include includes/header
+
+        section#content.content
+          block content
+
+        block footer
+          include includes/footer
+
+    block scripts
+      script(src="http://localhost:8080/assets/scripts/app.min.js")
+      script(id='tile-tpl' type="text/tim")
+        +tile-tpl
+
+      //- +analytics

@@ -1,0 +1,24 @@
+extends layout
+
+
+block content
+  .search-detail
+    .inner
+      h1 520 Results for #{query}
+
+      span Related searches:
+      ul
+        for tag in tags
+          li
+            a(href='/search/'+tag.slug)= tag.name
+
+  .home
+    nav.nav.tab
+      ul
+        li
+          a(href="/search/"+querySlug, class={active: tab===1}) Popular
+        li
+          a(href="/search/"+querySlug+"/new", class={active: tab===2}) New
+
+
+    include includes/cards

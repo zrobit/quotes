@@ -1,0 +1,14 @@
+extends layout
+
+
+block content
+  .categories
+    .tiles
+      |{% for item in categories %}
+      .col
+        .tile.row
+          a(href="{{item.get_absolute_url}}")
+            img(src="{{item.cover.src}}")
+          .info
+            h2 {{item.name}}
+      |{% endfor %}

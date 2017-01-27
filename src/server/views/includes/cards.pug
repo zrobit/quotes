@@ -1,0 +1,19 @@
+.cards-pic#grid(data-columns)
+  each item in tools
+    .card-pic.row
+      a.img-wrap(href=item._url(), style="padding-top: "+item.img._iRatio()+"%")
+        img(src=item.img._medium())
+      .info
+        .info-meta
+          .info-views
+            +icon('eye')
+            span= item.views
+
+          .info-favorites
+            +icon('favorite')
+            span= item.likes
+
+          .info-downloads
+            +icon('download')
+            span= item.likes
+        h2= item.name + item.id

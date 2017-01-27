@@ -1,0 +1,90 @@
+extends layout
+
+block content
+  .detail
+    .view-pic-wrap
+      .view-pic
+        section.pic-main
+          .detail-tool
+            .detail-head
+              img.detail-tool-logo(src=tool.logo)
+              h2.detail-tool-name= tool.name
+              h3.detail-tool-tagline= tool.tagline
+              a.btn-medium.btn-like
+                +icon('favorite')
+                | Like
+
+              a.btn-medium
+                +icon('launch')
+                | Site
+              a.btn-medium
+                +icon('add')
+                | Add collection
+            .detail-body
+              p.detail-tool-description= tool.description
+
+          .reviews
+            h2 Reviews:
+            .btn-medium.btn-add-review
+              +icon('edit')
+              | Add review
+            .review-post
+              .review
+                .user-avatar
+                  a(href="#")
+                    img(src='/media/avatars/avatar.png')
+                .review-main
+                  h3
+                    a(href="/user/1") Jose Miguel
+                  form.form-review
+                    textarea hola
+                    button.btn-medium.btn-high Post
+
+            .reviews-main
+              for review in reviews
+                .review
+                  .user-avatar
+                    a(href="/user/"+review.author.id)
+                      img(src=review.author.avatar)
+                  .review-main
+                    h3
+                      a(href="/user/"+review.author.id) #{review.author.firstName} #{review.author.lastName}
+                    p=review.post
+
+          .featured
+            h2 Featured
+            .featured-main
+              each item in featured
+                .featured-tool
+                  .featured-tool-thumnail
+                    img(src=)
+                  .featured-tool-info
+                    h3=item.name
+                    p=item.tagline
+
+
+
+        aside.pic-aside
+          .pic
+            .pic-actions
+
+            .pic-img(style="max-width:"+tool.img._widthLarge()+"px")
+              img(src=tool.img._large())
+
+            .pic-info
+              ul.pic-tags
+                each item in tool.tags
+                  li
+                    a(href='#')= item.name
+
+          .related
+            h2 Similar Tools
+
+            .related-main
+              each item in related
+                .related-tool
+                  .related-tool-thumbnail
+                    img(src=)
+                  .related-tool-info
+                    h3= item.name
+                    p= item.tagline

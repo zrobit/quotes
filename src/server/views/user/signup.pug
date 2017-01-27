@@ -1,0 +1,23 @@
+extends ../layout
+block content
+  .signup
+    .auth-wrapper
+      if false
+        .auth-form
+          form.form(method="POST" action="/signup")
+            .row
+              label Email
+              input.in-text(type='text' name='email' value=email?email:'')
+              if emailError
+                p=emailError
+
+              label Password
+              input.in-text(type='password' name='password')
+              if passError
+                p=passError
+
+              input(type='hidden' name='_csrf' value=_csrf)
+              button.btn-auth SIGNUP
+
+      h1 Pedir una invitacion
+

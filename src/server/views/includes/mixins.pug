@@ -1,0 +1,23 @@
+mixin icon(cls)
+  svg(class='icon icon-'+cls)
+    use(xlink:href="#icon-"+cls)
+
+
+mixin tile-tpl
+  .tile.row
+    a.img-wrap(href="{{iUrl}}", style="padding-top:{{iHratio}}%")
+      img(src="{{iSrcMedium}}")
+    .info
+      .info-meta
+        .info-views
+          +icon('eye')
+          span {{views}}
+
+        .info-favorites
+          +icon('favorite')
+          span {{likes}}
+
+        .info-downloads
+          +icon('download')
+          span {{downloads}}
+      h2 {{title}}

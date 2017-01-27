@@ -1,0 +1,19 @@
+extends layout
+
+append vars
+  - var current = '/home';
+  - var tab = '1'
+
+block content
+  .landing
+    img(src='/media/cover.jpg')
+    .landing-inner
+      h1 Encuentra herramientas para ti y tu negocio
+      form.form-search-landing.js-search(action='/search' method="POST")
+        .wrap-input
+          input(type="text" name='search' placeholder="buscar herramientas...")
+          +icon('search')
+
+  .home
+    include includes/tabs
+    include includes/cards

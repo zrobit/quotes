@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .profile
+    .profile-cover
+    .profile-detail
+      .profile-avatar
+        img(src=user.avatar)
+      .profile-info
+        h2 #{user.firstName} #{user.lastName}
+        p=user.profile.bio
+        nav.nav.profile-numbers
+          ul
+            li
+              a(href="#")
+                span=user.profile.followers
+                |Followers
+            li
+              a(href="#")
+                span=user.profile.following
+                |Following
+
+
+      nav.nav.tab.profile-tab
+        ul
+          li
+            a(href="#" class={active: current==='/likes'}) Likes
+          li
+            a(href="#") I use this
+          li
+            a(href="#") Collections
+
+    include includes/cards

@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  .login-auth
+    .auth-wrapper
+      .auth-form
+        form(method="POST" action="/login")
+          .row
+            label Email
+            input.in-text(type='text' name='email')
+            label Password
+            input.in-text(type='password' name='password')
+            input(type="hidden" name="_csrf" value=_csrf)
+
+          .row
+            .c1-2
+              label.label-inline
+                input(type="checkbox" name="remember_me", checked="checked")
+                span.checkbox
+                  +icon('done')
+                span.up Remember me?
+
+            .c1-2
+              label.label-inline
+                a(href="#") Forgot Password?
+
+          .row
+            button.btn-auth LOGIN
+      if false
+        .row
+          span.or -or-
+
+        .row
+          a.btn-facebook(href="#")
+            +icon('facebook')
+            span Continue with Facebook
+
+          a.btn-twitter(href="#")
+            +icon('twitter')
+            span Continue with Twitter

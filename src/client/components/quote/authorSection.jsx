@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
+import SplitPane from '../layout/splitPane'
+
+import QuotesList from '../quote/quotesList'
+import Sidebar from '../layout/sidebar'
+
+
 import style from './quote.styl'
 import cx from 'classnames'
 
@@ -11,11 +17,9 @@ class AuthorSection extends Component {
 
   }
   render() {
-
     return (
-      <div>
-      </div>
-    )
+        <SplitPane main={<QuotesList />} sidebar={<Sidebar />} />
+    );
   }
 }
 

@@ -4,7 +4,8 @@ import QuoteModel from '../models/QuoteModel'
 export default class QuoteStore {
   @observable quotes = [];
   quote = {};
-  author = {}
+  author = {};
+  section = '';
 
   setQuoteDetail(quote){
     this.quote = quote;

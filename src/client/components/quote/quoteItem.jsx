@@ -13,7 +13,8 @@ class QuoteItem extends Component {
   }
 
   render() {
-    const {slug, content, author} = this.props.quote
+    const {slug, content} = this.props.quote
+    const author = this.props.author
     return (
       <div className={cx(style.item, 'card-quote')}>
         <p>

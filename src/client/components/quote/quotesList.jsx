@@ -6,11 +6,11 @@ import QuoteItem from './quoteItem'
 @inject('quoteStore') @observer
 class QuotesList extends Component {
   render() {
-    const {quotes} = this.props.quoteStore
+    const {quotes, author} = this.props.quoteStore
     return (
       <div>
       {quotes.map(quote =>
-        <QuoteItem key={quote.id} quote={quote} />
+        <QuoteItem key={quote.id} quote={quote} author={quote.author || author} />
       )}
       </div>
     );

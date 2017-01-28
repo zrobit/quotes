@@ -3,6 +3,6 @@ import {Link} from 'react-router'
 
 export default ({name, url}) => (
   <li>
-    <Link to={url} >{name}</Link>
+    <Link to={url} >#{name}</Link>
   </li>
 )

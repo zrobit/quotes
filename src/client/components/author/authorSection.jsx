@@ -18,7 +18,10 @@ class AuthorSection extends Component {
   }
   render() {
     return (
+      <div className={style.section}>
         <SplitPane main={<QuotesList />} sidebar={<Sidebar />} />
+      </div>
+
     );
   }
 }

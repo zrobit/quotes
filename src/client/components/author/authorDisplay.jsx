@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import AuthorDisplay from '../author/authorDisplay'
 
 export default () => (
-  <div >
+  <div className="card">
     hola :)
   </div>
 );

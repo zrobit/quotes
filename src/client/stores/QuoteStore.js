@@ -15,7 +15,11 @@ export default class QuoteStore {
 
   static fromJS(data) {
     const quoteStore = new QuoteStore();
-    if(data.constructor === Array){
+    if (data.type === 'authorModel') {
+      quoteStore.author = data.author
+      quoteStore.quotes = data.quotes.map(item => QuoteModel.fromJS(quoteStore, item))
+
+    } else if (data.constructor === Array){
       quoteStore.quotes = data.map(item => QuoteModel.fromJS(quoteStore, item))
     } else if (data.constructor === Object) {
       quoteStore.quote = data;

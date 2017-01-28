@@ -3,6 +3,7 @@ import {inject} from "mobx-react";
 import { Link } from 'react-router';
 
 import TagList from '../tag/tagList'
+import ShareSmallButtons from '../buttons/shareSmallButtons'
 
 import style from './quote.styl';
 import cx from 'classnames';
@@ -25,7 +26,7 @@ class QuoteItem extends Component {
     const author = this.props.author
     const tags = this.tags
     return (
-      <div className={cx(style.item, 'card-quote')}>
+      <div className={cx(style.item, 'card-quote clearfix')}>
         <p>
           <Link
             className={style.link}
@@ -44,6 +45,7 @@ class QuoteItem extends Component {
             </Link>
           </h3>
           <TagList tags={tags}/>
+          <ShareSmallButtons />
         </div>
       </div>
     );

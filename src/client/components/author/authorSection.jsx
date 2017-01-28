@@ -4,10 +4,10 @@ import {inject, observer} from "mobx-react";
 import SplitPane from '../layout/splitPane'
 
 import QuotesList from '../quote/quotesList'
-import Sidebar from '../layout/sidebar'
+import Sidebar from './authorSidebar'
 
 
-import style from './quote.styl'
+import style from './author.styl'
 import cx from 'classnames'
 
 @inject('quoteStore')

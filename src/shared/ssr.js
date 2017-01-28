@@ -21,7 +21,6 @@ export function ssr(req, res, context, template="layout") {
         console.log(err)
       }
       else if (props) {
-        console.log('ssr renderrrrrrrrrrrrr')
         const stores = {
           quoteStore: QuoteStore.fromJS(context.state.quotes),
           loginStore: new LoginStore()

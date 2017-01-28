@@ -6,7 +6,7 @@ import style from './quote.styl';
 import cx from 'classnames';
 
 @inject('quoteStore')
-class QuoteView extends Component {
+class QuoteItem extends Component {
   constructor(props){
     super(props)
     // this.handleClickAuthor = this.handleClickAuthor.bind(this);
@@ -14,19 +14,18 @@ class QuoteView extends Component {
 
   render() {
     const {slug, content, author} = this.props.quote
-
     return (
-      <div className={cx(style.quote, 'card-quote')}>
+      <div className={cx(style.item, 'card-quote')}>
         <p>
           <Link
-            className={style.contentLink}
+            className={style.link}
             to={"/frase/"+slug}
             onClick={()=> this.props.quoteStore.setQuoteDetail(this.props.quote)} >
             {content}
           </Link>
         </p>
         <div className={style.meta}>
-          <h3>
+          <h3 className={style.author}>
             <span>—</span>
             <Link
               to={"/autor/"+author.slug}
@@ -40,4 +39,4 @@ class QuoteView extends Component {
   }
 }
 
-export default QuoteView
+export default QuoteItem

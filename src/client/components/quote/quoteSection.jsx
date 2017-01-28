@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import {inject, observer} from "mobx-react";
-import style from './quote.styl'
+import { Link } from 'react-router';
 
+
+import style from './quote.styl'
+import cx from 'classnames'
 
 @inject('quoteStore')
 class QuoteDetail extends Component {
@@ -11,19 +14,24 @@ class QuoteDetail extends Component {
 
   render() {
     const {quote} = this.props.quoteStore
+    const {author} = quote
 
     return (
-      <div className={style.quote}>
-        <p>
-          {quote.content}
-        </p>
-        <div className="quote-detail-meta">
-          <h3>
-            <span>—</span>
-            <span>
-              {quote.author.name}
-            </span>
-          </h3>
+      <div className={cx(style.quoteSection)}>
+        <div className={cx(style.main, 'card')}>
+          <p>
+            {quote.content}
+          </p>
+          <div className={style.quoteMeta}>
+            <h3 className={style.quoteAuthor}>
+              <span>—</span>
+            <Link
+              to={"/autor/"+author.slug}
+              onClick={() => this.props.quoteStore.setAuthorDetail(author)} >
+                {author.name}
+              </Link>
+            </h3>
+          </div>
         </div>
       </div>
     );

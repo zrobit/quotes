@@ -19,7 +19,6 @@ router.get('/:slug', function(req, res){
       let state = {
         quotes: response.data
       }
-      console.log(state)
       context.state = state;
       ssr(req, res, context)
     })

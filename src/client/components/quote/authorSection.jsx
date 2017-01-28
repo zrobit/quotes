@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
+import style from './quote.styl'
+import cx from 'classnames'
 
 @inject('quoteStore')
-class AuthorDetail extends Component {
+class AuthorSection extends Component {
   constructor(props){
     super(props);
 
@@ -12,10 +14,9 @@ class AuthorDetail extends Component {
 
     return (
       <div>
-        <h1>holaaaaaaaaa:  -->{this.props.params.slug}</h1>
       </div>
     )
   }
 }
 
-export default AuthorDetail;
+export default AuthorSection;

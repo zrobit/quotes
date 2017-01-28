@@ -5,9 +5,21 @@ const router = express.Router();
 const Author = require('../models/author');
 
 router.get('/', function(req, res, next){
+      console.log('author apicontroller=>>>>>>>>>>>')
+
   let query = Author.find({}).select('name slug -_id')
 
   query.exec((err, data)=>{
+    if (err) throw err;
+    res.json(data)
+  })
+});
+
+router.get('/:slug', function(req, res, next){
+  let query = Author.findOne({slug:req.params.slug})
+  query.select('name slug -_id')
+  query.exec((err, data)=>{
+  console.log('author Mongooooooo apicontroller=>>>>>>>>>>>')
     if (err) throw err;
     res.json(data)
   })

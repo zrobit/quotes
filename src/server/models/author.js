@@ -13,5 +13,12 @@ authorSchema.pre('save', function(next) {
   next();
 });
 
+// authorSchema.virtual('quotes', {
+//   ref: 'Quote',
+//   localField: '_id',
+//   foreignField: 'author'
+// });
+
 var Author = mongoose.model('Author', authorSchema);
 module.exports = Author;
+

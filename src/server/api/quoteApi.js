@@ -9,9 +9,9 @@ const Quote = require('../models/quote');
 const Author = require('../models/author');
 
 router.get('/', function(req, res, next){
-  let query = Quote.find({}).limit(10).sort({'createdAt':-1})
-  query.populate('author', 'name slug')
+  let query = Quote.find({}).limit(10).sort({'createdAt':-1});
   query.select('slug content author');
+  query.populate('author', 'name slug');
   query.exec((err, data) => {
     if (err) throw err;
     res.json(data)
@@ -20,8 +20,8 @@ router.get('/', function(req, res, next){
 
 router.get('/:slug', function(req, res, next){
   let query = Quote.findOne({slug:req.params.slug})
-  query.populate('author', 'name slug')
   query.select('slug content author');
+  query.populate('author', 'name slug')
   query.exec((err, data) => {
     if (err) throw err;
     res.json(data)

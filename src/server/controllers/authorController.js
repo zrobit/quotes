@@ -14,6 +14,7 @@ router.get('/:slug', function(req, res){
 
   let context = {};
 
+
   api.get('/authors/' + slug)
     .then(function(response){
       let state = {

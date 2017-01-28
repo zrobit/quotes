@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-// const Quote = require('../models/quote');
+const Quote = require('../models/quote');
 const Author = require('../models/author');
 
 router.get('/', function(req, res, next){
-      console.log('author apicontroller=>>>>>>>>>>>')
-
   let query = Author.find({}).select('name slug -_id')
 
   query.exec((err, data)=>{
@@ -16,12 +14,15 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/:slug', function(req, res, next){
-  let query = Author.findOne({slug:req.params.slug})
-  query.select('name slug -_id')
-  query.exec((err, data)=>{
-  console.log('author Mongooooooo apicontroller=>>>>>>>>>>>')
-    if (err) throw err;
-    res.json(data)
+  let query = Author.findOne({slug:req.params.slug}).select('name slug')
+
+  query.exec((err, author) => {
+    let quote = Quote.find({author: author._id}).select('slug content')
+    quote.exec((err, data) => {
+      let object = Object.assign({type: 'authorModel'}, {author: author}, {quotes: data})
+      if (err) throw err;
+      res.json(object)
+    })
   })
 });
 

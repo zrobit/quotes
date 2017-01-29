@@ -6,10 +6,10 @@ import style from './buttons.styl'
 export default () => (
   <ul className={style.btnList}>
     <li>
-      <FacebookIconButton url='/test/facebook' />
+      <FacebookMediumButton url='/test/facebook' />
     </li>
     <li>
-      <TwitterIconButton url='/test/twitter'/>
+      <TwitterMediumButton url='/test/twitter'/>
     </li>
   </ul>
 )

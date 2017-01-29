@@ -1,10 +1,10 @@
 import React from 'react';
-import FacebookIconButton from './facebookIconButton';
-import TwitterIconButton from './twitterIconButton';
+import FacebookMediumButton from './facebookMediumButton';
+import TwitterMediumButton from './twitterMediumButton';
 import style from './buttons.styl'
 
 export default () => (
-  <ul className={style.btnList}>
+  <ul className={style.mediumBtnList}>
     <li>
       <FacebookMediumButton url='/test/facebook' />
     </li>

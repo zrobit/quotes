@@ -7,5 +7,6 @@ import cx from 'classnames'
 export default ({url}) => (
   <Link to={url} className={cx(style.mediumBtn, style.twitter)}>
     <Icon name="twitter" />
+    <span>Tweet</span>
   </Link>
 )

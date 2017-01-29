@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {inject, observer} from "mobx-react";
 import { Link } from 'react-router';
 
+import ShareMediumButtons from '../buttons/shareMediumButtons'
 
 import style from './quote.styl'
 import cx from 'classnames'
@@ -25,12 +26,13 @@ class QuoteDetail extends Component {
           <div className={style.quoteMeta}>
             <h3 className={style.quoteAuthor}>
               <span>—</span>
-            <Link
-              to={"/autor/"+author.slug}
-              onClick={() => this.props.quoteStore.setAuthorDetail(author)} >
+              <Link
+                to={"/autor/"+author.slug}
+                onClick={() => this.props.quoteStore.setAuthorDetail(author)} >
                 {author.name}
               </Link>
             </h3>
+            <ShareMediumButtons />
           </div>
         </div>
       </div>

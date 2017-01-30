@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
-import HomeQuotesList from './homeQuotesList'
-import Sidebar from '../layout/homeSidebar'
-import SplitPane from '../layout/splitPane'
+import HomeQuotesList from './HomeQuotesList'
+import Sidebar from '../layout/HomeSidebar'
+import SplitPane from '../layout/SplitPane'
 
 
 import style from './home.styl'

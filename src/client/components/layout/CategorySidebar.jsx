@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import ItemCategory from './itemCategory'
+import ItemCategory from './ItemCategory'
 
 const cats = [
   {id:2, name: 'Categoria uno ', slug: 'categoria-uno'},

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {observer} from "mobx-react";
-import SearchForm from './searchForm'
+import SearchForm from './SearchForm'
 import { Link } from 'react-router'
 
 class Header extends Component {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
-import AuthorBio from './authorBio'
 
 export default () => (
-  <div className="sidebar">
-    <AuthorBio author={author}/>
+  <div className="card">
+    <img src="#" />
+    <h2>Atuhor name</h2>
   </div>
 );

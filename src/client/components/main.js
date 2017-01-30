@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { observer, inject } from "mobx-react";
-import MainLayout from "./layout/mainLayout";
-import HomeSection from "./home/homeSection";
+import MainLayout from "./layout/MainLayout";
+import HomeSection from "./home/HomeSection";
 
 class Main extends Component {
   render() {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {inject} from "mobx-react";
 import { Link } from 'react-router';
 
-import TagList from '../tag/tagList'
-import ShareSmallButtons from '../buttons/shareSmallButtons'
+import TagList from '../tag/TagList'
+import ShareSmallButtons from '../buttons/ShareSmallButtons'
 
 import style from './quote.styl';
 import cx from 'classnames';

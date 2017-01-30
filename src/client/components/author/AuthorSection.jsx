@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
-import SplitPane from '../layout/splitPane'
+import SplitPane from '../layout/SplitPane'
 
-import AuthorQuotesList from './authorQuotesList'
-import Sidebar from './authorSidebar'
+import AuthorQuotesList from './AuthorQuotesList'
+import Sidebar from './AuthorSidebar'
 
 
 import style from './author.styl'

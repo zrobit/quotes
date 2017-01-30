@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Header from "./headerContainer";
+import Header from "./HeaderContainer";
 
 
 class ContentLayout extends Component {

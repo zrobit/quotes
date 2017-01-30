@@ -2,7 +2,7 @@ import React from 'react';
 
 import guid from '../../utils/guid';
 
-import TagItem from './tagItem';
+import TagItem from './TagItem';
 import style from './tag.styl';
 
 

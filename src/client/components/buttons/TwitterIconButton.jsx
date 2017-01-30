@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Icon from '../icon'
+import Icon from '../Icon'
 import style from './buttons.styl'
 import cx from 'classnames'
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import FacebookIconButton from './facebookIconButton';
-import TwitterIconButton from './twitterIconButton';
+import FacebookIconButton from './FacebookIconButton';
+import TwitterIconButton from './TwitterIconButton';
 import style from './buttons.styl'
 
 export default () => (

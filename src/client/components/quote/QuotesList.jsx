@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {inject, observer} from "mobx-react";
 
-import QuoteItem from './quoteItem'
+import QuoteItem from './QuoteItem'
 
 @inject('quoteStore') @observer
 class QuotesList extends Component {

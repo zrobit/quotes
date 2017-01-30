@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {inject, observer} from "mobx-react";
 import { Link } from 'react-router';
 
-import ShareMediumButtons from '../buttons/shareMediumButtons'
+import ShareMediumButtons from '../buttons/ShareMediumButtons'
 
 import style from './quote.styl'
 import cx from 'classnames'

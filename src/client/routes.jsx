@@ -2,8 +2,8 @@ import React from 'react';
 import { Route } from 'react-router';
 
 import Main from './components/main';
-import AuthorSection from './components/author/authorSection';
-import QuoteSection from './components/quote/quoteSection';
+import AuthorSection from './components/author/AuthorSection';
+import QuoteSection from './components/quote/QuoteSection';
 import Login from './components/auth/login';
 
 export default (

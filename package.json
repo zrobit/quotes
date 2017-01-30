@@ -49,7 +49,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "BABEL_ENV=server nodemon src/server --exec babel-node",
+
     "build:server": "BABEL_ENV=server babel src/client -d dist/client && babel src/shared -d dist/shared",
+    "build:dev": "NODE_ENV=development webpack --progress --config ./webpack.config.js",
+
     "build:client": "NODE_ENV=production webpack --progress --config ./webpack.prod.config.js",
     "webpack": "webpack-dev-server ",
     "serve": "NODE_ENV=build node src/server"

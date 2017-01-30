@@ -3,8 +3,11 @@ import {Link} from 'react-router'
 import styles from './tag.styl'
 
 
-export default ({name, url}) => (
-  <li>
-    <Link to={url} className={styles.link}>{name}</Link>
-  </li>
-)
+function TagItem ({name, url}){
+  return(
+    <li>
+      <Link to={url} className={styles.link}>{name}</Link>
+    </li>
+  );
+}
+export default TagItem;

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
-import AuthorDisplay from '../author/authorDisplay'
 
-export default () => (
+export default ({author}) => (
   <div className="card">
-    hola :)
+    <img src="#" />
+    <h2>{author.name}</h2>
   </div>
 );

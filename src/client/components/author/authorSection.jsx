@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 
 import SplitPane from '../layout/splitPane'
 
-import QuotesList from '../quote/quotesList'
+import AuthorQuotesList from './authorQuotesList'
 import Sidebar from './authorSidebar'
 
 
@@ -12,16 +12,12 @@ import cx from 'classnames'
 
 @inject('quoteStore')
 class AuthorSection extends Component {
-  constructor(props){
-    super(props);
-
-  }
   render() {
+    const {author} = this.props.quoteStore;
     return (
       <div className={style.section}>
-        <SplitPane main={<QuotesList />} sidebar={<Sidebar />} />
+        <SplitPane main={<AuthorQuotesList author={author} />} sidebar={<Sidebar />} />
       </div>
-
     );
   }
 }

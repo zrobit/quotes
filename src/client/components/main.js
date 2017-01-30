@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import { observer, inject } from "mobx-react";
 import MainLayout from "./layout/mainLayout";
-import Home from "./home"
+import HomeSection from "./home/homeSection";
 
-@observer
 class Main extends Component {
   render() {
     return (
       <MainLayout>
-        {this.props.children || <Home />}
+        {this.props.children || <HomeSection />}
       </MainLayout>
     )
   }

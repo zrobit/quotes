@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
-import QuotesList from '../quote/quotesList'
+import HomeQuotesList from './homeQuotesList'
 import Sidebar from '../layout/homeSidebar'
 import SplitPane from '../layout/splitPane'
 
@@ -17,7 +17,7 @@ class Home extends Component {
         <div className={style.landing}>
           <img src="/assets/media/images/cover.jpg"/>
         </div>
-        <SplitPane main={<QuotesList />} sidebar={<Sidebar />} />
+        <SplitPane main={<HomeQuotesList />} sidebar={<Sidebar />} />
       </div>
     )
   }

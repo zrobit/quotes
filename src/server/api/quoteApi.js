@@ -38,7 +38,8 @@ router.post('/', function(req, res, next){
   author.save((err)=> {
     if (err) throw err;
     let quote = new Quote({
-      content: content, author: author._id,
+      content: content,
+      author: author.id,
       slug: author.slug + '-' + contentSlug
     });
 

@@ -5,7 +5,7 @@ const Quote = require('../models/quote');
 const Author = require('../models/author');
 
 router.get('/', function(req, res, next){
-  let query = Author.find({}).select('name slug -_id')
+  let query = Author.find({}).select('_id name slug bio')
 
   query.exec((err, data)=>{
     if (err) throw err;
@@ -14,7 +14,24 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/:slug', function(req, res, next){
-  let query = Author.findOne({slug:req.params.slug}).select('name slug')
+  let query = Author.findOne({slug:req.params.slug})
+  query.select('name slug bio quotes').populate('quotes')
+  query.exec((err, data) => {
+    let object = Object.assign({type: 'authorModel'}, {author: data})
+    if (err) throw err;
+    res.json(object)
+  })
+});
+
+router.put('/:id', function(req, res, next){
+  let { id } = req.params
+  let { key, value } = req.body
+
+  Author.findByIdAndUpdate(id, { $set: { key: key, value: value}}, function (err, author) {
+    if (err) throw err;
+
+    res.status(200).json({status: "ok"})
+  });
 
   query.exec((err, author) => {
     let quote = Quote.find({author: author._id}).select('slug content')
@@ -25,17 +42,5 @@ router.get('/:slug', function(req, res, next){
     })
   })
 });
-
-// router.post('/', function(req, res, next){
-//   let author = new Author({name:req.body.author})
-//   author.save((err)=> {
-//     if (err) throw err;
-//     let quote = new Quote({ content:  req.body.content, author: author._id});
-//     quote.save((err) => {
-//     if (err) throw err;
-//     res.status(200).json({status:"ok"})
-//     })
-//   })
-// });
 
 module.exports = router;

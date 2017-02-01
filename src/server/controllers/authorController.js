@@ -18,7 +18,7 @@ router.get('/:slug', function(req, res){
   api.get('/authors/' + slug)
     .then(function(response){
       let state = {
-        quotes: response.data
+        quotes: response.data,
       }
       context.state = state;
       ssr(req, res, context)

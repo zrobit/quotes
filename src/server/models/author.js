@@ -5,10 +5,10 @@ const slug = require('slugg')
 
 const config = {
   timestamps: true,
-  toJSON : {virtuals:true},
-  id: false
+  toJSON : {
+    virtuals:true
+  },
 }
-
 
 var authorSchema = new Schema({
   name: String,
@@ -20,15 +20,15 @@ var authorSchema = new Schema({
   }
 }, config);
 
-authorSchema.pre('save', function(next) {
-  this.slug = slug(this.name);
-  next();
-});
-
 authorSchema.virtual('quotes', {
   ref: 'Quote',
   localField: '_id',
   foreignField: 'author'
+});
+
+authorSchema.pre('save', function (next) {
+  this.slug = slug(this.name);
+  next();
 });
 
 var Author = mongoose.model('Author', authorSchema);

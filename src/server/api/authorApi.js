@@ -14,12 +14,15 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/:slug', function(req, res, next){
-  let query = Author.findOne({slug:req.params.slug})
-  query.select('name slug bio quotes').populate('quotes')
-  query.exec((err, data) => {
-    let object = Object.assign({type: 'authorModel'}, {author: data})
+
+  Author
+  .findOne({slug:req.params.slug})
+  .select('name slug bio')
+  .populate({ path: 'quotes', select: 'author content -_id'})
+  .exec((err, data) => {
+    let context = Object.assign({type: 'authorModel'}, {author: data})
     if (err) throw err;
-    res.json(object)
+    res.json(context)
   })
 });
 

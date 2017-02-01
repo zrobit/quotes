@@ -27,12 +27,19 @@ gulp.task('connectDB', function(cb) {
 gulp.task('seed:quotes', ['connectDB'], function(){
   let authors = fakeAuthors(10);
   let it = cicle(authors)
+  let quotes = fakeQuotes(20)
 
-  // }
-  // Author.create({})
-
-
-  // Quote.
+  quotes.forEach((element) => {
+    Author.create(it.next(), (err, author)=> {
+      if (err) throw err;
+      console.log("Author: " + author)
+      element.author = author.id
+      Quote.create(element, (err, quote) => {
+        if (err) throw err;
+        console.log("Quote: " + quote)
+      })
+    })
+  });
 });
 
 gulp.task('seed:author', ['connectDB'], function(){
@@ -46,10 +53,18 @@ gulp.task('seed:author', ['connectDB'], function(){
   });
 });
 
+//Todo implementar interactive para estar seguros si queremos eleminar
+
+//Eliminar Collections
 gulp.task('seed:author:clear', ['connectDB'], function(){
-  //Todo implementar interactive para estar seguros si queremos eleminar
 
   Author.remove({}, function(err) {
-    console.log('collection removed')
+    console.log('collection Author removed')
+  });
+})
+
+gulp.task('seed:quote:clear', ['connectDB'], function(){
+  Quote.remove({}, function(err) {
+    console.log('collection Quote removed')
   });
 })

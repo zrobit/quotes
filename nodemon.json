@@ -1,0 +1,26 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "tasks/",
+    "src/client/",
+    "src/assets/",
+    "dist/",
+    "media/",
+    "gulpfile.js",
+    "webpack.config.js",
+    "webpack.prod.config.js"
+  ],
+  "verbose": false,
+  "watch": [
+    "src/server/",
+    "src/shared/",
+    "src/config/",
+    "src/utils/"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json"
+}

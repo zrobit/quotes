@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react';
 import { Router, browserHistory} from 'react-router';
 import routes from './routes.jsx';
 
-import QuoteStore from './stores/QuoteStore';
+import AppStore from './stores/AppStore';
 import LoginStore from './stores/LoginStore';
 
 
@@ -14,7 +14,7 @@ const initialState = window.initialState || {};
 // var viewStore = new ViewStore();
 
 const stores = {
-  quoteStore: QuoteStore.fromJS(initialState.quotes || []),
+  appStore: AppStore.fromJS(initialState.quotes || []),
   loginStore: new LoginStore()
 }
 

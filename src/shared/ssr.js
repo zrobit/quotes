@@ -9,7 +9,7 @@ import routes from '../client/routes';
 import jsonStringifySafe from 'json-stringify-safe';
 
 
-import QuoteStore from '../client/stores/QuoteStore'
+import AppStore from '../client/stores/AppStore'
 import LoginStore from '../client/stores/LoginStore'
 useStaticRendering(true);
 
@@ -22,7 +22,7 @@ export function ssr(req, res, context, template="layout") {
       }
       else if (props) {
         const stores = {
-          quoteStore: QuoteStore.fromJS(context.state.quotes),
+          appStore: AppStore.fromJS(context.state.quotes),
           loginStore: new LoginStore()
         }
 

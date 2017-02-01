@@ -5,10 +5,10 @@ import { Link } from 'react-router'
 import AuthorBio from './AuthorBio'
 
 
-@inject('quoteStore') @observer
+@inject('appStore') @observer
 class AuthorSidebar extends Component {
   render() {
-    let {author, isLoading} = this.props.quoteStore
+    let {author, isLoading} = this.props.appStore
     return(
       <div className="sidebar">
         <AuthorBio author={author} isLoading={isLoading} />

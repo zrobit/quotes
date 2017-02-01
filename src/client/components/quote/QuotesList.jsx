@@ -3,10 +3,10 @@ import {inject, observer} from "mobx-react";
 
 import QuoteItem from './QuoteItem'
 
-@inject('quoteStore') @observer
+@inject('appStore') @observer
 class QuotesList extends Component {
   render() {
-    const {quotes, author} = this.props.quoteStore
+    const {quotes, author} = this.props.appStore
     return (
       <div>
       {quotes.map(quote =>

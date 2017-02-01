@@ -10,10 +10,10 @@ import Sidebar from './AuthorSidebar'
 import style from './author.styl'
 import cx from 'classnames'
 
-@inject('quoteStore')
+@inject('appStore')
 class AuthorSection extends Component {
   render() {
-    const {author} = this.props.quoteStore;
+    const {author} = this.props.appStore;
     return (
       <div className={style.section}>
         <SplitPane main={<AuthorQuotesList author={author} />} sidebar={<Sidebar />} />

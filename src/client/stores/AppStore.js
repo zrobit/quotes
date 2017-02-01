@@ -2,11 +2,10 @@ import {observable, computed, action} from "mobx";
 import QuoteModel from '../models/QuoteModel'
 import axios from 'axios'
 
-export default class QuoteStore {
+export default class AppStore {
   @observable quotes = [];
   quote = {};
   author = {};
-  section = '';
   @observable isLoading = false;
 
   setQuoteDetail(quote){
@@ -31,16 +30,16 @@ export default class QuoteStore {
   }
 
   static fromJS(data) {
-    const quoteStore = new QuoteStore();
+    const appStore = new AppStore();
     if (data.type === 'authorModel') {
-      quoteStore.author = data.author
-      quoteStore.quotes = data.author.quotes.map(item => QuoteModel.fromJS(quoteStore, item))
+      appStore.author = data.author
+      appStore.quotes = data.author.quotes.map(item => QuoteModel.fromJS(appStore, item))
 
     } else if (data.constructor === Array){
-      quoteStore.quotes = data.map(item => QuoteModel.fromJS(quoteStore, item))
+      appStore.quotes = data.map(item => QuoteModel.fromJS(appStore, item))
     } else if (data.constructor === Object) {
-      quoteStore.quote = data;
+      appStore.quote = data;
     }
-    return quoteStore;
+    return appStore;
   }
 }

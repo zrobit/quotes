@@ -8,7 +8,7 @@ import ShareSmallButtons from '../buttons/ShareSmallButtons'
 import style from './quote.styl';
 import cx from 'classnames';
 
-@inject('quoteStore')
+@inject('appStore')
 class QuoteItem extends Component {
   tags = [
     {name:"tag1", slug: "slug1"},
@@ -31,7 +31,7 @@ class QuoteItem extends Component {
           <Link
             className={style.link}
             to={"/frase/"+slug}
-            onClick={()=> this.props.quoteStore.setQuoteDetail(this.props.quote)} >
+            onClick={()=> this.props.appStore.setQuoteDetail(this.props.quote)} >
             {content}
           </Link>
         </p>
@@ -40,7 +40,7 @@ class QuoteItem extends Component {
             <span>—</span>
             <Link
               to={"/autor/"+author.slug}
-              onClick={() => this.props.quoteStore.setAuthorDetail(author)} >
+              onClick={() => this.props.appStore.setAuthorDetail(author)} >
                 {author.name}
             </Link>
           </h3>

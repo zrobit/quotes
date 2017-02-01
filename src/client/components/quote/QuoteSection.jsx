@@ -7,14 +7,14 @@ import ShareMediumButtons from '../buttons/ShareMediumButtons'
 import style from './quote.styl'
 import cx from 'classnames'
 
-@inject('quoteStore')
+@inject('appStore')
 class QuoteDetail extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {quote} = this.props.quoteStore
+    const {quote} = this.props.appStore
     const {author} = quote
 
     return (
@@ -28,7 +28,7 @@ class QuoteDetail extends Component {
               <span>—</span>
               <Link
                 to={"/autor/"+author.slug}
-                onClick={() => this.props.quoteStore.setAuthorDetail(author)} >
+                onClick={() => this.props.appStore.setAuthorDetail(author)} >
                 {author.name}
               </Link>
             </h3>

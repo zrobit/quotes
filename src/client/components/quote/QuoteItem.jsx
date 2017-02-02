@@ -22,9 +22,10 @@ class QuoteItem extends Component {
   }
 
   render() {
-    const {slug, content} = this.props.quote
-    const author = this.props.author
-    const tags = this.tags
+    const {slug, content} = this.props.quote;
+    const author = this.props.author;
+    const tags = this.tags;
+    // console.log(author)
     return (
       <div className={cx(style.item, 'card-quote clearfix')}>
         <p>

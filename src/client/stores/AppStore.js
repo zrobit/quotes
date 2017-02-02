@@ -5,7 +5,7 @@ import axios from 'axios'
 export default class AppStore {
   @observable quotes = [];
   quote = {};
-  author = {};
+  @observable author = {};
   @observable isLoading = false;
 
   setQuoteDetail(quote){
@@ -13,6 +13,7 @@ export default class AppStore {
   }
   setAuthorDetail(author){
     this.author = author
+    this.quotes = []
     this.fetchAuthor();
   }
 
@@ -22,11 +23,16 @@ export default class AppStore {
     axios.get('/api/authors/' + self.author.slug)
       .then(function (response) {
         self.author = response.data.author
+        self.mapQuotes(self, self.author.quotes)
         self.isLoading = false;
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+  mapQuotes(store, list){
+
+    this.quotes = list.map((item) => QuoteModel.fromJS(store, item))
   }
 
   static fromJS(data) {

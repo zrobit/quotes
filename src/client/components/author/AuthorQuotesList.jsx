@@ -11,6 +11,6 @@ export default ({author}) => (
       <span>Todas las frases de </span>
       <span>{author.name} (50)</span>
     </h2>
-    <QuotesList />
+    <QuotesList fromAuthorSection={true} />
   </div>
 )

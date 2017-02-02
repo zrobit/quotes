@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
+import hash from '../../utils/hash'
+
 import s from './author.styl'
 
 import ShareMediumButtons from '../buttons/ShareMediumButtons'
 
 function HeaderBio({author, isLoading}){
-  console.log('desde HeaderBio: '+ isLoading)
   return (
     <div className={s.header} >
       <div className={s.pic}>
@@ -29,7 +30,7 @@ function ContentBio({resume, meta}) {
     <div>
       <p>{resume}</p>
       <ul>
-        { meta.map((item) => <MetaItem label={item.label} value={item.value} />) }
+        { meta.map((item) => <MetaItem key={hash()} label={item.label} value={item.value} />) }
       </ul>
     </div>
   );

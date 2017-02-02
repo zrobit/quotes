@@ -9,7 +9,7 @@ var quoteSchema = new Schema({
   content: String,
   slug: String,
   author: { type: Schema.Types.ObjectId, ref: 'Author' },
-  tags: [{type: Schema.Types.ObjectId, ref: 'Author'}]
+  tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}]
 }, config);
 
 

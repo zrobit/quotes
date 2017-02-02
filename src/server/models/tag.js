@@ -9,7 +9,7 @@ const config = {
 
 const tagSchema = new Schema({
   name: String,
-  slug: type: String
+  slug: String
 }, config);
 
 tagSchema.pre('save', function (next) {

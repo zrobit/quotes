@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const config = {
+  timestamps: true
+}
+
 var tagSchema = new Schema({
   name: String,
-  slug: String,
-  created_at: Date,
-  updated_at: Date
+  slug: String
 });
 
 

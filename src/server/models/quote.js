@@ -8,9 +8,7 @@ const config = {
 var quoteSchema = new Schema({
   content: String,
   slug: String,
-  author: { type: Schema.Types.ObjectId, ref: 'Author' },
-  created_at: Date,
-  updated_at: Date
+  author: { type: Schema.Types.ObjectId, ref: 'Author' }
 }, config);
 
 

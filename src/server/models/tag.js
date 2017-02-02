@@ -7,9 +7,9 @@ const config = {
   timestamps: true
 }
 
-var tagSchema = new Schema({
+const tagSchema = new Schema({
   name: String,
-  slug: String,
+  slug: type: String
 }, config);
 
 tagSchema.pre('save', function (next) {
@@ -17,18 +17,22 @@ tagSchema.pre('save', function (next) {
   next();
 });
 
-tagSchema.statics.getOrCreate = function (doc, callback) {
+tagSchema.statics.getOrCreate = function (doc, cb) {
   const self = this;
   if (doc.name){
     if (!doc.slug){
       doc.slug = slug(doc.name)
     }
   }
-  self.findOne({slug: doc.slug}).then(callback).catch((err, result) => {
-    self.create({name: doc.name}).then(callback);
-  });
+  self.findOne({slug: doc.slug}, function(err, data){
+    if(!data){
+      self.create({name: doc.name}, function(err, data){
+        cb(err, data)
+      });
+    }
+    cb(err, data)
+  })
 };
 
-
-var Tag = mongoose.model('Tag', tagSchema);
+const Tag = mongoose.model('Tag', tagSchema);
 module.exports = Tag;

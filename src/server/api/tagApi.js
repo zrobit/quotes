@@ -8,7 +8,7 @@ const Tag = require('../models/tag');
 router.get('/', function(req, res, next){
   Tag
     .find().limit(10).sort({'createdAt':-1})
-    .select('slug name')
+    .select('slug name tags')
     .exec((err, tags) => {
       if (err) throw err;
       res.json(tags)

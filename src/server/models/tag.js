@@ -11,6 +11,7 @@ var tagSchema = new Schema({
 }, config);
 
 
+
 var Tag = mongoose.model('Tag', tagSchema);
 
 // make this available to our users in our Node applications

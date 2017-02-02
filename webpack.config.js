@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: {
     client: './src/client/client.jsx',
-    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router']
+    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios']
   },
   output: {
     path: path.resolve(__dirname + 'dist/public/assets/scripts'),

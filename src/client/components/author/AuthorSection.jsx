@@ -4,7 +4,7 @@ import {inject, observer} from "mobx-react";
 import SplitPane from '../layout/SplitPane'
 
 import AuthorQuotesList from './AuthorQuotesList'
-import Sidebar from './AuthorSidebar'
+import AuthorSidebar from './AuthorSidebar'
 
 
 import style from './author.styl'
@@ -12,11 +12,19 @@ import cx from 'classnames'
 
 @inject('appStore')
 class AuthorSection extends Component {
+  tags =[
+    {name:"Tes1", slug:'tag-slug'},
+    {name:"Tes1", slug:'tag-slug'},
+    {name:"Tes1", slug:'tag-slug'},
+    {name:"Tes1", slug:'tag-slug'},
+  ]
   render() {
     const {author} = this.props.appStore;
     return (
       <div className={style.section}>
-        <SplitPane main={<AuthorQuotesList author={author} />} sidebar={<Sidebar />} />
+        <SplitPane
+          main={<AuthorQuotesList author={author} />}
+          sidebar={<AuthorSidebar tags={this.tags} />} />
       </div>
     );
   }

@@ -1,19 +1,23 @@
 import React from 'react';
 
-import guid from '../../utils/guid';
+import hash from '../../utils/hash';
 
 import TagItem from './TagItem';
 import style from './tag.styl';
 
 
-function TagList({tags}) {
+function TagList({styleClass, tags}) {
   return (
-    <ul className={style.tags}>
+    <ul className={styleClass}>
       {tags.map(
-        tag => <TagItem key={guid()} name={tag.name} url={'/buscar/'+ tag.slug }/>
+        tag => <TagItem key={hash()} name={tag.name} url={'/buscar/'+ tag.slug }/>
       )}
     </ul>
   );
 }
+
+TagList.defaultProps = {
+  styleClass: style.tags
+};
 
 export default TagList;

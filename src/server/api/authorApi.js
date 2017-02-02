@@ -18,7 +18,15 @@ router.get('/:slug', function(req, res, next){
   Author
   .findOne({slug:req.params.slug})
   .select('name slug bio')
-  .populate({ path: 'quotes', select: 'author content -_id'})
+  .populate({
+      path: 'quotes',
+      select: 'author content tags -_id',
+      populate: {
+        path: 'tags',
+        select: "slug name -_id"
+      }
+    }
+  )
   .exec((err, data) => {
     let context = Object.assign({type: 'authorModel'}, {author: data})
     if (err) throw err;

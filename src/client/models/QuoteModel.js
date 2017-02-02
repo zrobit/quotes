@@ -9,15 +9,16 @@ export default class QuoteModel {
   // @observable foo;
   // @observable bar;
 
-  constructor(store, id, slug,content, author) {
+  constructor(store, object) {
     this.store = store;
-    this.id = id;
-    this.slug = slug
-    this.content = content
-    this.author = author || null
+    this.id = object._id;
+    this.slug = object.slug;
+    this.content = object.content;
+    this.tags = object.tags
+    this.author = object.author || null
   }
 
   static fromJS(store, object) {
-    return new QuoteModel(store, object._id, object.slug, object.content, object.author);
+    return new QuoteModel(store, object);
   }
 }

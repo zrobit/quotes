@@ -10,22 +10,10 @@ import cx from 'classnames';
 
 @inject('appStore')
 class QuoteItem extends Component {
-  tags = [
-    {name:"tag1", slug: "slug1"},
-    {name:"tag2", slug: "slug2"},
-    {name:"tag3", slug: "slug3"},
-    {name:"tag7", slug: "slug7"}
-  ];
-
-  constructor(props){
-    super(props)
-  }
-
   render() {
-    const {slug, content} = this.props.quote;
+    const {slug, content, tags} = this.props.quote;
     const author = this.props.author;
-    const tags = this.tags;
-    // console.log(author)
+
     return (
       <div className={cx(style.item, 'card-quote clearfix')}>
         <p>

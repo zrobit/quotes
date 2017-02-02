@@ -27,3 +27,13 @@ exports.fakeQuotes = (n=1) => {
     }
   })
 }
+
+exports.fakeTags = (n=1) => {
+  return [...Array(n)].map(() => {
+    let name = fake.words(n = Math.random() < 0.5 ? 1 : 2);
+    return  {
+      name: name,
+      slug: slug(name)
+    }
+  })
+}

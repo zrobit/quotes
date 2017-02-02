@@ -3,6 +3,6 @@ var express = require('express')
 
 router.use('/quotes', require('./quoteApi'))
 router.use('/authors', require('./authorApi'))
-// router.use('/cars', require('./cars'))
+router.use('/tags', require('./tagApi'))
 
 module.exports = router

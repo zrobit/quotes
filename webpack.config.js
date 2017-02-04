@@ -8,8 +8,16 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
-    client: './src/client/client.jsx',
-    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios']
+    client: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      './src/client/client.jsx'
+    ],
+    vendor: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      'react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios'
+    ]
   },
   output: {
     path: path.resolve(__dirname + 'dist/public/assets/scripts'),
@@ -64,7 +72,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'] // Specify the common bundle's name.
     }),

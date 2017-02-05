@@ -1,6 +1,4 @@
 import React from 'react'
-import WrapAuth from './wrapAuth'
-import ButtonAuth from './buttonAuth'
 
 export default ({children}) => (
   <div className="login-auth">

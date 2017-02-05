@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ErrorField from './errorField';
+import ErrorField from './ErrorField';
 
 function PasswordField({error, ...props}){
   return(

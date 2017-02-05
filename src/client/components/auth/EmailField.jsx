@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
-import ErrorField from './errorField';
+import ErrorField from './ErrorField';
 
 function EmailField ({error, ...props}) {
   return (

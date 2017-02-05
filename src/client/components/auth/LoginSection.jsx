@@ -1,6 +1,6 @@
 import React from 'react';
 import FormLogin from './FormLogin';
-import WrapAuth from './wrapAuth'
+import WrapAuth from './WrapAuth'
 
 function LoginSection() {
   return (

@@ -37,10 +37,12 @@ module.exports = {
           path.resolve(__dirname, 'src/client')
         ],
         options: {
-          presets: [['es2015',{"modules":false}], 'react'],
+          babelrc: false,
+          presets: [['es2015',{"modules":false}],'react'],
           plugins: [
             'transform-decorators-legacy',
-            'transform-class-properties'
+            'transform-class-properties',
+            'transform-object-rest-spread'
           ]
         }
       },

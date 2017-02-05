@@ -1,6 +1,6 @@
-import React from 'react'
-import FormSignup from './FormSignup'
-import WrapAuth from './WrapAuth'
+import React from 'react';
+import FormSignup from './FormSignup';
+import WrapAuth from './WrapAuth';
 
 function SignupSection() {
   return (

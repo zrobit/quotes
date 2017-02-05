@@ -4,16 +4,24 @@ import isEmail from 'validator/lib/isEmail'
 
 export default class LoginStore {
   @observable emailValue = '';
-  @observable emailError = false;
+  @observable emailError = null;
   @observable passwordValue = '';
-  @observable passwordError = false;
+  @observable passwordError = null;
 
   ssrLocation = null;
 
   emailValidate (value) {
-    this.emailError = !isEmail(value)
+    if(!isEmail(value)){
+      this.emailError = "Correo no valido"
+    } else {
+      this.emailError = null
+    }
   }
   passwordValidate (value) {
-    this.passwordError = value.length < 8
+    if(value.length < 8 ){
+      this.passwordError = "Contraseña no valida"
+    } else{
+      this.passwordError = null
+    }
   }
 }

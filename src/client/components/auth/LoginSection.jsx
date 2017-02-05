@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
-import FormAuth from './formAuth';
-import {inject, observer} from "mobx-react";
+import React from 'react';
+import FormLogin from './FormLogin';
+import WrapAuth from './wrapAuth'
 
-
-
-@inject('loginStore') @observer
-class Login extends Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.loginStore.title}</h1>
-        <FormAuth action="/login" />
-      </div>
-    )
-  }
+function LoginSection() {
+  return (
+    <WrapAuth>
+      <FormAuth action="/login" />
+    </WrapAuth>
+  )
 }
 
-export default Login;
+export default LoginSection;

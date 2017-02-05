@@ -8,8 +8,8 @@ import ButtonAuth from './ButtonAuth'
 @inject('loginStore') @observer
 class FormSignup extends Component {
   constructor(props){
-    super(props)
-    this.loginStore = this.props.loginStore
+    super(props);
+    this.loginStore = this.props.loginStore;
     this.EmailChange = this.EmailChange.bind(this);
     this.EmailBlur = this.EmailBlur.bind(this);
     this.PasswordChange = this.PasswordChange.bind(this);
@@ -17,20 +17,19 @@ class FormSignup extends Component {
   }
 
   EmailChange(e){
-    this.loginStore.emailValue = e.target.value
-
+    this.loginStore.emailValue = e.target.value;
   }
 
   EmailBlur(e){
-    this.loginStore.emailValidate(e.target.value)
+    this.loginStore.emailValidate(e.target.value);
   }
 
   PasswordChange(e){
-    this.loginStore.passwordValue = e.target.value
+    this.loginStore.passwordValue = e.target.value;
   }
 
   PasswordBlur(e){
-    this.loginStore.passwordValidate(e.target.value)
+    this.loginStore.passwordValidate(e.target.value);
   }
 
   render (){

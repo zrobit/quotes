@@ -35,17 +35,19 @@ export default class AppStore {
     this.quotes = list.map((item) => QuoteModel.fromJS(store, item))
   }
 
-  static fromJS(data) {
+  static fromJS(state) {
     const appStore = new AppStore();
-    if (data.type === 'authorModel') {
-      appStore.author = data.author
-      appStore.quotes = data.author.quotes.map(item => QuoteModel.fromJS(appStore, item))
-
-    } else if (data.constructor === Array){
-      appStore.quotes = data.map(item => QuoteModel.fromJS(appStore, item))
-    } else if (data.constructor === Object) {
-      appStore.quote = data;
+    if (state.ref === 'QuoteSection'){
+      appStore.quote = state.data.quote
     }
+    else if (state.ref === "AuthorSection") {
+      appStore.author = state.data.author
+      appStore.quotes = state.data.author.quotes.map(item => QuoteModel.fromJS(appStore, item))
+    }
+    else if (state.ref==='HomeSection'){
+      appStore.quotes = state.data.quotes.map(item => QuoteModel.fromJS(appStore, item))
+    }
+
     return appStore;
   }
 }

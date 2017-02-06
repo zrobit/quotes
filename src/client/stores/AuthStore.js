@@ -2,7 +2,7 @@ import {observable, computed, action} from "mobx";
 
 import isEmail from 'validator/lib/isEmail'
 
-export default class LoginStore {
+export default class AuthStore {
   @observable emailValue = '';
   @observable emailError = null;
   @observable passwordValue = '';

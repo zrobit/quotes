@@ -10,7 +10,8 @@ import jsonStringifySafe from 'json-stringify-safe';
 
 
 import AppStore from '../client/stores/AppStore'
-import LoginStore from '../client/stores/LoginStore'
+import AuthStore from '../client/stores/AuthStore'
+
 useStaticRendering(true);
 
 export function ssr(req, res, context, template="layout") {
@@ -22,8 +23,8 @@ export function ssr(req, res, context, template="layout") {
       }
       else if (props) {
         const stores = {
-          appStore: AppStore.fromJS(context.state.quotes),
-          loginStore: new LoginStore()
+          appStore: AppStore.fromJS(context.state.app),
+          authStore: new AuthStore(context.state.auth)
         }
 
 

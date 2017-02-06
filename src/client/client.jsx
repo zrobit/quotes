@@ -5,7 +5,7 @@ import { Router, browserHistory} from 'react-router';
 import routes from './routes.jsx';
 
 import AppStore from './stores/AppStore';
-import LoginStore from './stores/LoginStore';
+import AuthStore from './stores/AuthStore';
 
 
 // const initialState = window.initialState && JSON.parse(window.initialState) || {};
@@ -14,8 +14,8 @@ const initialState = window.initialState || {};
 // var viewStore = new ViewStore();
 
 const stores = {
-  appStore: AppStore.fromJS(initialState.quotes || []),
-  loginStore: new LoginStore()
+  appStore: AppStore.fromJS(initialState.app || []),
+  authStore: new AuthStore(initialState.auth)
 }
 
 render(

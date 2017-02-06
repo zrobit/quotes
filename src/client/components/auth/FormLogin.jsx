@@ -7,11 +7,11 @@ import ButtonAuth from './ButtonAuth'
 
 import s from './auth.styl'
 
-@inject('loginStore') @observer
+@inject('authStore') @observer
 class FormSignup extends Component {
   constructor(props){
     super(props);
-    this.loginStore = this.props.loginStore;
+    this.authStore = this.props.authStore;
     this.EmailChange = this.EmailChange.bind(this);
     this.EmailBlur = this.EmailBlur.bind(this);
     this.PasswordChange = this.PasswordChange.bind(this);
@@ -19,19 +19,19 @@ class FormSignup extends Component {
   }
 
   EmailChange(e){
-    this.loginStore.emailValue = e.target.value;
+    this.authStore.emailValue = e.target.value;
   }
 
   EmailBlur(e){
-    this.loginStore.emailValidate(e.target.value);
+    this.authStore.emailValidate(e.target.value);
   }
 
   PasswordChange(e){
-    this.loginStore.passwordValue = e.target.value;
+    this.authStore.passwordValue = e.target.value;
   }
 
   PasswordBlur(e){
-    this.loginStore.passwordValidate(e.target.value);
+    this.authStore.passwordValidate(e.target.value);
   }
 
   render (){
@@ -39,16 +39,16 @@ class FormSignup extends Component {
     return (
       <form className={s.form} method="post" action={action}>
         <EmailField
-          value={this.loginStore.emailValue}
+          value={this.authStore.emailValue}
           onChange={this.EmailChange}
           onBlur={this.EmailBlur}
-          error={this.loginStore.emailError}
+          error={this.authStore.emailError}
         />
         <PasswordField
-          value={this.loginStore.passwordValue}
+          value={this.authStore.passwordValue}
           onChange={this.PasswordChange}
           onBlur={this.PasswordBlur}
-          error={this.loginStore.passwordError}
+          error={this.authStore.passwordError}
         />
         <ButtonAuth display="Iniciar Sesión" />
       </form>

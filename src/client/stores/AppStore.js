@@ -35,7 +35,7 @@ export default class AppStore {
     this.quotes = list.map((item) => QuoteModel.fromJS(store, item))
   }
 
-  static fromJS(state) {
+  static fromJS(state={}) {
     const appStore = new AppStore();
     if (state.ref === 'QuoteSection'){
       appStore.quote = state.data.quote

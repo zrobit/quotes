@@ -7,7 +7,7 @@ const config = {
 
 const userSchema = new Schema({
   username: String,
-  email: {type: String, required: true),
+  email: {type: String, required: true},
   password: String,
   firstName: {type: String, },
   lastName: {type: String, },

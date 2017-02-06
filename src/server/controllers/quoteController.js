@@ -17,7 +17,10 @@ router.get('/:slug', function(req, res){
   api.get('/quotes/' + slug)
     .then(function(response){
       let state = {
-        quotes: response.data
+        app: {
+          ref: 'QuoteSection',
+          data: response.data
+        }
       }
       context.state = state;
       ssr(req, res, context)

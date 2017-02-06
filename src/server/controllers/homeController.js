@@ -13,10 +13,13 @@ router.get('/', function(req, res){
 
   let context = {};
 
-  api.get('/quotes')
+  api.get('/home')
     .then(function(response){
       let state = {
-        quotes: response.data
+        app: {
+          ref: 'HomeSection',
+          data: response.data
+        }
       }
       context.state = state;
       ssr(req, res, context)

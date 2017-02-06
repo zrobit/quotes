@@ -2,18 +2,20 @@ import React from 'react';
 
 import ErrorField from './ErrorField';
 
+import s from './auth.styl'
+
 function PasswordField({error, ...props}){
   return(
-    <div>
-      <label>Password</label>
+    <div className={s.row}>
+      <label className={s.label} >Password</label>
       <input
-        className="in-text"
+        className={s.inputText}
         type="password"
         name="password"
         {...props}
       />
       {error
-        ? <ErrorField message={error}/>
+        ? <p className={s.error}>{error}</p>
         : null
       }
     </div>

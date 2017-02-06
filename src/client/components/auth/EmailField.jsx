@@ -3,18 +3,20 @@ import {inject, observer} from "mobx-react";
 
 import ErrorField from './ErrorField';
 
+import s from './auth.styl'
+
 function EmailField ({error, ...props}) {
   return (
-    <div>
-      <label>Email</label>
+    <div className={s.row} >
+      <label className={s.label}>Email</label>
       <input
-        className="in-text"
+        className={s.inputText}
         type="text"
         name="email"
         {...props}
       />
       {error
-        ? <ErrorField message={error}/>
+        ? <p className={s.error}>{error}</p>
         : null
       }
     </div>

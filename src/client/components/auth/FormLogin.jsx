@@ -5,6 +5,8 @@ import EmailField from './EmailField'
 import PasswordField from './PasswordField'
 import ButtonAuth from './ButtonAuth'
 
+import s from './auth.styl'
+
 @inject('loginStore') @observer
 class FormSignup extends Component {
   constructor(props){
@@ -35,7 +37,7 @@ class FormSignup extends Component {
   render (){
     const {action} = this.props
     return (
-      <form className="form" method="post" action={action}>
+      <form className={s.form} method="post" action={action}>
         <EmailField
           value={this.loginStore.emailValue}
           onChange={this.EmailChange}
@@ -48,7 +50,7 @@ class FormSignup extends Component {
           onBlur={this.PasswordBlur}
           error={this.loginStore.passwordError}
         />
-        <ButtonAuth display="Registar" />
+        <ButtonAuth display="Iniciar Sesión" />
       </form>
     );
   }

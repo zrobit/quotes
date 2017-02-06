@@ -1,12 +1,13 @@
 import React from 'react';
 import FormSignup from './FormSignup';
-import WrapAuth from './WrapAuth';
+
+import s from './auth.styl';
 
 function SignupSection() {
   return (
-    <WrapAuth>
+    <div className={s.section}>
       <FormSignup action="/signup"/>
-    </WrapAuth>
+    </div>
   );
 }
 

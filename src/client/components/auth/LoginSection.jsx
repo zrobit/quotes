@@ -1,12 +1,13 @@
 import React from 'react';
 import FormLogin from './FormLogin';
-import WrapAuth from './WrapAuth';
+
+import s from './auth.styl';
 
 function LoginSection() {
   return (
-    <WrapAuth>
+    <div className={s.section}>
       <FormLogin action="/login" />
-    </WrapAuth>
+    </div>
   );
 }
 

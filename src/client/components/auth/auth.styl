@@ -1,0 +1,63 @@
+@import '../proxy'
+
+.form
+  overflow hidden
+  max-width 350px
+  padding 20px
+  margin 0 auto
+  z-index 13
+  background #fff
+
+  input[type='text']
+    letter-spacing 2px
+  input[type='password']
+    letter-spacing 5px
+  input[type="checkbox"]
+    visibility hidden
+
+  .or
+    display block
+    margin-top 20px
+    color gray(60)
+    font-size 17px
+    text-align center
+
+.row
+  height 100px
+
+.label
+  display block
+  font-size 14px
+  padding 8px 0 8px
+  color gray(60)
+  font-weight 900
+  letter-spacing 1px
+  font-weight 100
+
+.inputText
+  box-sizing border-box
+  display block
+  width 100%
+  border-radius 4px
+  border 2px solid gray(15)
+  padding 12px 14px 12px
+  margin 0
+  font-size 16px
+  color gray(60)
+  font-weight 100
+  background none
+  &:focus
+    // background #fff
+    // opacity .1
+    border-color lighten(#000, 70)
+    transition border-color .1s cubic-bezier(.5, 0, 1, .5)
+    outline none
+
+.error
+  margin 2px 0 0
+  font-size 14px
+  color red
+  float right
+
+.section
+  margin 45px 0 0

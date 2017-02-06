@@ -28,8 +28,10 @@ router.get('/:slug', function(req, res, next){
     }
   )
   .exec((err, data) => {
-    let context = Object.assign({type: 'authorModel'}, {author: data})
     if (err) throw err;
+    let context = {
+      author: data
+    }
     res.json(context)
   })
 });

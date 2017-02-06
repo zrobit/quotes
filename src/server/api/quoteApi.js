@@ -25,7 +25,10 @@ router.get('/:slug', function(req, res, next){
   query.populate('author', 'name slug -quote')
   query.exec((err, data) => {
     if (err) throw err;
-    res.json(data)
+    let context = {
+      quote: data
+    }
+    res.json(context)
   })
 });
 

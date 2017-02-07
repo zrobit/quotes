@@ -1,5 +1,3 @@
-// import csshook from 'css-modules-require-hook/preset'
-
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
@@ -26,7 +24,6 @@ export function ssr(req, res, context, template="layout") {
           appStore: AppStore.fromJS(context.state.app),
           authStore: new AuthStore(context.state.auth)
         }
-
 
         context.root = renderToString(
           <Provider {...stores}>

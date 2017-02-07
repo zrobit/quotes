@@ -7,7 +7,7 @@ export default class AppStore {
   quote = {};
   @observable author = {};
   @observable isLoading = false;
-
+  isAuth = false;
   setQuoteDetail(quote){
     this.quote = quote;
   }
@@ -37,6 +37,7 @@ export default class AppStore {
 
   static fromJS(state={}) {
     const appStore = new AppStore();
+    appStore.isAuth = state.isAuth;
     if (state.ref === 'QuoteSection'){
       appStore.quote = state.data.quote
     }

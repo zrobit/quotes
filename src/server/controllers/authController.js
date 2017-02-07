@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const passport = require('passport');
-
+const isEmail = require('validator/lib/isEmail');
 
 const ssr = global.ssr;
 
@@ -19,11 +19,20 @@ router.get('/login', function(req, res){
   ssr(req, res, context)
 });
 
-router.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local-login', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) {
+      let email = req.body.email;
+      let url = isEmail(email) ? '/login?field='+ email : '/login';
+      return res.redirect(url);
+    }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/');
+    });
+  })(req, res, next);
+});
 
 router.get('/signup', function(req, res){
   let context = {

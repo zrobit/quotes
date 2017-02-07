@@ -36,4 +36,10 @@ export default class AuthStore {
       this.emailValue = email;
     }
   }
+  clearFields(){
+    this.emailValue = '';
+    this.emailError = null;
+    this.passwordValue = '';
+    this.passwordError = null;
+  }
 }

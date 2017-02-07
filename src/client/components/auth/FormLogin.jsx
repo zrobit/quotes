@@ -20,6 +20,9 @@ class FormSignup extends Component {
   componentDidMount() {
     this.authStore.updateEmailParam();
   }
+  componentWillUnmount() {
+    this.authStore.clearFields();
+  }
 
   EmailChange(e){
     this.authStore.emailValue = e.target.value;

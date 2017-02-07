@@ -1,6 +1,7 @@
 import {observable, computed, action} from "mobx";
 
 import isEmail from 'validator/lib/isEmail'
+import param from '../utils/param'
 
 export default class AuthStore {
   @observable emailValue = '';
@@ -27,6 +28,12 @@ export default class AuthStore {
       this.passwordError = "Contraseña no valida"
     } else{
       this.passwordError = null
+    }
+  }
+  updateEmailParam(){
+    let email = param('field');
+    if(email){
+      this.emailValue = email;
     }
   }
 }

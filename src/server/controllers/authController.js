@@ -9,6 +9,11 @@ const router = express.Router();
 
 
 router.get('/login', function(req, res){
+  let field = req.query.field;
+  if(field){
+    if(!isEmail(field)){res.redirect('/login')}
+  }
+
   let context = {
     state:{
       auth: {

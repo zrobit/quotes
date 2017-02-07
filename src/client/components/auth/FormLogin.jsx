@@ -17,6 +17,9 @@ class FormSignup extends Component {
     this.PasswordChange = this.PasswordChange.bind(this);
     this.PasswordBlur = this.PasswordBlur.bind(this);
   }
+  componentDidMount() {
+    this.authStore.updateEmailParam();
+  }
 
   EmailChange(e){
     this.authStore.emailValue = e.target.value;

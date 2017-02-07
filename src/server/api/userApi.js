@@ -16,4 +16,15 @@ router.get('/check/:email', function(req, res, next){
     })
 });
 
+if (process.env.NODE_ENV ='development') {
+  router.get('/', function(req, res, next){
+    User
+      .find({})
+      .exec((err, users) => {
+        if (err) throw err;
+        res.json(users)
+      })
+  });
+}
+
 module.exports = router;

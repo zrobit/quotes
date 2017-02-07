@@ -40,3 +40,31 @@ passport.use('local-login',new LocalStrategy({
     });
   }
 ));
+
+passport.use('local-signup', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+},
+function(req, email, password, done) {
+  console.log('passport: 1')
+  // process.nextTick(function() {
+    User.findOne({'email': email}, function(err, user) {
+      if (err)
+        return done(err);
+      if (user) {
+        return done(null, false, req.flash('signupMessage', 'El correo ya se registro'));
+      } else {
+        var newUser = new User();
+        newUser.email = email;
+        newUser.password = password
+        newUser.save(function(err, user) {
+          if (err)throw err;
+          return done(null, newUser);
+        });
+      }
+    });
+  // });
+}));
+
+

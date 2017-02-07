@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash    = require('connect-flash');
 
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session      = require('express-session');
@@ -15,9 +16,9 @@ var router = require('./router')
 
 require('./config/passport');
 
-
 app.locals = {pretty:true, cache:true}
 
+app.use(morgan('dev'))
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
   extended: true

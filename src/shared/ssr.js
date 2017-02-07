@@ -20,6 +20,7 @@ export function ssr(req, res, context, template="layout") {
         console.log(err)
       }
       else if (props) {
+        context.state.app.isAuth = req.isAuthenticated()
         const stores = {
           appStore: AppStore.fromJS(context.state.app),
           authStore: new AuthStore(context.state.auth)

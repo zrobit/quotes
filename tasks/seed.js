@@ -9,6 +9,7 @@ const fake = require('casual');
 const Author = require('../src/server/models/author');
 const Quote = require('../src/server/models/quote');
 const Tag = require('../src/server/models/tag');
+const User = require('../src/server/models/user');
 
 const cicle = require('../src/utils').cicle
 const fakeAuthors = require('../src/utils/data').fakeAuthors
@@ -76,5 +77,11 @@ gulp.task('seed:author:clear', ['connectDB'], function(){
 gulp.task('seed:quote:clear', ['connectDB'], function(){
   Quote.remove({}, function(err) {
     console.log('collection Quote removed')
+  });
+})
+
+gulp.task('seed:user:clear', ['connectDB'], function(){
+  User.remove({}, function(err) {
+    console.log('collection User removed')
   });
 })

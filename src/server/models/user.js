@@ -10,19 +10,20 @@ const config = {
 const userSchema = new Schema({
   username: String,
   email: {type: String, required: true},
-  password: String,
-  firstName: {type: String, },
-  lastName: {type: String, },
   password: {type: String, required: true },
+  firstName: {type: String},
+  lastName: {type: String},
 }, config);
 
 userSchema.pre('save', function (next) {
+  let self = this;
   bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(this.password, salt, function(err, hash) {
+    bcrypt.hash(self.password, salt, function(err, hash) {
       if (err) {
         throw err;
       } else {
-        this.password = hash;
+        self.password = hash;
+        console.log('hash: '+ hash)
         next();
       }
     });

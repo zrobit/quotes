@@ -9,7 +9,6 @@ import s from './auth.styl';
 class LoginSection extends Component {
   render() {
     const {error} = this.props.authStore;
-    // console.log('errror: =>>' + error)
     return (
       <div className={s.section}>
         { error

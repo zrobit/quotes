@@ -14,28 +14,32 @@ mongoose.connect('mongodb://localhost/dot-quotes');
 
 var router = require('./router')
 
-require('./config/passport');
+
 
 app.locals = {pretty:true, cache:true}
 
-app.use(morgan('dev'))
+require('./config/passport');
+
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
 app.use(bodyParser.json()); // support json encoded bodies
+
 
 // required for passport
 app.use(session({
   secret: 'thesewordsareuniquedontcopyXD',
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true
 })); // session secret
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+
 
 app.use(router)
 

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import {observer} from "mobx-react";
-import SearchForm from './SearchForm'
-import { Link } from 'react-router'
+import {observer, inject} from "mobx-react";
+import { Link } from 'react-router';
 
+import SearchForm from './SearchForm';
+import UserMenu from '../user/UserMenu';
+
+@inject('appStore')
 class Header extends Component {
   render() {
+    const {isAuth} = this.props.appStore;
     return (
       <header className="header">
         <nav className="header-nav">
@@ -15,13 +19,8 @@ class Header extends Component {
             <li className="header-search">
               <SearchForm/>
             </li>
-            <li className="signup">
-              <Link to="/signup">Sign up</Link>
-            </li>
-            <li className="login">
-              <Link to="/login">Log in</Link>
-            </li>
           </ul>
+          <UserMenu appStore={this.props.appStore}/>
         </nav>
       </header>
     )

@@ -1,0 +1,70 @@
+@import '../proxy'
+
+.topNav
+  display inline-block
+  float right
+  padding 6px 4px 0
+  &:hover
+    background gray(5)
+
+    .name
+      color _peter_river
+
+.avatar
+  box(25px)
+  border-radius 3px
+  display inline-block
+  background gray(5)
+
+.name
+  position relative
+  top -6px
+  margin-left 5px
+
+.userNav
+  position relative
+  float right
+
+.listNav
+  width 110px
+  position absolute
+  top 39px
+  left -30px
+  border 1px solid gray(10)
+  background #fff
+  border-radius 4px
+  padding 5px 0
+  box-shadow 0px 5px 15px -5px gray(40)
+  ul
+    margin 0
+    padding 0
+  li
+    clear both
+    display block
+  a
+    display block
+    padding 4px 8px
+    font-size 14px
+    &:hover
+      background _peter_river
+      color #fff
+
+__size = 9px
+.arrowUp
+  box(0)
+  border-left __size solid transparent
+  border-right __size solid transparent
+  border-bottom __size solid gray(10)
+  position absolute
+  top -9px
+  right 5px
+  &:before
+    content ''
+    display block
+    box(0)
+    position relative
+    top 2px
+    left -9px
+    border-left __size solid transparent
+    border-right __size solid transparent
+    border-bottom __size solid #fff

@@ -5,11 +5,11 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user')
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findOne({ id: id } , function (err, user) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });

@@ -47,7 +47,6 @@ passport.use('local-signup', new LocalStrategy({
     passReqToCallback : true
 },
 function(req, email, password, done) {
-  console.log('passport: 1')
   // process.nextTick(function() {
     User.findOne({'email': email}, function(err, user) {
       if (err)
@@ -59,7 +58,7 @@ function(req, email, password, done) {
         newUser.email = email;
         newUser.password = password
         newUser.save(function(err, user) {
-          if (err)throw err;
+          if (err) throw err;
           return done(null, newUser);
         });
       }

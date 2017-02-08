@@ -13,8 +13,6 @@ class UserMenu extends Component{
   }
   handleClick(e){
     e.preventDefault();
-    // event.preventDefault()
-    // console.log('holaaaaaa')
     this.setState((prevState)=>({
       menuOpen: !prevState.menuOpen
     }))
@@ -64,7 +62,8 @@ function ListNav(){
       <div className={s.arrowUp}></div>
       <ul>
         {items.map(item => <ListItem name={item.name} link={item.link} />)}
-        <ListItem name="Cerrar Sesión" link="/logout"/>
+
+        <ListItemAnchor name="Cerrar Sesión" link="/logout"/>
       </ul>
     </div>
   );
@@ -74,6 +73,14 @@ function ListItem({name, link}){
   return(
     <li>
       <Link to={link} >{name}</Link>
+    </li>
+  );
+}
+
+function ListItemAnchor({name, link}){
+  return(
+    <li>
+      <a href={link}>{name}</a>
     </li>
   );
 }

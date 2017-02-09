@@ -65,6 +65,27 @@ gulp.task('seed:author', ['connectDB'], function(){
   });
 });
 
+gulp.task('seed:user', ['connectDB'], function(){
+  console.log('Updating user...')
+  let user = {
+    email: 'a@a.com',
+    name: 'Luis Garcia',
+    password: 'holahola',
+    profile: {
+      description: 'Hola esto es una description',
+      avatar: '/assets/media/images/avatar.png'
+    }
+  }
+  User.create(user, function(err, data){
+    if (err) throw err;
+    let object = JSON.stringify(data, null, 2)
+    console.log(object);
+    console.log('========= User have been updated  =====')
+  });
+});
+
+
+
 //Todo implementar interactive para estar seguros si queremos eleminar
 //Eliminar Collections
 gulp.task('seed:author:clear', ['connectDB'], function(){

@@ -2,16 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const bcrypt = require('bcrypt');
+const hashId = require('shortid');
 
 const config = {
   timestamps: true
 }
 
 const userSchema = new Schema({
+  hashId:{type:String, default: hashId.generate},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true },
-  firstName: {type: String},
-  lastName: {type: String},
+  name: {type: String},
+  profile:{
+    description: String,
+    avatar: String,
+  },
+  likes:{type: Number, default:0}
 }, config);
 
 userSchema.pre('save', function (next) {

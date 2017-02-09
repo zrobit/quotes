@@ -18,19 +18,28 @@ export default class AppStore {
     this.quotes = []
     this.fetchAuthor();
   }
-
+  fetchHome(){
+    let self = this;
+    axios.get('/api/home')
+    .then(function (response) {
+      self.quotes = response.data.quotes;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   fetchAuthor(){
     let self = this;
     self.isLoading = true;
     axios.get('/api/authors/' + self.author.slug)
-      .then(function (response) {
-        self.author = response.data.author
-        self.mapQuotes(self, self.author.quotes)
-        self.isLoading = false;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .then(function (response) {
+      self.author = response.data.author
+      self.mapQuotes(self, self.author.quotes)
+      self.isLoading = false;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
   mapQuotes(store, list){
 

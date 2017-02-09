@@ -7,6 +7,10 @@ import UserMenu from '../user/UserMenu';
 
 @inject('appStore')
 class Header extends Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
   render() {
     const {isAuth} = this.props.appStore;
     return (
@@ -14,7 +18,7 @@ class Header extends Component {
         <nav className="header-nav">
           <ul>
             <li className="header-logo">
-              <Link to="/">Dot</Link>
+              <Link to="/" onClick={this.handleClick} >Quotes</Link>
             </li>
             <li className="header-search">
               <SearchForm/>
@@ -25,6 +29,9 @@ class Header extends Component {
       </header>
     )
   }
+  handleClick() {
+    this.props.appStore.fetchHome();
+  }
 }
 
 export default Header

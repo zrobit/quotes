@@ -9,7 +9,7 @@ const config = {
 }
 
 const userSchema = new Schema({
-  hashId:{type:String, default: hashId.generate},
+  hashId:{type:String, index: true, default: hashId.generate},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true },
   name: {type: String},

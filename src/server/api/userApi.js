@@ -16,6 +16,16 @@ router.get('/check/:email', function(req, res, next){
     })
 });
 
+router.get('/profile/:hashId', function(req, res){
+  User
+    .findOne({hashId:req.param.hashId})
+    .exec((err, user) => {
+      if (err) throw err;
+      res.json(user);
+    })
+});
+
+
 if (process.env.NODE_ENV ='development') {
   router.get('/', function(req, res, next){
     User

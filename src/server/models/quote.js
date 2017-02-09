@@ -6,7 +6,7 @@ const config = {
 }
 
 var quoteSchema = new Schema({
-  content: String,
+  content: {type: String, text: true},
   slug: String,
   author: { type: Schema.Types.ObjectId, ref: 'Author' },
   tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}]

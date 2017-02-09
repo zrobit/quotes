@@ -23,6 +23,10 @@ export function ssr(req, res, context, template="layout") {
         if(!context.state.app){context.state.app = {} }
 
         context.state.app.isAuth = req.isAuthenticated();
+        if(context.state.app.isAuth){
+          context.state.app.userName = req.user.name
+          context.state.app.userHashId = req.user.hashId
+        }
 
         const stores = {
           appStore: AppStore.fromJS(context.state.app),

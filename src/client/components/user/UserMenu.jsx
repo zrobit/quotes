@@ -18,11 +18,11 @@ class UserMenu extends Component{
     }))
   }
   render(){
-    const { isAuth } = this.props.appStore;
+    const { isAuth, userName, userHashId } = this.props.appStore;
     return (
       <div>
         {isAuth
-          ? <UserNav open={this.state.menuOpen} onClick={this.handleClick}/>
+          ? <UserNav user={userName} hash={userHashId} open={this.state.menuOpen} onClick={this.handleClick}/>
           : <AuthMenu />
         }
       </div>
@@ -35,7 +35,7 @@ function UserNav({open, ...props}){
     <nav className={s.userNav}>
       <TopNav {...props} />
       {open
-        ? <ListNav />
+        ? <ListNav {...props}/>
         : null
       }
 
@@ -43,16 +43,16 @@ function UserNav({open, ...props}){
   );
 }
 
-function TopNav(props){
+function TopNav({user, hash, ...props}){
   return (
-    <a className={s.topNav} href="/perfil/user" {...props}>
+    <a className={s.topNav} href={"/perfil/"+hash} {...props}>
       <img src="/assets/media/images/avatar.png" className={s.avatar} />
-      <span className={s.name}>Name</span>
+      <span className={s.name}>{user}</span>
     </a>
   );
 }
 
-function ListNav(){
+function ListNav({hash}){
   const items = [
     {name:'Perfil', link:'/perfil/user'},
     {name:'Configuración', link:'/settings'},
@@ -61,8 +61,8 @@ function ListNav(){
     <div className={s.listNav}>
       <div className={s.arrowUp}></div>
       <ul>
-        {items.map(item => <ListItem name={item.name} link={item.link} />)}
-
+        <ListItem name="Perfil" link={'/perfil/'+hash} />
+        <ListItem name="Configuración" link='/settings' />
         <ListItemAnchor name="Cerrar Sesión" link="/logout"/>
       </ul>
     </div>

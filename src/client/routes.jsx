@@ -15,6 +15,7 @@ export default (
     <Route path="/login" component={LoginSection} />
     <Route path="/signup" component={SignupSection} />
     <Route path="/perfil/:user" component={ProfileSection} />
+    <Route path="/search" component={Main} />
   </Route>
 );
 

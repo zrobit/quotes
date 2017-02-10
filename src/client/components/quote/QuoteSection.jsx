@@ -7,6 +7,13 @@ import ShareMediumButtons from '../buttons/ShareMediumButtons'
 import style from './quote.styl'
 import cx from 'classnames'
 
+const sizes = {
+  tiny: style.tiny,
+  small: style.small,
+  medium: style.medium,
+  large: style.large
+};
+
 @inject('appStore')
 class QuoteDetail extends Component {
   constructor(props) {
@@ -20,7 +27,7 @@ class QuoteDetail extends Component {
     return (
       <div className={cx(style.quoteSection)}>
         <div className={cx(style.main, 'card')}>
-          <p>
+          <p className ={sizes[quote.size]}>
             {quote.content}
           </p>
           <div className={style.quoteMeta}>

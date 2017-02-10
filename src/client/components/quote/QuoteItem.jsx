@@ -8,15 +8,21 @@ import ShareSmallButtons from '../buttons/ShareSmallButtons'
 import style from './quote.styl';
 import cx from 'classnames';
 
+const sizes = {
+  tiny: style.tiny,
+  small: style.small,
+  medium: style.medium,
+  large: style.large
+};
+
 @inject('appStore')
 class QuoteItem extends Component {
   render() {
-    const {slug, content, tags} = this.props.quote;
+    const {slug, content, tags, size} = this.props.quote;
     const author = this.props.author;
-
     return (
       <div className={cx(style.item, 'card-quote clearfix')}>
-        <p>
+        <p className={sizes[size]}>
           <Link
             className={style.link}
             to={"/frase/"+slug}

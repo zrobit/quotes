@@ -19,6 +19,7 @@ quoteSchema.pre('save', function (next) {
   self.size = [
   'large', 'medium', 'small', 'tiny'
   ][[180, 120, 60, 0].findIndex(elem => len > elem)];
+  next();
 });
 
 var Quote = mongoose.model('Quote', quoteSchema);

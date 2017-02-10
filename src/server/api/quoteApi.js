@@ -10,7 +10,7 @@ const Author = require('../models/author');
 
 router.get('/', function(req, res, next){
   let query = Quote.find({}).limit(10).sort({'createdAt':-1});
-  query.select('slug content author tags');
+  query.select('slug content author tags size');
   query.populate('tags', 'name slug -_id');
   query.populate('author', 'name slug');
   query.exec((err, data) => {

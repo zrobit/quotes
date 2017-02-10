@@ -22,7 +22,7 @@ exports.fakeAuthors = (n=1) => {
 exports.fakeQuotes = (n=1) => {
   return [...Array(n)].map(() => {
     return  {
-      content: fake.sentences(n = 4),
+      content: fake.sentences(n = Math.floor((Math.random()*8) + 1)),
       slug: slug(fake.sentence)
     }
   })

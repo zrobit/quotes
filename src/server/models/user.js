@@ -28,7 +28,6 @@ userSchema.pre('save', function (next) {
         throw err;
       } else {
         self.password = hash;
-        console.log('hash: '+ hash)
         next();
       }
     });

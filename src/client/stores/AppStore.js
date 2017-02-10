@@ -28,6 +28,17 @@ export default class AppStore {
       console.log(error);
     });
   }
+  fetchQuotes(cb){
+    let self = this;
+    axios.get('/api/quotes')
+    .then(function (response) {
+      self.quotes.push(...response.data);
+      cb();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   fetchAuthor(){
     let self = this;
     self.isLoading = true;

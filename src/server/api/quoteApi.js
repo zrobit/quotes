@@ -21,8 +21,8 @@ router.get('/', function(req, res, next){
 
 router.get('/:slug', function(req, res, next){
   let query = Quote.findOne({slug:req.params.slug})
-  query.select('slug content author');
-  query.populate('author', 'name slug -quote')
+  query.select('slug content author size');
+  query.populate('author', 'name slug')
   query.exec((err, data) => {
     if (err) throw err;
     let context = {

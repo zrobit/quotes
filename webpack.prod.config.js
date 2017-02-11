@@ -1,14 +1,17 @@
 var path = require('path');
 var webpack = require('webpack');
+const nib = require('nib');
+const stylusLoader = require('stylus-loader')
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-source-map',
   entry: {
-    client: './src/assets/scripts/client.jsx',
-    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router']
+    client: './src/client/client.jsx',
+    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios']
   },
   output: {
-    path: path.resolve(__dirname, 'build/public/scripts'),
+    path: path.resolve(__dirname, 'dist/public/assets/scripts'),
     filename: '[name].min.js'
   },
   resolve: {
@@ -20,15 +23,40 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [
-          path.resolve(__dirname, 'src/assets/scripts'),
+          path.resolve(__dirname, 'src/client'),
         ],
         options: {
           presets: [['es2015',{"modules":false}], 'react'],
           plugins: [
             'transform-decorators-legacy',
-            'transform-class-properties'
+            'transform-class-properties',
+            'transform-object-rest-spread'
           ]
         }
+      },
+      {
+        test: /\.styl$/,
+        loader: ExtractTextPlugin.extract({
+          loader: [
+            {
+              loader: 'css-loader',
+              query: {
+                localIdentName: '[local]-[hash:base64:5]',
+                // localIdentName: '[name]-[local]-[hash:8]',
+                modules: true
+              }
+            },
+            {
+              loader: 'stylus-loader'
+            }
+          ]
+          // loader: "css-loader?modules&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:5]",
+          // publicPath: "./dist/public/assets/styles/"
+        }),
+        // loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+        include: [
+          path.resolve(__dirname, 'src/client')
+        ]
       }
     ]
   },
@@ -50,7 +78,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'] // Specify the common bundle's name.
     }),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new ExtractTextPlugin("style2.css")
     // new webpack.optimize.AggressiveMergingPlugin()
   ],
 };

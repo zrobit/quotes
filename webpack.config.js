@@ -14,8 +14,6 @@ module.exports = {
       './src/client/client.jsx'
     ],
     vendor: [
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
       'react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios'
     ]
   },
@@ -70,7 +68,6 @@ module.exports = {
           path.resolve(__dirname, 'src/client')
         ]
       }
-
     ]
   },
   plugins: [

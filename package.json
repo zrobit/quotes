@@ -64,7 +64,7 @@
     "build:server": "BABEL_ENV=server babel src/client -d dist/client && babel src/shared -d dist/shared",
     "build:dev": "NODE_ENV=development webpack --progress --config ./webpack.config.js",
     "build:client": "NODE_ENV=production webpack --progress --config ./webpack.prod.config.js",
-    "webpack": "webpack-dev-server ",
+    "webpack": "webpack-dev-server --inline --hot",
     "serve": "NODE_ENV=build node src/server"
   },
   "author": "",

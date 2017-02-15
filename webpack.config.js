@@ -6,11 +6,11 @@ const stylusLoader = require('stylus-loader')
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   entry: {
     client: [
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
+      // 'webpack-dev-server/client?http://localhost:8080',
+      // 'webpack/hot/only-dev-server',
       './src/client/client.jsx'
     ],
     vendor: [
@@ -22,7 +22,6 @@ module.exports = {
     filename: '[name].min.js',
     publicPath: "http://localhost:8080/assets/scripts/"
   },
-  devServer: { inline: true },
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -71,7 +70,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'] // Specify the common bundle's name.
     }),

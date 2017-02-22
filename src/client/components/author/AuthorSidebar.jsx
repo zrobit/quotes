@@ -15,7 +15,10 @@ class AuthorSidebar extends Component {
 
     return(
       <div className="sidebar">
-        <AuthorBio author={author} isLoading={isLoading} />
+        { author.bio
+          ? <AuthorBio author={author} isLoading={isLoading} />
+          : null
+        }
         <TagsSidebar title="Etiquetas destacadas del autor" tags={tags}/>
       </div>
     );

@@ -54,7 +54,7 @@ gulp.task('seed:quotes', ['connectDB'], function(){
   });
 });
 
-gulp.task('seed:author', ['connectDB'], function(){
+gulp.task('seed:authors', ['connectDB'], function(){
   console.log('Updating authors...')
   let authors = fakeAuthors(20)
   Author.create(authors, function(err, data){
@@ -65,7 +65,18 @@ gulp.task('seed:author', ['connectDB'], function(){
   });
 });
 
-gulp.task('seed:user', ['connectDB'], function(){
+gulp.task('seed:tags', ['connectDB'], function(){
+  console.log('Updating tags...')
+  let tags = fakeTags(50)
+  Tag.create(tags, function(err, data){
+    if (err) throw err;
+    let object = JSON.stringify(data, null, 2)
+    console.log(object);
+    console.log('========= Authors have been updated  =====')
+  });
+});
+
+gulp.task('seed:users', ['connectDB'], function(){
   console.log('Updating user...')
   let user = {
     email: 'a@a.com',
@@ -88,8 +99,13 @@ gulp.task('seed:user', ['connectDB'], function(){
 
 //Todo implementar interactive para estar seguros si queremos eleminar
 //Eliminar Collections
-gulp.task('seed:author:clear', ['connectDB'], function(){
+gulp.task('seed:tag:clear', ['connectDB'], function(){
+  Tag.remove({}, function(err) {
+    console.log('collection Tag removed')
+  });
+})
 
+gulp.task('seed:author:clear', ['connectDB'], function(){
   Author.remove({}, function(err) {
     console.log('collection Author removed')
   });

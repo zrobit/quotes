@@ -72,7 +72,7 @@ gulp.task('seed:tags', ['connectDB'], function(){
     if (err) throw err;
     let object = JSON.stringify(data, null, 2)
     console.log(object);
-    console.log('========= Authors have been updated  =====')
+    console.log('========= Tags have been updated  =====')
   });
 });
 

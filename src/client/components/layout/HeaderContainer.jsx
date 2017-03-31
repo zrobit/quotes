@@ -18,7 +18,9 @@ class Header extends Component {
         <nav className="header-nav">
           <ul>
             <li className="header-logo">
-              <Link to="/" onClick={this.handleClick} >Quotes</Link>
+              <Link to="/" onClick={this.handleClick} >
+                <img src=""/>
+              </Link>
             </li>
             <li className="header-search">
               <SearchForm/>

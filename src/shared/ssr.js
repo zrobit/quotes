@@ -15,6 +15,7 @@ useStaticRendering(true);
 export function ssr(req, res, context, template="layout") {
   match({ routes, location: req.originalUrl },
     (err, redirect, props) => {
+      console.log(req.originalUrl)
       if (err){
         // handleError(res, err);
         console.log(err)

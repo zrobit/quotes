@@ -49,6 +49,7 @@
     "css-modules-require-hook": "^4.0.5",
     "eslint": "^3.16.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.5",
+    "merge-stream": "^1.0.1",
     "morgan": "^1.8.1",
     "nib": "^1.1.2",
     "nodemon": "^1.11.0",
@@ -61,11 +62,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "BABEL_ENV=server nodemon src/server --exec babel-node",
+    "webpack": "webpack-dev-server --inline --hot",
     "build:server": "BABEL_ENV=server babel src/client -d dist/client && babel src/shared -d dist/shared",
     "build:dev": "NODE_ENV=development webpack --progress --config ./webpack.config.js",
     "build:client": "NODE_ENV=production webpack --progress --config ./webpack.prod.config.js",
-    "webpack": "webpack-dev-server --inline --hot",
-    "serve": "NODE_ENV=build node src/server"
+    "serve": "NODE_ENV=production node src/server"
   },
   "author": "",
   "license": "ISC"

@@ -8,6 +8,7 @@ var gulp = require('gulp');
 // require("./tasks/iconfonts.js");
 // require("./tasks/copy.js");
 require("./tasks/seed.js");
+require("./tasks/copy.js");
 
 
 

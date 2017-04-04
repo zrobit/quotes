@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-if (process.env.NODE_ENV==='build'){
+if (process.env.NODE_ENV==='production'){
   global.ssr = require('../../dist/shared/ssr').ssr
 
 } else {

@@ -1,8 +1,9 @@
 // jshint esversion: 6
 var gulp = require('gulp'),
-  plumber = require('gulp-plumber'),
-  changed = require('gulp-changed-in-place'),
-  livereload = require('gulp-livereload');
+  // plumber = require('gulp-plumber'),+
+  // changed = require('gulp-changed-in-place'),
+  merge = require('merge-stream');
+  // livereload = require('gulp-livereload');
 
 
 const src = {
@@ -18,6 +19,25 @@ const dest = {
   fonts: '.tmp/public/fonts/'
 };
 
+function styles (){
+  var main = gulp
+    .src(['src/client/assets/styles/**/*.styl'])
+    .pipe(gulp.dest('dist/client/assets/styles/'));
+
+  var components = gulp
+    .src(['src/client/components/**/*.styl'])
+    .pipe(gulp.dest('dist/client/components/'));
+
+  return merge(main, components);
+}
+function templates (){
+  return gulp
+    .src(['src/server/views/**/*.pug'])
+    .pipe(gulp.dest('dist/server/views/'))
+}
+
+
+/*
 function scripts (){
   return gulp
     .src(src.scripts)
@@ -40,9 +60,11 @@ function fonts (){
     .src(src.fonts)
     .pipe(gulp.dest(dest.fonts));
 }
+*/
 
-
-gulp.task('copy:scripts', scripts);
-gulp.task('copy:images', images);
-gulp.task('copy:fonts', fonts);
-gulp.task('copy:assets', ['copy:scripts', 'copy:images', 'copy:fonts']);
+// gulp.task('copy:scripts', scripts);
+// gulp.task('copy:images', images);
+// gulp.task('copy:fonts', fonts);
+gulp.task('copy:styles', styles);
+gulp.task('copy:templates', templates);
+// gulp.task('copy:assets', ['copy:scripts', 'copy:images', 'copy:fonts']);

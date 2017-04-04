@@ -7,7 +7,7 @@ doctype html
 html(lang='es')
   head
     meta(charset='utf-8')
-    title 'fraseary'
+    title fraseary
     meta(name='description', content='')
     meta(name='keywords', content='')
     meta(name="viewport", content="width=device-width, initial-scale=1")
@@ -16,6 +16,12 @@ html(lang='es')
 
     block styles
       link(href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet")
+
+    if env.NODE_ENV === 'production'
+      link(href='//static.fraseary.com/styles/main.css', rel='stylesheet' )
+      link(href='//static.fraseary.com/scripts/style2.css', rel='stylesheet' )
+
+    else
       link(href='/assets/styles/main.css', rel='stylesheet' )
       link(href='http://localhost:8080/assets/scripts/style2.css', rel='stylesheet' )
 
@@ -24,5 +30,10 @@ html(lang='es')
     #root.
       !{root}
     block scripts
-      script(src="http://localhost:8080/assets/scripts/vendor.min.js")
-      script(src="http://localhost:8080/assets/scripts/client.min.js")
+      if env.NODE_ENV === 'production'
+        script(src="//static.fraseary.com/scripts/vendor.min.js")
+        script(src="//static.fraseary.com/scripts/client.min.js")
+
+      else
+        script(src="http://localhost:8080/assets/scripts/vendor.min.js")
+        script(src="http://localhost:8080/assets/scripts/client.min.js")

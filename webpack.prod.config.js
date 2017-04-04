@@ -26,6 +26,7 @@ module.exports = {
           path.resolve(__dirname, 'src/client'),
         ],
         options: {
+          babelrc: false,
           presets: [['es2015',{"modules":false}], 'react'],
           plugins: [
             'transform-decorators-legacy',

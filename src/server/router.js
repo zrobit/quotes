@@ -6,9 +6,9 @@ if (process.env.NODE_ENV==='production'){
 
 } else {
   global.ssr = require('../shared/ssr').ssr
+  router.use('/assets', require('./middleware/static'))
 }
 
-router.use('/assets', require('./middleware/static'))
 
 router.use('/api', require('./api'))
 

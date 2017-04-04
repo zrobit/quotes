@@ -26,7 +26,7 @@ router.get('/profile/:hashId', function(req, res){
 });
 
 
-if (process.env.NODE_ENV ='development') {
+if (process.env.NODE_ENV === 'development') {
   router.get('/', function(req, res, next){
     User
       .find({})

@@ -16,7 +16,7 @@ var router = require('./router')
 
 
 
-app.locals = {pretty:true, cache:true}
+app.locals = {pretty:true, cache:true, env: process.env}
 
 require('./config/passport');
 

@@ -7,16 +7,14 @@ var gulp = require('gulp'),
 
 
 const src = {
-  scripts: ['assets/scripts/**/*.js'],
-  images: ['assets/images/**/*', '!assets/images/icons/**/*'],
-  fonts: ['assets/fonts/**/*']
+  images: ['src/client/assets/images/**/*', '!src/client/assets/images/icons/**/*'],
+  fonts: ['src/client/assets/fonts/**/*']
 };
 
 
 const dest = {
-  scripts: '.tmp/public/scripts/',
-  images: '.tmp/public/images/',
-  fonts: '.tmp/public/fonts/'
+  images: 'dist/public/assets/images/',
+  fonts: 'dist/public/assets/fonts/'
 };
 
 function styles (){
@@ -35,6 +33,12 @@ function templates (){
     .src(['src/server/views/**/*.pug'])
     .pipe(gulp.dest('dist/server/views/'))
 }
+function images (){
+  return gulp
+    .src(src.images)
+    .pipe(gulp.dest(dest.images));
+}
+
 
 
 /*
@@ -48,11 +52,7 @@ function scripts (){
 }
 
 
-function images (){
-  return gulp
-    .src(src.images)
-    .pipe(gulp.dest(dest.images));
-}
+
 
 
 function fonts (){
@@ -66,5 +66,6 @@ function fonts (){
 // gulp.task('copy:images', images);
 // gulp.task('copy:fonts', fonts);
 gulp.task('copy:styles', styles);
+gulp.task('copy:images', images);
 gulp.task('copy:templates', templates);
 // gulp.task('copy:assets', ['copy:scripts', 'copy:images', 'copy:fonts']);

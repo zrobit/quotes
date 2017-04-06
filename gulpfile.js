@@ -1,13 +1,11 @@
 var gulp = require('gulp');
 
 // require("./tasks/watch.js");
-// exports.templates = require("./tasks/templates.js");
-// require("./tasks/styles.js");
 // require("./tasks/scripts.js");
 // require("./tasks/icons.js");
 // require("./tasks/iconfonts.js");
-// require("./tasks/copy.js");
 require("./tasks/seed.js");
+require("./tasks/styles.js");
 require("./tasks/copy.js");
 
 

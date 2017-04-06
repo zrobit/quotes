@@ -1,8 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 const nib = require('nib');
-const stylusLoader = require('stylus-loader')
+const stylusLoader = require('stylus-loader');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-source-map',
@@ -80,6 +81,13 @@ module.exports = {
       names: ['vendor'] // Specify the common bundle's name.
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
     new ExtractTextPlugin("../styles/chunks.css")
     // new webpack.optimize.AggressiveMergingPlugin()
   ],

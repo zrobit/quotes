@@ -2,7 +2,8 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-    postcss = require('gulp-postcss');
+    postcss = require('gulp-postcss'),
+    gzip = require('gulp-gzip');
 
 function styles (){
   var plugins = [
@@ -17,6 +18,7 @@ function styles (){
     ])
     .pipe(concat('main.min.css'))
     .pipe(postcss(plugins))
+    .pipe(gzip())
     .pipe(gulp.dest('./dist/public/assets/styles/'));
 }
 

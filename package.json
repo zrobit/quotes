@@ -28,6 +28,7 @@
     "validator": "^7.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.7",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.1",
@@ -47,8 +48,14 @@
     "casual": "^1.5.12",
     "css-loader": "^0.28.0",
     "css-modules-require-hook": "^4.0.6",
+    "css-mqpacker": "^5.0.1",
+    "cssnano": "^3.10.0",
     "eslint": "^3.19.0",
     "extract-text-webpack-plugin": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
     "merge-stream": "^1.0.1",
     "morgan": "^1.8.1",
     "nib": "^1.1.2",
@@ -64,12 +71,9 @@
     "start": "nodemon src/server --exec babel-node",
     "start:prod": "NODE_ENV=production babel-node src/server",
     "webpack": "webpack-dev-server --inline --hot",
-
     "build:dev": "NODE_ENV=development webpack --progress --config ./webpack.config.js",
-
     "build:client": "NODE_ENV=production webpack --progress --config ./webpack.prod.config.js",
     "build:server": "babel src/client -d dist/client && babel src/shared -d dist/shared",
-
     "serve": "NODE_ENV=production node src/server"
   },
   "author": "",

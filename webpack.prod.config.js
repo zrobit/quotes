@@ -80,7 +80,7 @@ module.exports = {
       names: ['vendor'] // Specify the common bundle's name.
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new ExtractTextPlugin("style2.css")
+    new ExtractTextPlugin("../styles/chunks.css")
     // new webpack.optimize.AggressiveMergingPlugin()
   ],
 };

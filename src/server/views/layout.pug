@@ -19,11 +19,10 @@ html(lang='es')
 
     if env.NODE_ENV === 'production'
       link(href='//static.fraseary.com/styles/main.css', rel='stylesheet' )
-      link(href='//static.fraseary.com/scripts/style2.css', rel='stylesheet' )
 
     else
       link(href='/assets/styles/main.css', rel='stylesheet' )
-      link(href='http://localhost:8080/assets/scripts/style2.css', rel='stylesheet' )
+      link(href='http://localhost:8080/assets/scripts/chunks.css', rel='stylesheet' )
 
   body#body
     include includes/icons.pug

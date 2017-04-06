@@ -79,6 +79,6 @@ module.exports = {
       },
       preferPathResolver: 'webpack',
     }),
-    new ExtractTextPlugin("style2.css")
+    new ExtractTextPlugin("chunks.css")
   ]
 };

@@ -46,9 +46,17 @@ app.use(router)
 app.set('view engine', 'pug')
 app.set('views', __dirname + '/views')
 
-app.listen(3000, function () {
-  console.log('Server is Ready');
-});
+
+if (process.env.NODE_ENV==='production'){
+  app.listen(8080, function () {
+    console.log('Server is Ready: production');
+  });
+
+} else {
+  app.listen(3000, function () {
+    console.log('Server is Ready');
+  });
+}
 
 
 var db = mongoose.connection;

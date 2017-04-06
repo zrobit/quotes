@@ -58,6 +58,7 @@
     "gulp-gzip": "^1.4.0",
     "gulp-postcss": "^6.4.0",
     "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.6.0",
     "merge-stream": "^1.0.1",
     "morgan": "^1.8.1",
     "nib": "^1.1.2",

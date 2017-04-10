@@ -1,125 +1,167 @@
-// jshint esversion: 6
-var gulp = require('gulp');
-var Sails = require('sails');
-var casual = require('casual');
-var glob = require('glob');
-var sizeOf = require('image-size-big-max-buffer');
-var fs = require('fs-extra');
-var path = require('path');
-// var App = new Sails();
-var slug = require('slug');
+const gulp = require('gulp');
+
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/fraseary-local');
+// mongoose.set('debug', true);
+
+const Author = require('../src/server/models/author');
+const Quote = require('../src/server/models/quote');
+const Meta = require('../src/server/models/meta');
+const Tag = require('../src/server/models/tag');
+
+var fs = require('fs');
+var readline = require('readline');
+var stream = require('stream');
+
+var slug = require('slugg');
 
 
-function populateImages () {
-  var img;
-  var sizes;
-  var ext;
-  var newPath;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
-  Sails.load(function(err, sails) {
-
-    glob('.tmp/public/media/temp/**/*', function(err, files){
-      console.log(files);
-      files.forEach(function(file) {
-
-        sizes = sizeOf(file);
-        console.log(sizes.width+'x'+sizes.height);
-        ext = path.extname(file);
-        if (ext == '.jpeg'){
-          ext = '.jpg';
-        }
-
-        img = {
-          alt: casual.words(n=Math.random() < 0.5 ? 2 : 3),
-          ext: ext,
-          width: sizes.width,
-          height: sizes.height
-        };
-
-        Image.create(img).exec(function (err, img) {
-          newPath = '.tmp/public/media/images/'+img.id+'/'+img.id+'-'+img.width+'x'+img.height+img.ext;
-          fs.copy(file, newPath, function (err) {
-            if (err) return console.error(err);
-          });
-            console.log(newPath);
-
-        });
-      });
-    });
-
+gulp.task('connectDB', function(cb) {
+  db.once('open', function() {
+    console.log('========== Database is Ready =======')
+    cb();
   });
-  // process.exit();
-}
+});
 
+gulp.task('populate:quotes', ['connectDB'], function(){
+  console.log('Updating quotes...')
+  var instream = fs.createReadStream('../data/quotes.alfa.txt');
+  var outstream = new stream;
+  var rl = readline.createInterface(instream, outstream);
+  rl.on('line', function(line) {
+    // process line here
+    line = line.trim();
 
-function populateTools () {
-  Sails.load(function(err, sails) {
+    if(line === ''){
+      return;
+    }
+    let quoteSlug = slug(line)
 
-    var items = [];
-    for(var i=0; i<17 ; i++){
-      var item = {
-        name: casual.words(n=Math.random() < 0.5 ? 1 : 2),
-        tagline: casual.words(n=Math.random() < 0.5 ? 4:5),
-        description: casual.description
-      };
-      items[i] = item;
+    Meta.findOne({slug: quoteSlug}, (err, data) => {
+        if (err) throw err;
+        if(!data){
+          Quote.create({content: line}, (err, quote) => {
+            if (err) throw err;
+            Meta.create({slug: quoteSlug, quote: quote.id}, (err, meta)=>{
+              if (err) throw err;
+              console.log(meta);
+            })
+          })
+        }
+      });
+  });
+
+  rl.on('close', function() {
+    // do something on finish here
+    console.log('Close file')
+  });
+});
+
+gulp.task('populate:authors', ['connectDB'], function(){
+  console.log('Updating authors...')
+  var instream = fs.createReadStream('../data/authors.alfa.txt');
+  var outstream = new stream;
+  var rl = readline.createInterface(instream, outstream);
+  rl.on('line', function(line) {
+    // process line here
+    line = line.trim();
+
+    if(line === ''){
+      return;
+    }
+    Author.getOrCreate({name: line}, function(err, data){
+      if (err) throw err;
+      let object = JSON.stringify(data, null, 2)
+      console.log(object);
+    });
+  });
+
+  rl.on('close', function() {
+    // do something on finish here
+    console.log('Close file')
+  });
+});
+
+gulp.task('populate:tags', ['connectDB'], function(){
+  console.log('Updating tags...')
+  var instream = fs.createReadStream('../data/tags.alfa.txt');
+  var outstream = new stream;
+  var rl = readline.createInterface(instream, outstream);
+  rl.on('line', function(line) {
+    // process line here
+    line = line.trim();
+
+    if(line === ''){
+      return;
     }
 
-    Tool.create(items).exec(function (err, item) {
-      console.log('end to create items');
-      process.exit();
+    Tag.getOrCreate({name: line}, function(err, data){
+      if (err) throw err;
+      let object = JSON.stringify(data, null, 2)
+      console.log(object);
     });
   });
-}
 
-function populateToolsImages () {
-  Sails.load(function(err, sails){
-    Image.find().exec(function(err, items){
-      sails.log.debug(items);
-      items.forEach(function(item, i){
-        sails.log.debug('item id: '+ item.id);
-        sails.log.debug('item index: '+ i);
-        Tool.findOne({id: i+1}).exec(function(err, tool){
-          // sails.log.debug('data: '+JSON.stringify(tool.img));
-          tool.img = item.id;
-          tool.save();
-          // sails.log.debug('item: '+JSON.stringify(item.id));
-          // sails.log.debug('dentro item.id: ' + item.id);
-          // tool.img.add(item.id);
-          // tool.save();
-          console.log('Items relaciones: '+ tool.id);
-        });
-      });
-    });
+  rl.on('close', function() {
+    // do something on finish here
+    console.log('Close file')
   });
-}
+});
 
-function populateTags () {
-  var objs = [];
-  Sails.load(function(err, sails){
-    Tool.find().populate('tags').exec(function(err, tools){
-      tools.forEach(function(tool, index){
 
-        var rand = Math.random() < 0.5 ? 1 : 2;
-        var obj = {
-          name: casual.words(n=rand),
-        };
-        Tag.findOrCreate({slug:slug(obj.name)}, obj).exec(function(err, data){
-          console.log(data);
-          if(data){
-            tool.tags.add(data.id);
-            tool.save();
+gulp.task('populate:joins', ['connectDB'], function(){
+  console.log('Updating joins...')
+  var instream = fs.createReadStream('../data/__quotes__.json');
+  var outstream = new stream;
+  var rl = readline.createInterface(instream, outstream);
+  rl.on('line', function(line) {
+    // process line here
+    line = line.trim();
+    if(line === ''|| line=== '[' || line===']'){
+      return;
+    }
+    if(line.slice(-1)===','){
+      line = line.slice(0, -1)
+    }
+    line = JSON.parse(line)
+    let quoteSlug = slug(line.content);
+    let authorSlug = slug(line.author);
+    let tagSlug = slug(line.category);
 
-          }
-        });
 
-      });
-    });
+    Meta.findOne({slug: quoteSlug}, (err, meta)=>{
+      if(err) throw err;
+      if(!meta) return;
+      Quote.findOne({_id: meta.quote}, (err, quote)=>{
+        if(!quote.author){
+          Author.findOne({slug: authorSlug}, (err, author)=>{
+            if(err) throw err;
+            if(author===null){
+              console.log(line.author)
+            }
+            quote.author = author.id;
+            quote.save();
+            console.log('quotes+ author:'+ quote)
+          })
+        }
+
+        Tag.findOne({slug: tagSlug}, (err, tag)=>{
+
+          if (err) throw err;
+          quote.tags.addToSet(tag.id)
+          quote.save()
+          console.log('quotes+ tags:'+ quote)
+        })
+      })
+    })
   });
-}
 
-gulp.task('populate:tools', populateTools);
-gulp.task('populate:tags', populateTags);
-gulp.task('populate:images', populateImages);
-gulp.task('populate:toolsImages', populateToolsImages);
-
+  rl.on('close', function() {
+    // do something on finish here
+    console.log('Close file')
+  });
+});

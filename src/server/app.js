@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session      = require('express-session');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/dot-quotes');
+mongoose.connect('mongodb://localhost/fraseary-local');
 
 
 var router = require('./router')

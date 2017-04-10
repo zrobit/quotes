@@ -31,6 +31,23 @@ authorSchema.pre('save', function (next) {
   next();
 });
 
+authorSchema.statics.getOrCreate = function (doc, cb) {
+  const self = this;
+  if (doc.name){
+    if (!doc.slug){
+      doc.slug = slug(doc.name)
+    }
+  }
+  self.findOne({slug: doc.slug}, function(err, data){
+    if(!data){
+      self.create({name: doc.name}, function(err, data){
+        cb(err, data)
+      });
+    }
+    cb(err, data)
+  })
+};
+
 var Author = mongoose.model('Author', authorSchema);
 module.exports = Author;
 

@@ -1,12 +1,16 @@
 var gulp = require('gulp');
 
+//Develpment tasks
+if (process.env.NODE_ENV === 'development') {
+  require("./tasks/seed.js");
+  require("./tasks/populate.js");
+}
 // require("./tasks/watch.js");
 // require("./tasks/scripts.js");
 // require("./tasks/icons.js");
 // require("./tasks/iconfonts.js");
-require("./tasks/seed.js");
-require("./tasks/styles.js");
-require("./tasks/copy.js");
+// require("./tasks/styles.js");
+// require("./tasks/copy.js");
 
 
 

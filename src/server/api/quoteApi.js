@@ -13,15 +13,19 @@ const isPage = require('../middleware/isPage');
 router.get('/', isPage, function(req, res, next){
   const nPage = parseInt(req.query.page);
   const nItems = 10;
-  let query = Quote.find({}).limit(10).sort({'createdAt':-1});
-  query.skip((nPage-1)*nItems);
-  query.select('slug content author tags size');
-  query.populate('tags', 'name slug -_id');
-  query.populate('author', 'name slug');
-  query.exec((err, data) => {
-    if (err) throw err;
-    res.json(data)
-  })
+  Quote.count({}, (err, count) => {
+    let next = count > nItems*nPage ? nPage + 1: null;
+    let query = Quote.find({}).limit(10).sort({'createdAt':-1});
+    query.skip((nPage-1)*nItems);
+    query.select('slug content author tags size');
+    query.populate('tags', 'name slug -_id');
+    query.populate('author', 'name slug');
+    query.exec((err, data) => {
+      if (err) throw err;
+      let context = {data: data, next: next}
+      res.json(context)
+    })
+  });
 });
 
 router.get('/:slug', function(req, res, next){

@@ -10,16 +10,16 @@ var router = express.Router();
 
 
 router.get('/', function(req, res){
-
   let context = {};
 
-  api.get('/home')
+  api.get('/quotes')
     .then(function(response){
+      console.log(response.data)
       let state = {
         app: {
-          ref: 'HomeSection',
-          data: response.data
-        }
+          ref: 'HomeSection'
+        },
+        quote: response.data
       }
       context.state = state;
       ssr(req, res, context)

@@ -5,9 +5,11 @@ import QuotesList from '../quote/QuotesList'
 // import style from './author.styl'
 // import cx from 'classnames'
 
-export default ({author}) => (
+export default ({quotes, isLoading, fetch}) => (
   <div>
     <h2>Frases (60.9944)</h2>
-    <QuotesList />
+    {<QuotesList quotes={quotes} isLoading={isLoading} fetch={fetch} />}
   </div>
 )
+
+

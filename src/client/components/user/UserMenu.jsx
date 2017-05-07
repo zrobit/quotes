@@ -18,11 +18,11 @@ class UserMenu extends Component{
     }))
   }
   render(){
-    const { isAuth, userName, userHashId } = this.props.appStore;
+    const { isAuth, name, hashId } = this.props.user;
     return (
       <div>
         {isAuth
-          ? <UserNav user={userName} hash={userHashId} open={this.state.menuOpen} onClick={this.handleClick}/>
+          ? <UserNav user={name} hash={hashId} open={this.state.menuOpen} onClick={this.handleClick}/>
           : <AuthMenu />
         }
       </div>

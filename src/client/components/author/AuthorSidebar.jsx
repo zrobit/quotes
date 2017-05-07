@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { inject, observer } from "mobx-react";
+
+import { connect } from 'react-redux'
+
+
 import { Link } from 'react-router'
 
 import AuthorBio from './AuthorBio'
 import TagsSidebar from '../tag/TagsSidebar'
 
 
-
-@inject('appStore') @observer
 class AuthorSidebar extends Component {
   render() {
-    let {author, isLoading} = this.props.appStore;
+    let {author, isLoading} = this.props;
     let {tags} = this.props;
 
     return(
@@ -25,4 +26,16 @@ class AuthorSidebar extends Component {
   }
 }
 
+
+const mapStateToProps = (state) => {
+  return {
+    author: state.author.detail,
+    isLoading: state.author.isLoading
+  }
+}
+
+AuthorSidebar = connect(
+  mapStateToProps
+  // mapDispatchToProps
+)(AuthorSidebar);
 export default AuthorSidebar;

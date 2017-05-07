@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import {inject, observer} from "mobx-react";
+
+import { connect } from 'react-redux'
+import { fetchAuthor } from '../../actions/authorActions'
+
+
 import { Link } from 'react-router';
 
 import ShareMediumButtons from '../buttons/ShareMediumButtons'
@@ -14,15 +18,16 @@ const sizes = {
   large: style.large
 };
 
-@inject('appStore')
+
 class QuoteDetail extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {quote} = this.props.appStore
+    const {quote} = this.props
     const {author} = quote
+    // console.log(quote)
 
     return (
       <div className={cx(style.quoteSection)}>
@@ -35,7 +40,7 @@ class QuoteDetail extends Component {
               <span>—</span>
               <Link
                 to={"/autor/"+author.slug}
-                onClick={() => this.props.appStore.setAuthorDetail(author)} >
+                onClick={() => this.props.fetchAuthor(author)} >
                 {author.name}
               </Link>
             </h3>
@@ -47,4 +52,20 @@ class QuoteDetail extends Component {
   }
 }
 
-export default QuoteDetail
+const mapStateToProps = (state) => {
+  return {
+    quote: state.quote.detail
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchAuthor: (author) => {
+    dispatch(fetchAuthor(author))
+  }
+})
+
+QuoteDetail = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuoteDetail);
+export default QuoteDetail;

@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import {inject} from "mobx-react";
+
+import { connect } from 'react-redux'
+
+import { setQuoteDetail } from '../../actions/quoteActions'
+import { fetchAuthor } from '../../actions/authorActions'
+
+
 import { Link } from 'react-router';
 
 import TagList from '../tag/TagList'
@@ -15,7 +21,7 @@ const sizes = {
   large: style.large
 };
 
-@inject('appStore')
+
 class QuoteItem extends Component {
   render() {
     const {slug, content, tags, size} = this.props.quote;
@@ -26,7 +32,7 @@ class QuoteItem extends Component {
           <Link
             className={style.link}
             to={"/frase/"+slug}
-            onClick={()=> this.props.appStore.setQuoteDetail(this.props.quote)} >
+            onClick={()=> this.props.setQuoteDetail(this.props.quote)} >
             {content}
           </Link>
         </p>
@@ -35,7 +41,7 @@ class QuoteItem extends Component {
             <span>—</span>
             <Link
               to={"/autor/"+author.slug}
-              onClick={() => this.props.appStore.setAuthorDetail(author)} >
+              onClick={() => this.props.fetchAuthor(author)} >
                 {author.name}
             </Link>
           </h3>
@@ -47,4 +53,23 @@ class QuoteItem extends Component {
   }
 }
 
-export default QuoteItem
+const mapStateToProps = (state) => {
+  return {
+    state: state
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  setQuoteDetail: (quote) => {
+    dispatch(setQuoteDetail(quote))
+  },
+  fetchAuthor: (author) => {
+    dispatch(fetchAuthor(author))
+  }
+})
+
+QuoteItem = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuoteItem);
+export default QuoteItem;

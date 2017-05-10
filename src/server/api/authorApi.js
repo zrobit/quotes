@@ -20,7 +20,7 @@ router.get('/:slug', function(req, res, next){
   .select('name slug bio')
   .populate({
       path: 'quotes',
-      select: 'author content tags -_id',
+      select: 'author size slug content tags -_id',
       populate: {
         path: 'tags',
         select: "slug name -_id"

@@ -7,8 +7,7 @@ import routes from '../client/routes';
 import jsonStringifySafe from 'json-stringify-safe';
 
 
-import AppStore from '../client/stores/AppStore'
-import AuthStore from '../client/stores/AuthStore'
+import createStores from '../client/stores/'
 
 useStaticRendering(true);
 
@@ -20,18 +19,15 @@ export function ssr(req, res, context, template="layout") {
         console.log(err)
       }
       else if (props) {
-        if(!context.state.app){context.state.app = {} }
+        if(!context.state.user){context.state.user = {} }
 
-        context.state.app.isAuth = req.isAuthenticated();
-        if(context.state.app.isAuth){
-          context.state.app.userName = req.user.name
-          context.state.app.userHashId = req.user.hashId
+        context.state.user.isAuth = req.isAuthenticated();
+        if(context.state.user.isAuth){
+          context.state.user.name = req.user.name
+          context.state.user.hashId = req.user.hashId
         }
 
-        const stores = {
-          appStore: AppStore.fromJS(context.state.app),
-          authStore: new AuthStore(context.state.auth)
-        }
+        let stores = createStores(context.state)
 
         context.root = renderToString(
           <Provider {...stores}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+import { inject } from 'mobx-react';
 
 import { Link } from 'react-router';
 
@@ -39,14 +40,11 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
 
-Header = connect(
-  mapStateToProps,
-  // mapDispatchToProps
-)(Header);
+Header  = inject(
+  stores => ({
+    user: stores.userStore,
+  })
+)(Header)
+
 export default Header;

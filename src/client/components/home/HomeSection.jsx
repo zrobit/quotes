@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { connect } from 'react-redux'
+import { inject } from 'mobx-react';
+
 import { fetchQuotes } from '../../actions/quoteActions'
 
 import HomeQuotesList from './HomeQuotesList'
@@ -23,7 +24,7 @@ class Home extends Component {
   ]
 
   render() {
-    const {quotes, isLoading, fetch} = this.props
+    const {quotes, isLoading, fetch, next} = this.props
 
     return (
       <div>
@@ -32,7 +33,12 @@ class Home extends Component {
         </div>
         <SplitPane
           main={
-            <HomeQuotesList quotes={quotes} isLoading={isLoading} fetch={fetch}/>
+            <HomeQuotesList
+              quotes={quotes}
+              isLoading={isLoading}
+              fetch={fetch}
+              next={next}
+            />
           }
 
           sidebar={<HomeSidebar tags={this.tags}/>}
@@ -42,21 +48,14 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    quotes: state.quote.quotes,
-    isLoading: state.quote.isLoading
-  }
-}
 
-const mapDispatchToProps = (dispatch) => ({
-  fetch: () => {
-    dispatch(fetchQuotes())
-  }
-})
+Home  = inject(
+  stores => ({
+    quotes: stores.quoteStore.quotes,
+    isLoading: stores.quoteStore.isLoading,
+    next: stores.quoteStore.next,
+    fetch: stores.quoteStore.fetchQuotes
+  })
+)(Home)
 
-Home = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
-export default Home;
+export default Home

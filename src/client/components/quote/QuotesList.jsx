@@ -13,6 +13,8 @@ class QuotesList extends Component {
   delta = null;
   newDelta = null;
   repose = null;
+  oldCola = 0;
+  cola = 1;
   grid = null;
 
   constructor(props){
@@ -38,8 +40,15 @@ class QuotesList extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-    this.grid = document.getElementById('grid');
+    if(this.props.next){
+      window.addEventListener('scroll', this.handleScroll);
+      this.grid = document.getElementById('grid');
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    if (nextProps.next === null){
+      window.removeEventListener('scroll', this.handleScroll);
+    }
   }
 
   componentWillUnmount() {
@@ -78,7 +87,13 @@ class QuotesList extends Component {
     self.delta = self.newDelta;
     if(!self.repose) {
       if(self.newDelta < 800){
-        self.props.fetch(self.props.isLoading);
+
+        if(self.cola > self.oldCola){
+          self.oldCola = self.cola;
+          self.props.fetch(function(){
+            self.cola = self.cola + 1;
+          })
+        }
       }
     }
   }

@@ -22,7 +22,7 @@ router.get('/', isPage, function(req, res, next){
     query.populate('author', 'name slug');
     query.exec((err, data) => {
       if (err) throw err;
-      let context = {data: data, next: next}
+      let context = {quotes: data, next: next}
       res.json(context)
     })
   });

@@ -1,0 +1,16 @@
+export const QUOTE_GET_ALL = 'QUOTE_GET_ALL';
+export const QUOTE_GET = 'QUOTE_GET';
+export const QUOTE_SET_DETAIL = 'QUOTE_SET_DETAIL';
+export const AUTHOR_SET_DETAIL = 'AUTHOR_SET_DETAIL';
+export const NAVIGATE_AUTHOR = 'NAVIGATE_AUTHOR'
+export const NAVIGATE_QUOTE = 'NAVIGATE_QUOTE'
+
+
+//Author types
+export const RECEIVE_AUTHOR = 'RECEIVE_AUTHOR'
+export const REQUEST_AUTHOR = 'REQUEST_AUTHOR';
+
+
+//Quotes types
+export const REQUEST_QUOTES = 'REQUEST_QUOTES'
+export const RECEIVE_QUOTES = 'RECEIVE_QUOTES'

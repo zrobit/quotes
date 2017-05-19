@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
+import { inject } from 'mobx-react'
 import { fetchAuthor } from '../../actions/authorActions'
 
 
@@ -52,20 +52,31 @@ class QuoteDetail extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    quote: state.quote.detail
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     quote: state.quote.detail
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchAuthor: (author) => {
-    dispatch(fetchAuthor(author))
-  }
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   fetchAuthor: (author) => {
+//     dispatch(fetchAuthor(author))
+//   }
+// })
 
-QuoteDetail = connect(
-  mapStateToProps,
-  mapDispatchToProps
+// QuoteDetail = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(QuoteDetail);
+
+QuoteDetail = inject(
+  stores => (
+  {
+    quote: stores.quoteStore.detail
+
+  })
 )(QuoteDetail);
+
+
+
 export default QuoteDetail;

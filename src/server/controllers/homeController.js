@@ -14,11 +14,7 @@ router.get('/', function(req, res){
 
   api.get('/quotes')
     .then(function(response){
-      console.log(response.data)
       let state = {
-        app: {
-          ref: 'HomeSection'
-        },
         quote: response.data
       }
       context.state = state;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { inject } from 'mobx-react'
 
 import SplitPane from '../layout/SplitPane'
 
@@ -30,15 +30,4 @@ class AuthorSection extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    author: state.author.detail,
-    isLoading: state.author.isLoading
-  }
-}
-
-AuthorSection = connect(
-  mapStateToProps
-  // mapDispatchToProps
-)(AuthorSection);
 export default AuthorSection;

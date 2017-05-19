@@ -27,7 +27,6 @@ class QuoteDetail extends Component {
   render() {
     const {quote} = this.props
     const {author} = quote
-    // console.log(quote)
 
     return (
       <div className={cx(style.quoteSection)}>
@@ -54,10 +53,8 @@ class QuoteDetail extends Component {
 
 
 QuoteDetail = inject(
-  stores => (
-  {
+  stores => ({
     quote: stores.quoteStore.detail
-
   })
 )(QuoteDetail);
 

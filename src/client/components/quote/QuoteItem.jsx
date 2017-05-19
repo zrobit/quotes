@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 
 import { setQuoteDetail } from '../../actions/quoteActions'
 import { fetchAuthor } from '../../actions/authorActions'
@@ -21,7 +21,7 @@ const sizes = {
   large: style.large
 };
 
-
+@inject('quoteStore', 'authorStore')
 class QuoteItem extends Component {
   render() {
     const {slug, content, tags, size} = this.props.quote;
@@ -32,7 +32,7 @@ class QuoteItem extends Component {
           <Link
             className={style.link}
             to={"/frase/"+slug}
-            onClick={()=> this.props.setQuoteDetail(this.props.quote)} >
+            onClick={()=> this.props.quoteStore.setQuoteDetail(this.props.quote)} >
             {content}
           </Link>
         </p>
@@ -41,7 +41,7 @@ class QuoteItem extends Component {
             <span>—</span>
             <Link
               to={"/autor/"+author.slug}
-              onClick={() => this.props.setAuthorDetail(author)} >
+              onClick={() => this.props.authorStore.setAuthorDetail(author)} >
                 {author.name}
             </Link>
           </h3>
@@ -52,14 +52,6 @@ class QuoteItem extends Component {
     );
   }
 }
-
-
-QuoteItem  = inject(
-  stores => ({
-    setQuoteDetail: stores.quoteStore.setQuoteDetail,
-    setAuthorDetail: stores.authorStore.setAuthorDetail
-  })
-)(QuoteItem)
 
 
 export default QuoteItem;

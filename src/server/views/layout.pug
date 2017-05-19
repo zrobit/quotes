@@ -15,9 +15,9 @@ html(lang='es')
       window.initialState = !{initialStateJSON};
 
     block styles
-      link(href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet")
 
     if env.NODE_ENV === 'production'
+      link(href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet")
       link(href='//static.fraseary.com/styles/main.min.css', rel='stylesheet' )
 
     else

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
+import { inject } from 'mobx-react'
 
 import { setQuoteDetail } from '../../actions/quoteActions'
 import { fetchAuthor } from '../../actions/authorActions'
@@ -41,7 +41,7 @@ class QuoteItem extends Component {
             <span>—</span>
             <Link
               to={"/autor/"+author.slug}
-              onClick={() => this.props.fetchAuthor(author)} >
+              onClick={() => this.props.setAuthorDetail(author)} >
                 {author.name}
             </Link>
           </h3>
@@ -53,23 +53,13 @@ class QuoteItem extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    state: state
-  }
-}
 
-const mapDispatchToProps = (dispatch) => ({
-  setQuoteDetail: (quote) => {
-    dispatch(setQuoteDetail(quote))
-  },
-  fetchAuthor: (author) => {
-    dispatch(fetchAuthor(author))
-  }
-})
+QuoteItem  = inject(
+  stores => ({
+    setQuoteDetail: stores.quoteStore.setQuoteDetail,
+    setAuthorDetail: stores.authorStore.setAuthorDetail
+  })
+)(QuoteItem)
 
-QuoteItem = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(QuoteItem);
+
 export default QuoteItem;

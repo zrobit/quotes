@@ -52,22 +52,6 @@ class QuoteDetail extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     quote: state.quote.detail
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => ({
-//   fetchAuthor: (author) => {
-//     dispatch(fetchAuthor(author))
-//   }
-// })
-
-// QuoteDetail = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(QuoteDetail);
 
 QuoteDetail = inject(
   stores => (
@@ -76,7 +60,6 @@ QuoteDetail = inject(
 
   })
 )(QuoteDetail);
-
 
 
 export default QuoteDetail;

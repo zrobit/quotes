@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import { inject } from 'mobx-react'
-import { fetchAuthor } from '../../actions/authorActions'
 
 
 import { Link } from 'react-router';

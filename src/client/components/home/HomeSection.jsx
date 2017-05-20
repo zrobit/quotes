@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { inject } from 'mobx-react';
 
-import { fetchQuotes } from '../../actions/quoteActions'
-
 import HomeQuotesList from './HomeQuotesList'
 import HomeSidebar from './HomeSidebar'
 import SplitPane from '../layout/SplitPane'

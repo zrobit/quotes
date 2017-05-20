@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 
 import { inject, observer } from 'mobx-react'
 
-import { setQuoteDetail } from '../../actions/quoteActions'
-import { fetchAuthor } from '../../actions/authorActions'
-
-
 import { Link } from 'react-router';
 
 import TagList from '../tag/TagList'

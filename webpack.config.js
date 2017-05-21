@@ -6,7 +6,8 @@ const stylusLoader = require('stylus-loader')
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: 'eval',
+  // devtool: 'eval',
+  devtool: 'cheap-source-map',
   entry: {
     client: [
       // 'webpack-dev-server/client?http://localhost:8080',

@@ -4,20 +4,22 @@ import axios from 'axios'
 
 export default class QuoteStore {
   @observable quotes = [];
-  @observable detail = {};
-  @observable author = {};
+  @observable quote = {};
   @observable isLoading = false;
   next;
 
   setQuoteDetail(quote){
-    this.detail = quote;
+    this.quote = quote;
   }
 
   fetchQuotes(cb){
-     let self = this;
-    axios.get('/api/quotes?page=' + this.next)
+    let self = this;
+    self.isLoading = true;
+    axios.get('/api/quotes?page=' + self.next)
     .then((response)=>{
       self.quotes.push(...response.data.quotes);
+      self.next = response.data.next
+      self.isLoading = false
       cb();
     })
     .catch(function (error) {
@@ -33,7 +35,11 @@ export default class QuoteStore {
     if(state){
       store.quotes = state.quotes;
       store.next = state.next;
+      if(state.detail){
+        store.quote = state.detail
+      }
     }
+
     return store;
   }
 }

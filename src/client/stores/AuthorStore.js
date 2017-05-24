@@ -3,22 +3,36 @@ import QuoteModel from '../models/QuoteModel'
 import axios from 'axios'
 
 export default class AuthorStore {
-  @observable quotes = [];
   @observable author = {};
+  @observable bio = {}
+  @observable quotes = [];
   @observable isLoading = false;
-  next;
+  next=1;
 
   setAuthorDetail(author){
     this.author = author
+    this.isLoading = true;
     this.quotes = []
+    this.next = 1
+    this.fetchQuotes();
     this.fetchAuthor();
+  }
+
+  setAuthor(author){
+    this.author = author
   }
 
   fetchQuotes(cb){
     let self = this;
-    axios.get('/api/quotes')
+    if(self.next===null){
+      return;
+    }
+    self.isLoading = true;
+    axios.get('/api/quotes/author/'+self.author._id+'?page=' + self.next)
     .then(function (response) {
-      self.quotes.push(...response.data);
+      self.quotes.push(...response.data.quotes);
+      self.next = response.data.next
+      self.isLoading = false
       cb();
     })
     .catch(function (error) {
@@ -29,11 +43,10 @@ export default class AuthorStore {
   fetchAuthor(){
     let self = this;
     self.isLoading = true;
-    axios.get('/api/authors/' + self.author.slug)
+    axios.get('/api/authors/' + self.author._id)
     .then(function (response) {
       self.author = response.data.author
-      // self.mapQuotes(self, self.author.quotes)
-
+      // self.bio = response.data.author.bio
       self.isLoading = false;
     })
     .catch(function (error) {
@@ -48,10 +61,9 @@ export default class AuthorStore {
   static fromJS(state) {
     const store = new AuthorStore();
     if (state){
-      store.author = state
-
+      store.author = state.detail
+      store.quotes = state.detail.quotes
     }
-
     return store;
   }
 }

@@ -9,12 +9,15 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session      = require('express-session');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/fraseary-local');
 
+if (process.env.NODE_ENV==='production'){
+  mongoose.connect('mongodb://localhost/fraseary-production');
+
+} else {
+  mongoose.connect('mongodb://localhost/fraseary-local');
+}
 
 var router = require('./router')
-
-
 
 app.locals = {pretty:true, cache:true, env: process.env}
 

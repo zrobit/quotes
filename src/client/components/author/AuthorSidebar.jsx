@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
+import { inject } from 'mobx-react'
 
 
 import { Link } from 'react-router'
@@ -8,10 +8,10 @@ import { Link } from 'react-router'
 import AuthorBio from './AuthorBio'
 import TagsSidebar from '../tag/TagsSidebar'
 
-
+@inject('authorStore')
 class AuthorSidebar extends Component {
   render() {
-    let {author, isLoading} = this.props;
+    let {author, isLoading} = this.props.authorStore;
     let {tags} = this.props;
 
     return(
@@ -27,15 +27,4 @@ class AuthorSidebar extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    author: state.author.detail,
-    isLoading: state.author.isLoading
-  }
-}
-
-AuthorSidebar = connect(
-  mapStateToProps
-  // mapDispatchToProps
-)(AuthorSidebar);
 export default AuthorSidebar;

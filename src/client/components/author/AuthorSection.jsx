@@ -10,6 +10,8 @@ import AuthorSidebar from './AuthorSidebar'
 import style from './author.styl'
 import cx from 'classnames'
 
+
+@inject('authorStore')
 class AuthorSection extends Component {
   tags =[
     {name:"Tes1", slug:'tag-slug'},
@@ -18,11 +20,11 @@ class AuthorSection extends Component {
     {name:"Tes1", slug:'tag-slug'},
   ]
   render() {
-    const {author, quotes, isLoading} = this.props;
+    const {author} = this.props.authorStore;
     return (
       <div className={style.section}>
         <SplitPane
-          main={<AuthorQuotesList author={author} isLoading={isLoading}/>}
+          main={<AuthorQuotesList author={author} quoteStore={this.props.authorStore}/>}
           sidebar={<AuthorSidebar tags={this.tags} />} />
       </div>
     );

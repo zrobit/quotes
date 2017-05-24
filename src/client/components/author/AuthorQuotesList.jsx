@@ -5,12 +5,12 @@ import QuotesList from '../quote/QuotesList'
 // import style from './author.styl'
 // import cx from 'classnames'
 
-export default ({author, isLoading}) => (
+export default ({author, quoteStore}) => (
   <div>
     <h2>
       <span>Todas las frases de </span>
       <span>{author.name} (50)</span>
     </h2>
-    <QuotesList quotes={author.quotes} isLoading={isLoading} author={author}/>
+    <QuotesList author={author} quoteStore={quoteStore}/>
   </div>
 )

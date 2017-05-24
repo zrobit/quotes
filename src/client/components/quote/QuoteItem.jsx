@@ -21,14 +21,15 @@ const sizes = {
 class QuoteItem extends Component {
   render() {
     const {slug, content, tags, size} = this.props.quote;
-    const author = this.props.author;
+    const {author} = this.props;
+
     return (
       <div className={cx(style.item, 'card-quote clearfix')}>
         <p className={sizes[size]}>
           <Link
             className={style.link}
             to={"/frase/"+slug}
-            onClick={()=> this.props.quoteStore.setQuoteDetail(this.props.quote)} >
+            onClick={()=> this.setQuoteDetail(this.props.quote, author)} >
             {content}
           </Link>
         </p>
@@ -47,6 +48,15 @@ class QuoteItem extends Component {
       </div>
     );
   }
+  constructor(props){
+    super(props);
+    this.setQuoteDetail = this.setQuoteDetail.bind(this);
+  }
+  setQuoteDetail(quote, author){
+    this.props.quoteStore.setQuoteDetail(quote)
+    this.props.authorStore.setAuthor(author)
+  }
+
 }
 
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
+import { observer, inject } from 'mobx-react'
 
 import hash from '../../utils/hash'
 
 import QuoteItem from './QuoteItem'
 
-
+@inject('authorStore') @observer
 class QuotesList extends Component {
   waiting = false;
   endScrollHandle = null;
@@ -22,13 +22,9 @@ class QuotesList extends Component {
     this.handleScroll = this.handleScroll.bind(this);
   }
 
-  quoteItem(quote, author= quote.author) {
-    return (
-      <QuoteItem key={hash()} quote={quote} author={author} />
-    );
-  }
   render() {
-    const {quotes, author, isLoading} = this.props
+    const {quotes, author, isLoading} = this.props.quoteStore
+
     return (
       <div id="grid">
       { quotes ?  quotes.map(quote => this.quoteItem(quote, author)) : null }
@@ -39,14 +35,20 @@ class QuotesList extends Component {
     );
   }
 
+  quoteItem(quote, author= quote.author) {
+    return (
+      <QuoteItem key={hash()} quote={quote} author={author} />
+    );
+  }
+
   componentDidMount() {
-    if(this.props.next){
+    if(this.props.quoteStore.next){
       window.addEventListener('scroll', this.handleScroll);
       this.grid = document.getElementById('grid');
     }
   }
   componentWillReceiveProps(nextProps){
-    if (nextProps.next === null){
+    if (nextProps.quoteStore.next === null){
       window.removeEventListener('scroll', this.handleScroll);
     }
   }
@@ -87,10 +89,9 @@ class QuotesList extends Component {
     self.delta = self.newDelta;
     if(!self.repose) {
       if(self.newDelta < 800){
-
         if(self.cola > self.oldCola){
           self.oldCola = self.cola;
-          self.props.fetch(function(){
+          self.props.quoteStore.fetchQuotes(function(){
             self.cola = self.cola + 1;
           })
         }

@@ -17,15 +17,15 @@ const sizes = {
   large: style.large
 };
 
-
+@inject('quoteStore', 'authorStore')
 class QuoteDetail extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {quote} = this.props
-    const {author} = quote
+    const { quote } = this.props.quoteStore;
+    const { setAuthorDetail, author } = this.props.authorStore
 
     return (
       <div className={cx(style.quoteSection)}>
@@ -38,7 +38,7 @@ class QuoteDetail extends Component {
               <span>—</span>
               <Link
                 to={"/autor/"+author.slug}
-                onClick={() => this.props.fetchAuthor(author)} >
+                onClick={() => setAuthorDetail(author)} >
                 {author.name}
               </Link>
             </h3>
@@ -49,13 +49,6 @@ class QuoteDetail extends Component {
     );
   }
 }
-
-
-QuoteDetail = inject(
-  stores => ({
-    quote: stores.quoteStore.detail
-  })
-)(QuoteDetail);
 
 
 export default QuoteDetail;

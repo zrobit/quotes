@@ -28,12 +28,15 @@ export function ssr(req, res, context, template="layout") {
         }
 
         let stores = createStores(context.state)
-
-        context.root = renderToString(
-          <Provider {...stores}>
-            <RouterContext {...props} />
-          </Provider>
-        )
+        try {
+          context.root = renderToString(
+            <Provider {...stores}>
+              <RouterContext {...props} />
+            </Provider>
+          )
+        } catch (e) {
+          console.error(e);
+        }
 
         context.initialStateJSON = jsonStringifySafe(context.state)
 

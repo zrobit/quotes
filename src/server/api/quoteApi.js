@@ -10,6 +10,8 @@ const Author = require('../models/author');
 
 const isPage = require('../middleware/isPage');
 
+
+//api/quotes
 router.get('/', isPage, function(req, res, next){
   const nPage = parseInt(req.query.page);
   const nItems = 10;
@@ -28,6 +30,29 @@ router.get('/', isPage, function(req, res, next){
   });
 });
 
+//api/quotes/author/hashId
+router.get('/author/:id', isPage, function(req, res, next){
+  const nPage = parseInt(req.query.page);
+  const nItems = 10;
+  Quote.count({'author': req.params.id}, (err, count) => {
+    let next = count > nItems*nPage ? nPage + 1: null;
+    let query = Quote.find({'author': req.params.id}).limit(10).sort({'createdAt':-1});
+
+    query.skip((nPage-1)*nItems);
+    query.select('slug content author tags size');
+    query.populate('tags', 'name slug -_id');
+    query.populate('author', 'name slug hashId');
+    query.exec((err, data) => {
+      if (err) throw err;
+      let context = {quotes: data, next: next}
+      res.json(context)
+    })
+  });
+});
+
+
+
+//api/quotes/:slug
 router.get('/:slug', function(req, res, next){
   let query = Quote.findOne({slug:req.params.slug})
   query.select('slug content author size');
@@ -40,7 +65,6 @@ router.get('/:slug', function(req, res, next){
     res.json(context)
   })
 });
-
 
 
 router.post('/', function(req, res, next){

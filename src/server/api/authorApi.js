@@ -36,6 +36,7 @@ router.get('/:slug', function(req, res, next){
   })
 });
 
+
 router.put('/:id', function(req, res, next){
   let { id } = req.params
   let { key, value } = req.body

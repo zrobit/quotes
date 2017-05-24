@@ -35,7 +35,8 @@ class QuotesList extends Component {
     );
   }
 
-  quoteItem(quote, author= quote.author) {
+  quoteItem(quote, author) {
+    author = author || quote.author;
     return (
       <QuoteItem key={hash()} quote={quote} author={author} />
     );

@@ -38,7 +38,7 @@ class QuoteItem extends Component {
             <span>—</span>
             <Link
               to={"/autor/"+author.slug}
-              onClick={() => this.props.authorStore.setAuthorDetail(author)} >
+              onClick={() => this.setAuthorDetail(author)} >
                 {author.name}
             </Link>
           </h3>
@@ -51,10 +51,15 @@ class QuoteItem extends Component {
   constructor(props){
     super(props);
     this.setQuoteDetail = this.setQuoteDetail.bind(this);
+    this.setAuthorDetail = this.setAuthorDetail.bind(this);
   }
   setQuoteDetail(quote, author){
     this.props.quoteStore.setQuoteDetail(quote)
     this.props.authorStore.setAuthor(author)
+  }
+
+  setAuthorDetail(author) {
+    this.props.authorStore.setAuthorDetail(author)
   }
 
 }

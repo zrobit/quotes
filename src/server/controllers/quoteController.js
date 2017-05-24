@@ -19,6 +19,9 @@ router.get('/:slug', function(req, res){
       let state = {
         quote: {
           detail: response.data.quote
+        },
+        author: {
+          detail: response.data.quote.author
         }
       }
       context.state = state;

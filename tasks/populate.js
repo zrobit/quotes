@@ -165,3 +165,21 @@ gulp.task('populate:joins', ['connectDB'], function(){
     console.log('Close file')
   });
 });
+
+
+gulp.task('populate:tags:recurrence', ['connectDB'], function(){
+  console.log('Updating tags...')
+  Tag.find({}, function(err, tags){
+    if (err) throw err;
+    tags.map(function(tag){
+      Quote.count({'tags': tag.id}, function(err, count){
+        if (err) throw err;
+        Tag.findOneAndUpdate({_id:tag.id}, {recurrence:count},function(err, data){
+          if (err) throw err;
+          console.log(data.name + ' num: '+count)
+        })
+
+      })
+    })
+  })
+});

@@ -9,7 +9,8 @@ const config = {
 
 const tagSchema = new Schema({
   name: String,
-  slug: String
+  slug: String,
+  recurrence: {type: Number, default: 0 }
 }, config);
 
 tagSchema.pre('save', function (next) {

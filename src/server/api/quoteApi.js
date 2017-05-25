@@ -30,7 +30,7 @@ router.get('/', isPage, function(req, res, next){
   });
 });
 
-//api/quotes/author/hashId
+//api/quotes/author/:_id
 router.get('/author/:id', isPage, function(req, res, next){
   const nPage = parseInt(req.query.page);
   const nItems = 10;

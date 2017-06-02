@@ -17,9 +17,10 @@ var metaSchema = new Schema({
 
 metaSchema.virtual('og').get(function(){
   return {
-    url: 'http://www.fraseary.com',
-    type: 'title',
-    description: 'descript...',
+    url: 'http://www.fraseary.com/',
+    title: 'Fraseary',
+    type: 'website'
+    description: 'descript... for fraseary web',
     image: 'http://media.fraseary.com/fraseary-logo-1200x1200.png'
   }
 })

@@ -7,6 +7,7 @@
     "axios": "^0.16.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
+    "canvas": "^1.6.5",
     "classnames": "^2.2.5",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -17,6 +18,8 @@
     "mobx": "^3.1.9",
     "mobx-react": "^4.1.8",
     "mongoose": "^4.9.3",
+    "node-canvas-text": "^1.0.2",
+    "opentype.js": "^0.7.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta6",
@@ -28,7 +31,8 @@
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8",
     "slugg": "^1.2.0",
-    "validator": "^7.0.0"
+    "validator": "^7.0.0",
+    "wordwrap": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

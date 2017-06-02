@@ -16,7 +16,7 @@ export default (
     <Route path="/login" component={LoginSection} />
     <Route path="/frase/:slug" component={QuoteSection} />
     <Route path="/autor/:slug" component={AuthorSection} />
-    <Route path="/search" component={Main} />
+    <Route path="/buscar/:tag" component={Main} />
     {/*
     <Route path="/perfil/:user" component={ProfileSection} />
     */}

@@ -13,6 +13,9 @@ if (process.env.NODE_ENV === 'development') {
 // require("./tasks/copy.js");
 
 
+require("./tasks/sitemap.js");
+
+
 
 // gulp.task('copy', ['copy:assets']);
 

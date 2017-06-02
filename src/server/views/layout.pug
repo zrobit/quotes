@@ -11,6 +11,12 @@ html(lang='es')
     meta(name='description', content='')
     meta(name='keywords', content='')
     meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    meta(property="og:url" content=`${meta.og.url}`)
+    meta(property="og:type" content=`${meta.og.type}`)
+    meta(property="og:description" content=`${meta.og.description}`)
+    meta(property="og:image" content=`${meta.og.image}`)
+
     link(rel="prev" href="/pag/"+prevPage)
     link(rel="next" href="/pag/"+nextPage)
     script.

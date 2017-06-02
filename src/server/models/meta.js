@@ -15,6 +15,16 @@ var metaSchema = new Schema({
   quote: {type: Schema.Types.ObjectId, ref: 'Quote'},
 }, config);
 
+metaSchema.virtual('og').get(function(){
+  return {
+    url: 'http://www.fraseary.com',
+    type: 'title',
+    description: 'descript...',
+    image: 'http://media.fraseary.com/fraseary-logo-1200x1200.png'
+  }
+})
+
+
 var Meta = mongoose.model('Meta', metaSchema);
 module.exports = Meta;
 

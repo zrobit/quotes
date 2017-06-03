@@ -35,8 +35,6 @@ function getMeta(param){
   return new Promise((resolve, reject)=>{
     Meta.findOne({}).exec((err, meta)=>{
       if (err) throw err;
-      // console.log('meta>>>>>>')
-      // console.log(meta)
       resolve(meta);
     })
   })
@@ -62,8 +60,6 @@ function quoteDetailController(req, res){
       res.status(404).send('No encontrado')
     }
 
-    // debugger;
-    // console.log(values)
     context.meta = values[0];
     context.state = {
       quote: {
@@ -73,8 +69,6 @@ function quoteDetailController(req, res){
         detail: values[1].quote.author
       }
     }
-    // console.log(context.state)
-    // debugger;
     ssr(req, res, context)
   })
 }

@@ -33,7 +33,7 @@ function getQuotes(page){
 
 
 //total quotes 10620
-function HomeController(req, res){
+function HomeControllerOld(req, res){
   let page = req.params.page;
 
   if (/^[1-9][0-9]*$/.test(page)){
@@ -58,7 +58,7 @@ function HomeController(req, res){
 }
 //TEsting
 //total quotes 10620
-function HomeControllerTest(req, res){
+function HomeController(req, res){
   let page = req.params.page;
 
   if (/^[1-9][0-9]*$/.test(page)){
@@ -83,7 +83,7 @@ function HomeControllerTest(req, res){
 }
 
 
-router.get('/', HomeControllerTest);
+router.get('/', HomeController);
 
 router.get('/pag/:page', HomeController);
 

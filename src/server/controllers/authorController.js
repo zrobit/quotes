@@ -8,21 +8,36 @@ const ssr = global.ssr
 
 const router = express.Router();
 
+const getMeta = require('./metaController');
 
-router.get('/:slug', function(req, res){
+function getAuthor(slug){
+  return new Promise((resolve, reject)=>{
+    api.get(`/authors/${slug}`)
+      .then(function(response){
+        resolve(response.data)
+      })
+  })
+}
+
+function authorDetailController(req, res){
   let slug = req.params.slug
   let context = {};
-  api.get('/authors/' + slug)
-    .then(function(response){
-      let state = {
-        author: {
-          detail: response.data.author
-        }
+
+  Promise.all([getMeta('hi'), getAuthor(slug)]).then(values => {
+    const [meta, author] = values;
+    context.meta = meta;
+
+    context.state = {
+      author: {
+        detail: author.author
       }
-      context.state = state;
-      ssr(req, res, context)
-    })
-});
+    }
+    ssr(req, res, context)
+  })
+
+}
+
+router.get('/:slug', authorDetailController)
 
 
 module.exports = router;

@@ -56,7 +56,13 @@ function quoteDetailController(req, res){
   let slug = req.params.slug
   let context = {};
   Promise.all([getMeta('hi'), getQuote(slug)]).then( values => {
-    debugger;
+    let meta = values[0];
+    let quote = values[1];
+    if (quote.quote === null){
+      res.status(404).send('No encontrado')
+    }
+
+    // debugger;
     // console.log(values)
     context.meta = values[0];
     context.state = {
@@ -68,7 +74,7 @@ function quoteDetailController(req, res){
       }
     }
     // console.log(context.state)
-    debugger;
+    // debugger;
     ssr(req, res, context)
   })
 }

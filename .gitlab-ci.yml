@@ -1,5 +1,23 @@
-test:node:6:
-  image: node:6
+image: node:6
+
+before_script:
+  - npm install
+
+stages:
+  - build
+
+build:client:
+  stage: build
   script:
     - npm run build:client
+
+build:server:
+  stage: build
+  script:
     - npm run build:server
+
+# test:node:6:
+#   image: node:6
+#   script:
+#     - npm run build:client
+#     - npm run build:server

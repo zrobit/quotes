@@ -1,7 +1,19 @@
 image: node:6
 
+#Installing node dependency by cache
 before_script:
-  - npm install
+  # unique hash of required dependencies
+  - PACKAGE_HASH=($(md5sum package.json))
+  # path to cache file
+  - DEPS_CACHE=/tmp/dependencies_${PACKAGE_HASH}.tar.gz
+  # Check if cache file exists and if not, create it
+  - if [ -f $DEPS_CACHE ];
+    then
+      tar zxf $DEPS_CACHE;
+    else
+      npm install --quiet;
+      tar zcf - ./node_modules > $DEPS_CACHE;
+    fi
 
 stages:
   - build

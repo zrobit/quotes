@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
+    "ava": "^0.19.1",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.1",
@@ -78,7 +79,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava src/test/**/*.js src/**/test-*.js",
     "start": "nodemon src/server --exec babel-node",
     "start:prod": "NODE_ENV=production babel-node src/server",
     "webpack": "webpack-dev-server --inline --hot",

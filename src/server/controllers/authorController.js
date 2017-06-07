@@ -26,7 +26,7 @@ function authorDetailController(req, res){
   Promise.all([getMeta('hi'), getAuthor(slug)]).then(values => {
     const [meta, author] = values;
     if(author.author === null){
-      res.status(404).send('No encontrado')
+      return res.status(404).send('No encontrado')
     }
     context.meta = meta;
 

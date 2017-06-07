@@ -25,6 +25,9 @@ function authorDetailController(req, res){
 
   Promise.all([getMeta('hi'), getAuthor(slug)]).then(values => {
     const [meta, author] = values;
+    if(author.author === null){
+      res.status(404).send('No encontrado')
+    }
     context.meta = meta;
 
     context.state = {
@@ -34,7 +37,6 @@ function authorDetailController(req, res){
     }
     ssr(req, res, context)
   })
-
 }
 
 router.get('/:slug', authorDetailController)

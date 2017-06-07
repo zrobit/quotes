@@ -17,12 +17,12 @@ before_script:
 
 stages:
   - build
-#   - test
+  - test
 
-# test:requests:
-#   state: test
-#   script:
-#     - npm run test
+test:requests:
+  stage: test
+  script:
+    - npm run test
 
 build:client:
   stage: build

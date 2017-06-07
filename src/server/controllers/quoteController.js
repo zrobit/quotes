@@ -37,10 +37,10 @@ function quoteDetailController(req, res){
     const [meta, quote] = values;
 
     if (quote.quote === null){
-      res.status(404).send('No encontrado')
+      return res.status(404).send('No encontrado')
     }
 
-    context.meta = values[0];
+    context.meta = meta;
     context.state = {
       quote: {
         detail: quote.quote
@@ -49,7 +49,7 @@ function quoteDetailController(req, res){
         detail: quote.quote.author
       }
     }
-    console.log(JSON.stringify(context.state))
+
     ssr(req, res, context)
   })
 }

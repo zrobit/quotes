@@ -17,6 +17,12 @@ before_script:
 
 stages:
   - build
+  - test
+
+test:requests:
+  state: test
+  script:
+    - npm run test
 
 build:client:
   stage: build
@@ -27,9 +33,3 @@ build:server:
   stage: build
   script:
     - npm run build:server
-
-# test:node:6:
-#   image: node:6
-#   script:
-#     - npm run build:client
-#     - npm run build:server

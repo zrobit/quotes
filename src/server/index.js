@@ -1,18 +1,3 @@
-//Hook for load css names
-const hook = require('css-modules-require-hook');
-const stylus = require('stylus')
-// const nib = require('nib')
-hook({
-  generateScopedName: '[local]-[hash:base64:5]',
-  extensions: ['.styl'],
-  preprocessCss: function (css, filename) {
-    return stylus(css)
-      .set('filename', filename)
-      .render();
-  }
-});
-//end
-
 //Load app
 const app = require('./app.js');
 const mongoose = require('mongoose');
@@ -36,3 +21,5 @@ db.once('open', function() {
 app.listen(3000, function () {
   console.log('Server is Ready');
 });
+
+module.exports = app;

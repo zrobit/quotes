@@ -2,6 +2,8 @@
   "name": "dot",
   "version": "0.0.0",
   "description": "dot app description",
+  "author": "",
+  "license": "ISC",
   "main": "./src",
   "dependencies": {
     "axios": "^0.16.0",
@@ -75,6 +77,7 @@
     "redux-logger": "^3.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "supertest": "^3.0.0",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   },
@@ -88,6 +91,9 @@
     "build:server": "babel src/client -d dist/client && babel src/shared -d dist/shared",
     "serve": "NODE_ENV=production node src/server"
   },
-  "author": "",
-  "license": "ISC"
+  "ava": {
+    "require": [
+      "babel-register"
+    ]
+  }
 }

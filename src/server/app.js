@@ -1,3 +1,6 @@
+//load hook for styles
+require('./hook')
+
 const express = require('express');
 
 const passport = require('passport');

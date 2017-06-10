@@ -2,11 +2,11 @@ const express = require('express');
 
 const router = new express.Router();
 
-router.use('/', require('./homeController'));
-router.use('/frase', require('./quoteController'));
-router.use('/autor', require('./authorController'));
-router.use('/perfil', require('./profileController'));
-router.use('/buscar', require('./searchController'));
-router.use('/', require('./authController'));
+router.use('/', require('./home-controller'));
+router.use('/frase', require('./quote-controller'));
+router.use('/autor', require('./author-controller'));
+router.use('/perfil', require('./profile-controller'));
+router.use('/buscar', require('./search-controller'));
+router.use('/', require('./auth-controller'));
 
 module.exports = router;

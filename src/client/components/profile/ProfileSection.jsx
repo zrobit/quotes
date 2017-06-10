@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {inject} from 'mobx-react';
 
 class ProfileSection extends Component {
-  render(){
+  render() {
     return (
       <div className="profile">
-        <div className="profile-cover"></div>
+        <div className="profile-cover"/>
         <div className="profile-detail">
           <div className="profile-avatar">
             <img src="/assets/media/images/avatar.png"/>
@@ -19,4 +18,4 @@ class ProfileSection extends Component {
   }
 }
 
-export default ProfileSection
+export default ProfileSection;

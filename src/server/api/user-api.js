@@ -1,39 +1,45 @@
 const express = require('express');
-const router = express.Router();
+
+const router = new express.Router();
 
 const User = require('../models/user');
 
-router.get('/check/:email', function(req, res, next){
+router.get('/check/:email', (req, res) => {
   User
-    .findOne({email:req.param.email})
+    .findOne({email: req.param.email})
     .exec((err, user) => {
-      if (err) throw err;
-      if(user) {
-        res.json({valid: false, msg: 'El correo ya se encuentra registrado'})
-      } else {
-        res.json({valid: true})
+      if (err) {
+        throw err;
       }
-    })
+      if (user) {
+        res.json({valid: false, msg: 'El correo ya se encuentra registrado'});
+      } else {
+        res.json({valid: true});
+      }
+    });
 });
 
-router.get('/profile/:hashId', function(req, res){
+router.get('/profile/:hashId', (req, res) => {
   User
-    .findOne({hashId:req.param.hashId})
+    .findOne({hashId: req.param.hashId})
     .exec((err, user) => {
-      if (err) throw err;
+      if (err) {
+        throw err;
+      }
       res.json(user);
-    })
+    });
 });
-
 
 if (process.env.NODE_ENV === 'development') {
-  router.get('/', function(req, res, next){
+  router.get('/', (req, res) => {
     User
       .find({})
       .exec((err, users) => {
-        if (err) throw err;
-        res.json(users)
-      })
+        if (err) {
+          throw err;
+        }
+        res.json(users);
+      });
   });
 }
 

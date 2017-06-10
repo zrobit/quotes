@@ -1,21 +1,23 @@
 const express = require('express');
-const router = express.Router();
-
 const Quote = require('../models/quote');
 
-router.get('/', function(req, res, next){
+const router = new express.Router();
+
+router.get('/', (req, res) => {
   Quote
-  .find({}).limit(10).sort({'createdAt':-1})
+  .find({}).limit(10).sort({createdAt: -1})
   .select('slug content size author tags')
   .populate('tags', 'name slug -_id')
   .populate('author', 'name slug')
   .exec((err, data) => {
-    if (err) throw err;
-    let context = {
+    if (err) {
+      throw err;
+    }
+    const context = {
       quotes: data
     };
-    res.json(context)
-  })
+    res.json(context);
+  });
 });
 
 module.exports = router;

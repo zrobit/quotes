@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router'
-import CategorySidebar from '../layout/CategorySidebar'
-import TagsSidebar from '../tag/TagsSidebar'
+import React from 'react';
+
+import CategorySidebar from '../layout/category-sidebar';
+import TagsSidebar from '../tag/tags-sidebar';
 
 export default ({tags}) => (
   <div className="sidebar">
-    <CategorySidebar />
+    <CategorySidebar/>
     <TagsSidebar title="Etiquetas reconmedas" tags={tags}/>
   </div>
 );

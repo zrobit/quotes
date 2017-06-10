@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 
 import { inject } from 'mobx-react';
 
-import HomeQuotesList from './HomeQuotesList'
-import HomeSidebar from './HomeSidebar'
-import SplitPane from '../layout/SplitPane'
-
+import HomeQuotesList from './home-quotes-list'
+import HomeSidebar from './home-sidebar'
+import SplitPane from '../layout/split-pane'
 
 import style from './home.styl'
 import cx from 'classnames'

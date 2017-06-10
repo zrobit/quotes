@@ -1,12 +1,10 @@
 const express = require('express');
-const axios = require('axios');
 const passport = require('passport');
 const isEmail = require('validator/lib/isEmail');
 
 const ssr = global.ssr;
 
-const router = express.Router();
-
+const router = new express.Router();
 
 router.get('/login', function(req, res){
   if (req.isAuthenticated()) {

@@ -3,7 +3,7 @@ const express = require('express');
 const ssr = global.ssr;
 const router = new express.Router();
 
-const {getPagQuotesByTag} = require('../queries/quoteQuery');
+const {getPagQuotesByTag} = require('../queries/quote-query');
 
 function searchController(req, res) {
   const slug = req.params.slug;

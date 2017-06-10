@@ -1,8 +1,8 @@
 const Tag = require('../models/tag');
 
-function getTagBySlug(slug){
+function getTagBySlug(slug) {
   return Tag
-    .findOne({slug: slug})
+    .findOne({slug})
     .select('name slug _id')
     .exec();
 }

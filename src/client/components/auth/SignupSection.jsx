@@ -1,5 +1,5 @@
 import React from 'react';
-import FormSignup from './FormSignup';
+import FormSignup from './form-signup';
 
 import s from './auth.styl';
 

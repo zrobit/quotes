@@ -1,11 +1,9 @@
 import React from 'react';
 
-import ErrorField from './ErrorField';
-
 import s from './auth.styl'
 
 function PasswordField({error, ...props}){
-  return(
+  return (
     <div className={s.row}>
       <label className={s.label} >Password</label>
       <input
@@ -19,7 +17,7 @@ function PasswordField({error, ...props}){
         : null
       }
     </div>
-  )
+  );
 }
 
 export default PasswordField;

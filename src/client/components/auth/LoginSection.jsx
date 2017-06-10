@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {inject, observer} from "mobx-react";
 
-import FormLogin from './FormLogin';
+import FormLogin from './form-login';
 
 import s from './auth.styl';
 

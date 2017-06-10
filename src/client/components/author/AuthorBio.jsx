@@ -4,7 +4,7 @@ import hash from '../../utils/hash'
 
 import s from './author.styl'
 
-import ShareMediumButtons from '../buttons/ShareMediumButtons'
+import ShareMediumButtons from '../buttons/share-medium-buttons'
 
 function HeaderBio({author, isLoading}){
   return (

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {inject, observer} from "mobx-react";
 
-import EmailField from './EmailField'
-import PasswordField from './PasswordField'
-import ButtonAuth from './ButtonAuth'
+import EmailField from './email-field'
+import PasswordField from './password-field'
+import ButtonAuth from './button-auth'
 
 import s from './auth.styl'
 

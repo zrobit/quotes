@@ -1,9 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router'
-import QuotesList from '../quote/QuotesList'
-
-// import style from './author.styl'
-// import cx from 'classnames'
+import React from 'react';
+import QuotesList from '../quote/quotes-list';
 
 export default ({author, quoteStore}) => (
   <div>
@@ -13,4 +9,4 @@ export default ({author, quoteStore}) => (
     </h2>
     <QuotesList author={author} quoteStore={quoteStore}/>
   </div>
-)
+);

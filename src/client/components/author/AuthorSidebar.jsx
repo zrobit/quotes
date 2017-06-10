@@ -5,8 +5,8 @@ import { inject } from 'mobx-react'
 
 import { Link } from 'react-router'
 
-import AuthorBio from './AuthorBio'
-import TagsSidebar from '../tag/TagsSidebar'
+import AuthorBio from './author-bio'
+import TagsSidebar from '../tag/tags-sidebar'
 
 @inject('authorStore')
 class AuthorSidebar extends Component {

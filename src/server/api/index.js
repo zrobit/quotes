@@ -1,11 +1,12 @@
-var express = require('express')
-  , router = express.Router()
+const express = require('express');
 
-router.use('/home', require('./homeApi'))
-router.use('/quotes', require('./quoteApi'))
-router.use('/authors', require('./authorApi'))
-router.use('/tags', require('./tagApi'))
-router.use('/users', require('./userApi'))
-router.use('/search', require('./searchApi'))
+const router = new express.Router();
 
-module.exports = router
+router.use('/home', require('./home-api'));
+router.use('/quotes', require('./quote-api'));
+router.use('/authors', require('./author-api'));
+router.use('/tags', require('./tag-api'));
+router.use('/users', require('./user-api'));
+router.use('/search', require('./search-api'));
+
+module.exports = router;

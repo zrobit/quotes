@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
-const slug = require('slugg')
+const slug = require('slugg');
 
 const config = {
   timestamps: true,
-  toJSON : {
-    virtuals:true
-  },
-}
+  toJSON: {
+    virtuals: true
+  }
+};
 
-var authorSchema = new Schema({
+const authorSchema = new Schema({
   name: String,
   slug: String,
   bio: {
     avatar: String,
     resume: String,
-    meta:[{_id:false, label:String, value:String}]
+    meta: [{_id: false, label: String, value: String}]
   }
 }, config);
 
@@ -33,21 +34,21 @@ authorSchema.pre('save', function (next) {
 
 authorSchema.statics.getOrCreate = function (doc, cb) {
   const self = this;
-  if (doc.name){
-    if (!doc.slug){
-      doc.slug = slug(doc.name)
+  if (doc.name) {
+    if (!doc.slug) {
+      doc.slug = slug(doc.name);
     }
   }
-  self.findOne({slug: doc.slug}, function(err, data){
-    if(!data){
-      self.create({name: doc.name}, function(err, data){
-        cb(err, data)
+  self.findOne({slug: doc.slug}, (err, data) => {
+    if (!data) {
+      self.create({name: doc.name}, (err, data) => {
+        cb(err, data);
       });
     }
-    cb(err, data)
-  })
+    cb(err, data);
+  });
 };
 
-var Author = mongoose.model('Author', authorSchema);
+const Author = mongoose.model('Author', authorSchema);
 module.exports = Author;
 

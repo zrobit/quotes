@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-const SearchForm = (props) => (
+const SearchForm = props => (
   <form className="form-search" action="/search" method="get">
     <div className="wrap-input">
       <input className="hell" type="text" name="q" placeholder="buscar"/>
-      <button className="btn-search"></button>
+      <button className="btn-search"/>
     </div>
   </form>
 );

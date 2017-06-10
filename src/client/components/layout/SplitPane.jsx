@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
+import cx from 'classnames';
 
-import style from './layout.styl'
-import cx from 'classnames'
-
+import style from './layout.styl';
 
 export default ({main, sidebar}) => (
   <div className={style.wrap}>
@@ -15,4 +14,4 @@ export default ({main, sidebar}) => (
       </div>
     </div>
   </div>
-)
+);

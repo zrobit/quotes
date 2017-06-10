@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
-import Header from "./HeaderContainer";
-
+import Header from "./header-container";
 
 class Layout extends Component {
   render() {
-    return (
+    return (
       <div>
         <Header/>
         <section className="content-wrap">
           {this.props.children}
         </section>
       </div>
-    )
-  }
+    );
+  }
 }
 
-export default Layout
+export default Layout;

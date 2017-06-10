@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {inject} from 'mobx-react';
+import {Link} from 'react-router';
 
-// import { connect } from 'react-redux'
-import { inject } from 'mobx-react';
-
-import { Link } from 'react-router';
-
-import SearchForm from './SearchForm';
-import UserMenu from '../user/UserMenu';
-
+import SearchForm from './search-form';
+import UserMenu from '../user/user-menu';
 
 class Header extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
   render() {
-    const {isAuth} = this.props;
-    return (
+    return (
       <header className="header">
         <nav className="header-nav">
           <ul>
@@ -33,18 +28,17 @@ class Header extends Component {
           <UserMenu user={this.props.user}/>
         </nav>
       </header>
-    )
-  }
+    );
+  }
   handleClick() {
 
   }
 }
 
-
-Header  = inject(
+Header = inject(
   stores => ({
-    user: stores.userStore,
+    user: stores.userStore
   })
-)(Header)
+)(Header);
 
 export default Header;

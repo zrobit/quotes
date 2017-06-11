@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { inject, observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react';
 
 import { Link } from 'react-router';
 
-import TagList from '../tag/TagList'
-import ShareSmallButtons from '../buttons/ShareSmallButtons'
+import TagList from '../tag/tag-list';
+import ShareSmallButtons from '../buttons/share-small-buttons';
 
 import style from './quote.styl';
 import cx from 'classnames';

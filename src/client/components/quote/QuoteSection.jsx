@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { inject } from 'mobx-react'
-
+import { inject } from 'mobx-react';
 
 import { Link } from 'react-router';
 
-import ShareMediumButtons from '../buttons/ShareMediumButtons'
+import ShareMediumButtons from '../buttons/share-medium-buttons'
 
-import style from './quote.styl'
-import cx from 'classnames'
+import style from './quote.styl';
+import cx from 'classnames';
 
 const sizes = {
   tiny: style.tiny,

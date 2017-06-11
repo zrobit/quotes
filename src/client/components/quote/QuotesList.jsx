@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react';
 
-import { observer, inject } from 'mobx-react'
+import { observer, inject } from 'mobx-react';
 
-import hash from '../../utils/hash'
+import hash from '../../utils/hash';
 
-import QuoteItem from './QuoteItem'
+import QuoteItem from './quote-item';
 
 @inject('authorStore') @observer
 class QuotesList extends Component {

@@ -1,9 +1,5 @@
 const express = require('express');
-const axios = require('axios');
-
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api/'
-});
+const {getPagQuotes} = require('../queries/quote-query');
 
 const Meta = require('../models/meta');
 
@@ -22,15 +18,6 @@ function getMeta() {
   });
 }
 
-function getQuotes(page) {
-  return new Promise(resolve => {
-    api.get('/quotes?page=' + page)
-      .then(response => {
-        resolve(response.data);
-      });
-  });
-}
-
 // Total quotes 10620
 function HomeController(req, res) {
   let page = req.params.page;
@@ -46,11 +33,11 @@ function HomeController(req, res) {
     nextPage: page === 1062 ? 1 : page + 1
   };
 
-  Promise.all([getMeta('hi'), getQuotes(page)]).then(values => {
+  Promise.all([getPagQuotes({}, 10, page), getMeta()]).then(([quotes, meta]) => {
     const state = {
-      quote: values[1]
+      quote: quotes
     };
-    context.meta = values[0];
+    context.meta = meta;
     context.state = state;
     ssr(req, res, context);
   });

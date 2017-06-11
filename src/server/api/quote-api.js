@@ -2,7 +2,7 @@ const express = require('express');
 const words = require('lodash').words;
 const slug = require('slugg');
 
-const {getPagQuotes} = require('../queries/quote-query');
+const {getPagQuotes, getQuoteBy} = require('../queries/quote-query');
 const Quote = require('../models/quote');
 const Author = require('../models/author');
 const isPage = require('../middleware/isPage');
@@ -29,17 +29,8 @@ router.get('/author/:id', isPage, (req, res) => {
 
 // #api/quotes/:slug
 router.get('/:slug', (req, res) => {
-  const query = Quote.findOne({slug: req.params.slug});
-  query.select('slug content author size');
-  query.populate('author', 'name slug');
-  query.exec((err, data) => {
-    if (err) {
-      throw err;
-    }
-    const context = {
-      quote: data
-    };
-    res.json(context);
+  getQuoteBy({slug: req.params.slug}).then(quote => {
+    res.json({quote});
   });
 });
 

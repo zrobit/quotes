@@ -56,6 +56,7 @@ function getPagQuotesByTag(slug, nItems = 10, nPage = 1) {
 }
 
 module.exports.countQuotes = countQuotes;
+module.exports.getQuoteBy = getQuoteBy;
 module.exports.getQuotes = getQuotes;
 module.exports.getPagQuotes = getPagQuotes;
 module.exports.getPagQuotesByTag = getPagQuotesByTag;

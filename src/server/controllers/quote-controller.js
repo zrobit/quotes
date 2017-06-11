@@ -1,9 +1,6 @@
 const express = require('express');
-const axios = require('axios');
 
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api/'
-});
+const {getQuoteBy} = require('../queries/quote-query');
 
 const Meta = require('../models/meta');
 
@@ -22,32 +19,21 @@ function getMeta() {
   });
 }
 
-function getQuote(slug) {
-  return new Promise(resolve => {
-    api.get(`/quotes/${slug}`)
-      .then(response => {
-        resolve(response.data);
-      });
-  });
-}
-
 function quoteDetailController(req, res) {
   const slug = req.params.slug;
   const context = {};
-  Promise.all([getMeta('hi'), getQuote(slug)]).then(values => {
-    const [meta, quote] = values;
-
-    if (quote.quote === null) {
+  Promise.all([getMeta('hi'), getQuoteBy({slug})]).then(([meta, quote]) => {
+    if (quote === null) {
       return res.status(404).send('No encontrado');
     }
 
     context.meta = meta;
     context.state = {
       quote: {
-        detail: quote.quote
+        detail: quote
       },
       author: {
-        detail: quote.quote.author
+        detail: quote.author
       }
     };
 

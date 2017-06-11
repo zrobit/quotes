@@ -1,5 +1,5 @@
 import React from 'react';
-import TagList from './TagList';
+import TagList from './tag-list';
 
 import s from './tag.styl';
 

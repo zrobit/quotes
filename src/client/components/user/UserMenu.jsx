@@ -1,92 +1,90 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router'
+import React, {Component} from 'react';
+import {Link} from 'react-router';
 
-import s from './user.styl'
-import cx from 'classnames'
+import s from './user.styl';
 
-class UserMenu extends Component{
-// function UserMenu({appStore}){
-  constructor(props){
+class UserMenu extends Component {
+  constructor(props) {
     super(props);
     this.state = {menuOpen: false};
     this.handleClick = this.handleClick.bind(this);
   }
-  handleClick(e){
+  handleClick(e) {
     e.preventDefault();
-    this.setState((prevState)=>({
+    this.setState(prevState => ({
       menuOpen: !prevState.menuOpen
-    }))
+    }));
   }
-  render(){
-    const { isAuth, name, hashId } = this.props.user;
+  render() {
+    const {isAuth, name, hashId} = this.props.user;
     return (
       <div>
-        {isAuth
-          ? <UserNav user={name} hash={hashId} open={this.state.menuOpen} onClick={this.handleClick}/>
-          : <AuthMenu />
+        {isAuth ?
+          <UserNav
+            user={name}
+            hash={hashId}
+            open={this.state.menuOpen}
+            onClick={this.handleClick}
+            /> :
+          <AuthMenu/>
         }
       </div>
     );
   }
 }
 
-function UserNav({open, ...props}){
+function UserNav({open, ...props}) {
   return (
     <nav className={s.userNav}>
-      <TopNav {...props} />
-      {open
-        ? <ListNav {...props}/>
-        : null
+      <TopNav {...props}/>
+      {open ?
+        <ListNav {...props}/> :
+        null
       }
 
     </nav>
   );
 }
 
-function TopNav({user, hash, ...props}){
+function TopNav({user, hash, ...props}) {
   return (
-    <a className={s.topNav} href={"/perfil/"+hash} {...props}>
-      <img src="/assets/media/images/avatar.png" className={s.avatar} />
+    <a className={s.topNav} href={'/perfil/' + hash} {...props}>
+      <img src="/assets/media/images/avatar.png" className={s.avatar}/>
       <span className={s.name}>{user}</span>
     </a>
   );
 }
 
-function ListNav({hash}){
-  const items = [
-    {name:'Perfil', link:'/perfil/user'},
-    {name:'Configuración', link:'/settings'},
-  ]
-  return(
+function ListNav({hash}) {
+  return (
     <div className={s.listNav}>
-      <div className={s.arrowUp}></div>
+      <div className={s.arrowUp}/>
       <ul>
-        <ListItem name="Perfil" link={'/perfil/'+hash} />
-        <ListItem name="Configuración" link='/settings' />
+        <ListItem name="Perfil" link={'/perfil/' + hash}/>
+        <ListItem name="Configuración" link="/settings"/>
         <ListItemAnchor name="Cerrar Sesión" link="/logout"/>
       </ul>
     </div>
   );
 }
 
-function ListItem({name, link}){
-  return(
+function ListItem({name, link}) {
+  return (
     <li>
       <Link to={link} >{name}</Link>
     </li>
   );
 }
 
-function ListItemAnchor({name, link}){
-  return(
+function ListItemAnchor({name, link}) {
+  return (
     <li>
       <a href={link}>{name}</a>
     </li>
   );
 }
 
-
-function AuthMenu(){
+function AuthMenu() {
   return (
     <ul>
       <li className="signup">

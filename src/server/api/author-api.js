@@ -1,5 +1,6 @@
 const express = require('express');
 const Author = require('../models/author');
+const {getAuthorBy} = require('../queries/author-query');
 
 const router = new express.Router();
 
@@ -15,25 +16,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:slug', (req, res) => {
-  Author
-  .findOne({slug: req.params.slug})
-  .select('name slug bio')
-  .populate({
-    path: 'quotes',
-    select: 'author size slug content tags -_id',
-    populate: {
-      path: 'tags',
-      select: 'slug name -_id'
-    }
-  })
-  .exec((err, data) => {
-    if (err) {
-      throw err;
-    }
-    const context = {
-      author: data
-    };
-    res.json(context);
+  getAuthorBy({slug: req.params.slug}).then(author => {
+    res.json({author});
   });
 });
 

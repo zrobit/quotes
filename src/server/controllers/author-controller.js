@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const {getMetaBy} = require('../queries/meta-query');
 
 const api = axios.create({
   baseURL: 'http://localhost:3000/api/'
@@ -8,8 +9,6 @@ const api = axios.create({
 const ssr = global.ssr;
 
 const router = new express.Router();
-
-const getMeta = require('./meta-controller');
 
 function getAuthor(slug) {
   return new Promise((resolve, reject) => {
@@ -24,7 +23,7 @@ function authorDetailController(req, res) {
   const slug = req.params.slug;
   const context = {};
 
-  Promise.all([getMeta('hi'), getAuthor(slug)]).then(values => {
+  Promise.all([getMetaBy(), getAuthor(slug)]).then(values => {
     const [meta, author] = values;
     if (author.author === null) {
       return res.status(404).send('No encontrado');

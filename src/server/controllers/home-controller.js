@@ -1,22 +1,9 @@
 const express = require('express');
 const {getPagQuotes} = require('../queries/quote-query');
-
-const Meta = require('../models/meta');
+const {getMetaBy} = require('../queries/meta-query');
 
 const ssr = global.ssr;
-
 const router = new express.Router();
-
-function getMeta() {
-  return new Promise(resolve => {
-    Meta.findOne({}).exec((err, meta) => {
-      if (err) {
-        throw err;
-      }
-      resolve(meta);
-    });
-  });
-}
 
 // Total quotes 10620
 function HomeController(req, res) {
@@ -33,7 +20,7 @@ function HomeController(req, res) {
     nextPage: page === 1062 ? 1 : page + 1
   };
 
-  Promise.all([getPagQuotes({}, 10, page), getMeta()]).then(([quotes, meta]) => {
+  Promise.all([getPagQuotes({}, 10, page), getMetaBy()]).then(([quotes, meta]) => {
     const state = {
       quote: quotes
     };

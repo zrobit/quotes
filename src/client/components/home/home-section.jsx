@@ -4,7 +4,7 @@ import { inject } from 'mobx-react';
 
 import HomeQuotesList from './home-quotes-list'
 import HomeSidebar from './home-sidebar'
-import SplitPane from '../layout/split-pane'
+import {SplitPaneThree as SplitPane} from '../layout/split-pane'
 
 import style from './home.styl'
 import cx from 'classnames'
@@ -28,8 +28,8 @@ class Home extends Component {
         </div>
         <SplitPane
           main={ <HomeQuotesList quoteStore={this.props.quoteStore}/> }
-
-          sidebar={<HomeSidebar tags={this.tags}/>}
+          left={<HomeSidebar tags={this.tags}/>}
+          right={<HomeSidebar tags={this.tags}/>}
         />
       </div>
     )

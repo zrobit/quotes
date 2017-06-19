@@ -21,7 +21,7 @@ function getQuotes(arg = {}, nItems = 10, nPage = 1) {
     .sort({createdAt: -1})
     .skip((nPage - 1) * nItems)
     .select('slug content author tags size')
-    .populate('tags', 'name slug -_id')
+    .populate('tags', 'name slug')
     .populate('author', 'name slug')
     .exec();
 }
@@ -55,8 +55,30 @@ function getPagQuotesByTag(slug, nItems = 10, nPage = 1) {
   });
 }
 
+// Admin queries
+function getQuotesAdmin(arg = {}, start = 0, end = 10) {
+  return Quote
+    .find(arg)
+    .limit(end - start)
+    .sort({createdAt: -1})
+    .skip(start)
+    .select('slug content sizeInt author')
+    .exec();
+}
+
+function getQuoteByIdAdmin(id) {
+  return Quote
+    .findOne({_id: id})
+    .select('slug content sizeInt author tags')
+    .exec();
+}
+
 module.exports.countQuotes = countQuotes;
 module.exports.getQuoteBy = getQuoteBy;
 module.exports.getQuotes = getQuotes;
 module.exports.getPagQuotes = getPagQuotes;
 module.exports.getPagQuotesByTag = getPagQuotesByTag;
+
+// Admin modules
+module.exports.getQuotesAdmin = getQuotesAdmin;
+module.exports.getQuoteByIdAdmin = getQuoteByIdAdmin;

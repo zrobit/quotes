@@ -7,7 +7,11 @@ const slug = require('slugg');
 const config = {
   timestamps: true,
   toJSON: {
-    virtuals: true
+    virtuals: true,
+    transform(doc, obj) {
+      obj.id = obj._id;
+      delete obj._id;
+    }
   }
 };
 

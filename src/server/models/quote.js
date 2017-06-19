@@ -7,7 +7,13 @@ const words = require('lodash').words;
 const slug = require('slugg');
 
 const config = {
-  timestamps: true
+  timestamps: true,
+  toJSON: {
+    transform(doc, obj) {
+      obj.id = obj._id;
+      delete obj._id;
+    }
+  }
 };
 
 const quoteSchema = new Schema({

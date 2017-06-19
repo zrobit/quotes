@@ -8,5 +8,6 @@ router.use('/autor', require('./author-controller'));
 router.use('/perfil', require('./profile-controller'));
 router.use('/buscar', require('./search-controller'));
 router.use('/', require('./auth-controller'));
+router.use('/unicornio', require('./admin-controller'));
 
 module.exports = router;

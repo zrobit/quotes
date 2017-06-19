@@ -1,5 +1,9 @@
 const Author = require('../models/author');
 
+function countAuthors(arg = {}) {
+  return Author.count(arg).exec();
+}
+
 function getAuthorBy(arg = {}) {
   return Author
     .findOne(arg)
@@ -15,4 +19,27 @@ function getAuthorBy(arg = {}) {
     .exec();
 }
 
+// Admin queries
+function getAuthorsAdmin(arg = {}, start = 0, end = 10) {
+  return Author
+    .find(arg)
+    .limit(end - start)
+    .sort({createdAt: -1})
+    .skip(start)
+    .select('name slug')
+    .exec();
+}
+
+function getAuthorByIdAdmin(id) {
+  return Author
+    .findOne({_id: id})
+    .select('name slug')
+    .exec();
+}
+
+module.exports.countAuthors = countAuthors;
 module.exports.getAuthorBy = getAuthorBy;
+
+// Admin modules
+module.exports.getAuthorsAdmin = getAuthorsAdmin;
+module.exports.getAuthorByIdAdmin = getAuthorByIdAdmin;

@@ -8,5 +8,7 @@ router.use('/authors', require('./author-api'));
 router.use('/tags', require('./tag-api'));
 router.use('/users', require('./user-api'));
 router.use('/search', require('./search-api'));
+router.use('/admin', require('./admin-api'));
+
 
 module.exports = router;

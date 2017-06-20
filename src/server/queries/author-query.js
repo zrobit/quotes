@@ -37,6 +37,7 @@ function getAuthorByIdAdmin(id) {
     .exec();
 }
 
+module.exports.Author = Author;
 module.exports.countAuthors = countAuthors;
 module.exports.getAuthorBy = getAuthorBy;
 

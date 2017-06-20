@@ -73,6 +73,7 @@ function getQuoteByIdAdmin(id) {
     .exec();
 }
 
+module.exports.Quote = Quote;
 module.exports.countQuotes = countQuotes;
 module.exports.getQuoteBy = getQuoteBy;
 module.exports.getQuotes = getQuotes;

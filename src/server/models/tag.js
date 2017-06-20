@@ -5,7 +5,13 @@ const Schema = mongoose.Schema;
 const slug = require('slugg');
 
 const config = {
-  timestamps: true
+  timestamps: true,
+  toJSON: {
+    transform(doc, obj) {
+      obj.id = obj._id;
+      delete obj._id;
+    }
+  }
 };
 
 const tagSchema = new Schema({

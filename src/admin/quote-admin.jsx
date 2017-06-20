@@ -1,12 +1,11 @@
 import React from 'react';
 import {
   List, Edit, Datagrid, DateField, SimpleForm, DisabledInput, TextInput,
-  ReferenceField,
+  SimpleShowLayout,
+  Show, ReferenceField, ShowButton,
   TextField, EditButton, NumberField, LongTextInput
 
 } from 'admin-on-rest';
-
-// export PostIcon from 'material-ui/svg-icons/action/book';
 
 export const QuoteList = props => (
   <List {...props} perPage={10}>
@@ -17,9 +16,23 @@ export const QuoteList = props => (
       </ReferenceField>
       <TextField label="Slug" source="slug"/>
       <DateField label="Created" source="createdAt"/>
-      <EditButton/>
+      <ShowButton/>
     </Datagrid>
   </List>
+);
+
+export const QuoteShow = props => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <NumberField label="Size" source="sizeInt"/>
+      <DateField label="Created" source="createdAt"/>
+      <TextField label="Slug" source="slug"/>
+      <ReferenceField label="Author" source="author" reference="authors">
+        <TextField source="name"/>
+      </ReferenceField>
+      <TextField source="content"/>
+    </SimpleShowLayout>
+  </Show>
 );
 
 export const QuoteEdit = props => (

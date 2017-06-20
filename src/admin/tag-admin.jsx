@@ -4,12 +4,14 @@ import {
   Show, SimpleShowLayout, ShowButton,
   ReferenceField,
   TextField, EditButton, NumberField, LongTextInput
+
 } from 'admin-on-rest';
 
-export const AuthorList = props => (
+export const TagList = props => (
   <List {...props} perPage={10}>
     <Datagrid>
       <TextField label="ID" source="id"/>
+      <NumberField label="Recur" source="recurrence"/>
       <TextField label="Slug" source="slug"/>
       <TextField label="Name" source="name"/>
       <DateField label="Created" source="createdAt"/>
@@ -18,23 +20,24 @@ export const AuthorList = props => (
   </List>
 );
 
-export const AuthorShow = props => (
+export const TagShow = props => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id"/>
+      <DateField source="createdAt"/>
       <TextField source="slug"/>
+      <TextField label="Recur" source="recurrence"/>
       <TextField source="name"/>
-      <DateField label="Created" source="createdAt"/>
     </SimpleShowLayout>
   </Show>
 );
 
-export const AuthorEdit = props => (
+export const TagEdit = props => (
   <Edit {...props}>
     <SimpleForm>
       <DisabledInput source="id"/>
       <DisabledInput source="slug"/>
+      <DisabledInput source="name"/>
     </SimpleForm>
   </Edit>
 );
-

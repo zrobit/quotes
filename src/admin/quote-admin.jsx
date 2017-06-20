@@ -11,12 +11,12 @@ import {
 export const QuoteList = props => (
   <List {...props} perPage={10}>
     <Datagrid>
-      <TextField label="ID" source="id"/>
       <NumberField label="Size" source="sizeInt"/>
       <ReferenceField label="Author" source="author" reference="authors">
         <TextField source="name"/>
       </ReferenceField>
       <TextField label="Slug" source="slug"/>
+      <DateField label="Created" source="createdAt"/>
       <EditButton/>
     </Datagrid>
   </List>

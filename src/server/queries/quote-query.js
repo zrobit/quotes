@@ -56,13 +56,13 @@ function getPagQuotesByTag(slug, nItems = 10, nPage = 1) {
 }
 
 // Admin queries
-function getQuotesAdmin(arg = {}, start = 0, end = 10) {
+function getQuotesAdmin(arg = {}, start = 0, end = 10, sort = '-createdAt') {
   return Quote
     .find(arg)
     .limit(end - start)
-    .sort({createdAt: -1})
+    .sort(sort)
     .skip(start)
-    .select('slug content sizeInt author')
+    .select('slug content sizeInt author createdAt')
     .exec();
 }
 

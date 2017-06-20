@@ -17,10 +17,11 @@ const router = new express.Router();
 router.get('/quotes', (req, res) => {
   const start = parseInt(req.query._start, 10) || 0;
   const end = parseInt(req.query._end, 10) || 9;
-
+  const {_sort, _order} = req.query;
+  const sort = _order === 'ASC' ? _sort : '-' + _sort;
   Promise.all([
     countQuotes(),
-    getQuotesAdmin({}, start, end)
+    getQuotesAdmin({}, start, end, sort)
   ]).then(([count, quotes]) => {
     res.header('X-Total-Count', count);
     res.json(quotes);

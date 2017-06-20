@@ -14,7 +14,7 @@ module.exports = {
       './src/admin/index.jsx'
     ],
     vendor: [
-      'react', 'react-dom'
+      'react', 'react-dom', 'admin-on-rest'
     ]
   },
   output: {

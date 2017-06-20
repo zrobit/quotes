@@ -1,19 +1,22 @@
 const express = require('express');
 const {
-  getQuotesAdmin,
-  getQuoteByIdAdmin,
-  countQuotes
+  Quote,
+  getQuoteByIdAdmin
 } = require('../queries/quote-query');
 
 const {
-  getAuthorsAdmin,
-  getAuthorByIdAdmin,
-  countAuthors
+  Author,
+  getAuthorByIdAdmin
 } = require('../queries/author-query');
 
-const router = new express.Router();
-// Helper function
+const {
+  Tag,
+  getTagByIdAdmin
+} = require('../queries/tag-query');
 
+const router = new express.Router();
+
+// Helper function
 const reduceUrlQuery = req => {
   const start = parseInt(req.query._start, 10) || 0;
   const end = parseInt(req.query._end, 10) || 9;
@@ -26,8 +29,8 @@ const reduceUrlQuery = req => {
 router.get('/quotes', (req, res) => {
   const {start, end, sort} = reduceUrlQuery(req);
   Promise.all([
-    countQuotes(),
-    getQuotesAdmin({}, start, end, sort)
+    Quote.count().exec(),
+    Quote.find().limit(end - start).sort(sort).skip(start).exec()
   ]).then(([count, quotes]) => {
     res.header('X-Total-Count', count);
     res.json(quotes);
@@ -44,8 +47,8 @@ router.get('/quotes/:id', (req, res) => {
 router.get('/authors', (req, res) => {
   const {start, end, sort} = reduceUrlQuery(req);
   Promise.all([
-    countAuthors(),
-    getAuthorsAdmin({}, start, end, sort)
+    Author.count().exec(),
+    Author.find().limit(end - start).sort(sort).skip(start).exec()
   ]).then(([count, authors]) => {
     res.header('X-Total-Count', count);
     res.json(authors);
@@ -54,6 +57,24 @@ router.get('/authors', (req, res) => {
 
 router.get('/authors/:id', (req, res) => {
   getAuthorByIdAdmin(req.params.id).then(data => {
+    res.json(data);
+  });
+});
+
+// #api/admin/tags
+router.get('/tags', (req, res) => {
+  const {start, end, sort} = reduceUrlQuery(req);
+  Promise.all([
+    Tag.count().exec(),
+    Tag.find().limit(end - start).sort(sort).skip(start).exec()
+  ]).then(([count, tags]) => {
+    res.header('X-Total-Count', count);
+    res.json(tags);
+  });
+});
+
+router.get('/tags/:id', (req, res) => {
+  getTagByIdAdmin(req.params.id).then(data => {
     res.json(data);
   });
 });

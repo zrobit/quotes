@@ -12,13 +12,19 @@ const {
 } = require('../queries/author-query');
 
 const router = new express.Router();
+// Helper function
 
-// #api/admin/quotes
-router.get('/quotes', (req, res) => {
+const reduceUrlQuery = req => {
   const start = parseInt(req.query._start, 10) || 0;
   const end = parseInt(req.query._end, 10) || 9;
   const {_sort, _order} = req.query;
   const sort = _order === 'ASC' ? _sort : '-' + _sort;
+  return {start, end, sort};
+};
+
+// #api/admin/quotes
+router.get('/quotes', (req, res) => {
+  const {start, end, sort} = reduceUrlQuery(req);
   Promise.all([
     countQuotes(),
     getQuotesAdmin({}, start, end, sort)
@@ -36,10 +42,7 @@ router.get('/quotes/:id', (req, res) => {
 
 // #api/admin/authors
 router.get('/authors', (req, res) => {
-  const start = parseInt(req.query._start, 10) || 0;
-  const end = parseInt(req.query._end, 10) || 9;
-  const {_sort, _order} = req.query;
-  const sort = _order === 'ASC' ? _sort : '-' + _sort;
+  const {start, end, sort} = reduceUrlQuery(req);
   Promise.all([
     countAuthors(),
     getAuthorsAdmin({}, start, end, sort)

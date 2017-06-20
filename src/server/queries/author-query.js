@@ -20,13 +20,13 @@ function getAuthorBy(arg = {}) {
 }
 
 // Admin queries
-function getAuthorsAdmin(arg = {}, start = 0, end = 10) {
+function getAuthorsAdmin(arg = {}, start = 0, end = 10, sort = '-createdAt') {
   return Author
     .find(arg)
     .limit(end - start)
-    .sort({createdAt: -1})
+    .sort(sort)
     .skip(start)
-    .select('name slug')
+    .select('name slug createdAt')
     .exec();
 }
 

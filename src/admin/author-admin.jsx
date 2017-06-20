@@ -14,6 +14,7 @@ export const AuthorList = props => (
       <TextField label="ID" source="id"/>
       <TextField label="Slug" source="slug"/>
       <TextField label="Name" source="name"/>
+      <DateField label="Created" source="createdAt"/>
       <EditButton/>
     </Datagrid>
   </List>

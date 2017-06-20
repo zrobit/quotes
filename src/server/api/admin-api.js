@@ -37,10 +37,11 @@ router.get('/quotes/:id', (req, res) => {
 router.get('/authors', (req, res) => {
   const start = parseInt(req.query._start, 10) || 0;
   const end = parseInt(req.query._end, 10) || 9;
-
+  const {_sort, _order} = req.query;
+  const sort = _order === 'ASC' ? _sort : '-' + _sort;
   Promise.all([
     countAuthors(),
-    getAuthorsAdmin({}, start, end)
+    getAuthorsAdmin({}, start, end, sort)
   ]).then(([count, authors]) => {
     res.header('X-Total-Count', count);
     res.json(authors);

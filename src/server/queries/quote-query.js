@@ -69,7 +69,6 @@ function getQuotesAdmin(arg = {}, start = 0, end = 10, sort = '-createdAt') {
 function getQuoteByIdAdmin(id) {
   return Quote
     .findOne({_id: id})
-    .select('slug content sizeInt author tags')
     .exec();
 }
 

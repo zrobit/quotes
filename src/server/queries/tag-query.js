@@ -25,7 +25,6 @@ function getTagsAdmin(arg = {}, start = 0, end = 10, sort = '-createdAt') {
 function getTagByIdAdmin(id) {
   return Tag
     .findOne({_id: id})
-    .select('-__v')
     .exec();
 }
 module.exports.Tag = Tag;

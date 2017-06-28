@@ -33,7 +33,6 @@ function getAuthorsAdmin(arg = {}, start = 0, end = 10, sort = '-createdAt') {
 function getAuthorByIdAdmin(id) {
   return Author
     .findOne({_id: id})
-    .select('name slug')
     .exec();
 }
 

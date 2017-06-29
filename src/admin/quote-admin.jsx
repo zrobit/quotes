@@ -24,10 +24,10 @@ export const QuoteList = props => (
 export const QuoteShow = props => (
   <Show {...props}>
     <SimpleShowLayout>
-      <NumberField label="Size" source="sizeInt"/>
+      <TextField label="Size" source="sizeInt"/>
       <DateField label="Created" source="createdAt"/>
       <TextField label="Slug" source="slug"/>
-      <ReferenceField label="Author" source="author" reference="authors">
+      <ReferenceField addLabel label="Author" source="author" reference="authors">
         <TextField source="name"/>
       </ReferenceField>
       <TextField source="content"/>

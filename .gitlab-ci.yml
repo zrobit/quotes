@@ -17,7 +17,10 @@ before_script:
   #   fi
 
 services:
-  - mongodb
+  - mongo
+
+variables:
+  DB_ENV: 'test'
 
 stages:
   - build

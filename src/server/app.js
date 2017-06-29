@@ -12,7 +12,9 @@ const session = require('express-session');
 
 mongoose.Promise = global.Promise;
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.DB_ENV === 'test') {
+  mongoose.connect('mongodb://mongo/fraseary-test');
+} else if (process.env.NODE_ENV === 'production') {
   mongoose.connect('mongodb://localhost/fraseary-production');
 } else {
   mongoose.connect('mongodb://localhost/fraseary-local');

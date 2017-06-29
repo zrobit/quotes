@@ -1,9 +1,8 @@
 import test from 'ava';
 
-import request from 'supertest'
+import request from 'supertest';
 
-import app from '../server'
-
+import app from '../server';
 
 test('get:home', async t => {
   const res = await request(app).get('/');

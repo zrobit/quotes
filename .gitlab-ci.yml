@@ -1,4 +1,4 @@
-image: node:6
+image: node:8
 
 #Installing node dependency by cache
 before_script:
@@ -14,6 +14,9 @@ before_script:
       npm install --quiet;
       tar zcf - ./node_modules > $DEPS_CACHE;
     fi
+
+services:
+  - mongo
 
 stages:
   - build

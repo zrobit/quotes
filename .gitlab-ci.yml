@@ -2,7 +2,7 @@ image: node:8
 
 #Installing node dependency by cache
 before_script:
-  - npm install
+  # - npm install
   # # unique hash of required dependencies
   # - PACKAGE_HASH=($(md5sum package.json))
   # # path to cache file
@@ -23,8 +23,20 @@ variables:
   DB_ENV: 'test'
 
 stages:
+  - install
   - build
   - test
+
+cache:
+  paths:
+    - node_modules/
+
+install:modules:
+  stage: install
+  script:
+    - npm -v
+    - node -v
+    - npm install
 
 test:requests:
   stage: test

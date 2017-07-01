@@ -13,7 +13,14 @@ const session = require('express-session');
 mongoose.Promise = global.Promise;
 
 if (process.env.DB_ENV === 'test') {
-  mongoose.connect('mongodb://mongo/fraseary-test');
+  console.log('####> Database Env: testing <####');
+  if (process.env.DEV_ENV === 'ci') {
+    console.log('####> Dev Env: gitlab CI <####');
+    mongoose.connect('mongodb://mongo/fraseary-test');
+  } else {
+    console.log('####> Dev Env: Local <####');
+    mongoose.connect('mongodb://localhost/fraseary-test');
+  }
 } else if (process.env.NODE_ENV === 'production') {
   mongoose.connect('mongodb://localhost/fraseary-production');
 } else {

@@ -21,6 +21,7 @@ services:
 
 variables:
   DB_ENV: 'test'
+  DEV_ENV: 'ci'
 
 stages:
   - install

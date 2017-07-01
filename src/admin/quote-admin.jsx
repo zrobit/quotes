@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  List, Edit, Datagrid, DateField, SimpleForm, DisabledInput, TextInput,
-  SimpleShowLayout,
-  Show, ReferenceField, ShowButton,
-  TextField, EditButton, NumberField, LongTextInput
+  List, Edit, Datagrid, DateField, SimpleForm, DisabledInput,
+  SimpleShowLayout, SingleFieldList, ChipField,
+  Show, ReferenceField, ShowButton, SelectArrayInput, ReferenceArrayInput,
+  TextField, NumberField, LongTextInput,
+  ReferenceArrayField
 
 } from 'admin-on-rest';
 
@@ -30,6 +31,11 @@ export const QuoteShow = props => (
       <ReferenceField addLabel label="Author" source="author" reference="authors">
         <TextField source="name"/>
       </ReferenceField>
+      <ReferenceArrayField label="Tags" reference="tags" source="tags">
+        <SingleFieldList>
+          <ChipField source="name"/>
+        </SingleFieldList>
+      </ReferenceArrayField>
       <TextField source="content"/>
     </SimpleShowLayout>
   </Show>
@@ -40,6 +46,9 @@ export const QuoteEdit = props => (
     <SimpleForm>
       <DisabledInput source="id"/>
       <DisabledInput source="slug"/>
+      <ReferenceArrayInput source="tags" reference="tags">
+        <SelectArrayInput optionText="name"/>
+      </ReferenceArrayInput>
       <LongTextInput source="content"/>
     </SimpleForm>
   </Edit>

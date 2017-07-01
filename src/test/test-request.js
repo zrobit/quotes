@@ -10,28 +10,17 @@ import {fakeAuthors, fakeQuotes, fakeTags} from '../utils/data';
 test.before('Loading Fake Data', async t => {
   // This runs after the above, but before tests
   const authors = fakeAuthors(10);
-  const it = cicle(authors);
   const quotes = fakeQuotes(20);
   const tags = fakeTags(10);
 
-  await Tag.create(tags, function(err, tags){
-    if(err) throw err;
-    let itTags = cicle(tags);
-    quotes.forEach((element) => {
-      Author.create(it.next(), (err, author)=> {
-        if (err) throw err;
-        element.author = author.id
-        Quote.create(element, (err, quote) => {
-          if (err) throw err;
-          for(let i = 0; i < 3; i++){
-            quote.tags.push(itTags.next());
-          }
-          quote.save(function(err, finalData){
-            console.log(`Quote.slug: ${finalData.slug}`);
-          });
-        });
-      });
-    });
+  const itTags = cicle(await Tag.create(tags));
+  const itAuthor = cicle(await Author.create(authors));
+  const itQuotes = await Quote.create(quotes);
+
+  itQuotes.forEach(async quote => {
+    quote.author = itAuthor.next().id;
+    quote.tags = [itTags.next().id, itTags.next().id, itTags.next().id];
+    await quote.save();
   });
 });
 

@@ -46,7 +46,7 @@ export const QuoteEdit = props => (
     <SimpleForm>
       <DisabledInput source="id"/>
       <DisabledInput source="slug"/>
-      <ReferenceArrayInput source="tags" reference="tags">
+      <ReferenceArrayInput label="Tags" source="tags" reference="tags">
         <SelectArrayInput optionText="name"/>
       </ReferenceArrayInput>
       <LongTextInput source="content"/>

@@ -24,7 +24,7 @@ if (process.env.DB_ENV === 'test') {
 } else if (process.env.NODE_ENV === 'production') {
   mongoose.connect('mongodb://localhost/fraseary-production');
 } else {
-  mongoose.connect('mongodb://localhost/fraseary-local');
+  mongoose.connect('mongodb://localhost/fraseary-local-copy');
 }
 
 const router = require('./router');

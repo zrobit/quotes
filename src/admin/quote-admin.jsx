@@ -2,7 +2,7 @@ import React from 'react';
 import {
   List, Edit, Datagrid, DateField, SimpleForm, DisabledInput,
   SimpleShowLayout, SingleFieldList, ChipField,
-  Show, ReferenceField, ShowButton, SelectArrayInput, ReferenceArrayInput,
+  Show, ReferenceField, ShowButton, EditButton, SelectArrayInput, ReferenceArrayInput,
   TextField, NumberField, LongTextInput,
   ReferenceArrayField
 
@@ -18,6 +18,7 @@ export const QuoteList = props => (
       <TextField label="Slug" source="slug"/>
       <DateField label="Created" source="createdAt"/>
       <ShowButton/>
+      <EditButton/>
     </Datagrid>
   </List>
 );

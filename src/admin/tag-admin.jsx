@@ -16,6 +16,7 @@ export const TagList = props => (
       <TextField label="Name" source="name"/>
       <DateField label="Created" source="createdAt"/>
       <ShowButton/>
+      <EditButton/>
     </Datagrid>
   </List>
 );

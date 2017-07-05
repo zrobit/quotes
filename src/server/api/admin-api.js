@@ -1,4 +1,5 @@
 const express = require('express');
+
 const {
   Quote,
   getQuoteByIdAdmin
@@ -43,6 +44,28 @@ router.get('/quotes/:id', (req, res) => {
   });
 });
 
+router.put('/quotes/:id', updateQuotes);
+function updateQuotes(req, res) {
+  const id = req.body.id;
+  let tags = req.body.tags;
+  tags = tags
+    .filter(tagId => (/^[0-9a-fA-F]{24}$/).test(tagId))
+    .map(tagId => ({_id: tagId}));
+
+  Quote.findById(id, (err, quote) => {
+    if (err) {
+      throw err;
+    }
+    quote.tags = tags;
+    quote.save((err, quote) => {
+      if (err) {
+        throw err;
+      }
+      res.json(quote);
+    });
+  });
+}
+
 // #api/admin/authors
 router.get('/authors', (req, res) => {
   const {start, end, sort} = reduceUrlQuery(req);
@@ -63,18 +86,31 @@ router.get('/authors/:id', (req, res) => {
 
 // #api/admin/tags
 router.get('/tags', (req, res) => {
+  const q = req.query.q || '';
+  const name = new RegExp('^' + q);
   const {start, end, sort} = reduceUrlQuery(req);
+
   Promise.all([
     Tag.count().exec(),
-    Tag.find().limit(end - start).sort(sort).skip(start).exec()
+    Tag.find({name}).limit(end - start).sort(sort).skip(start).exec()
   ]).then(([count, tags]) => {
     res.header('X-Total-Count', count);
+    if (tags.length === 0) {
+      return res.status(404).json({status: 404, message: 'Not found'});
+    }
     res.json(tags);
   });
 });
 
 router.get('/tags/:id', (req, res) => {
+  const id = req.params.id;
+  if (!(/^[0-9a-fA-F]{24}$/).test(id)) {
+    return res.status(404).json({status: 404, message: 'Not found'});
+  }
   getTagByIdAdmin(req.params.id).then(data => {
+    if (!data) {
+      return res.status(404).json({status: 404, message: 'Not found'});
+    }
     res.json(data);
   });
 });

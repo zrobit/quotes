@@ -1,9 +1,15 @@
-exports.cicle = (array) => {
+module.exports.cicle = array => {
   let nextIndex = 0;
   return {
-    next: function(){
-      if ( nextIndex == array.length) nextIndex = 0
-      return array[nextIndex++]
+    next() {
+      if (nextIndex === array.length) {
+        nextIndex = 0;
+      }
+      return array[nextIndex++];
     }
-  }
-}
+  };
+};
+
+module.exports.validateId = id => {
+  return (/^[0-9a-fA-F]{24}$/).test(id);
+};

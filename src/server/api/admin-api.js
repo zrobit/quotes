@@ -16,6 +16,7 @@ const {
 } = require('../queries/tag-query');
 
 const router = new express.Router();
+const {validateId} = require('../../utils');
 
 // Helper function
 const reduceUrlQuery = req => {
@@ -49,7 +50,7 @@ function updateQuotes(req, res) {
   const id = req.body.id;
   let tags = req.body.tags;
   tags = tags
-    .filter(tagId => (/^[0-9a-fA-F]{24}$/).test(tagId))
+    .filter(tagId => validateId(tagId))
     .map(tagId => ({_id: tagId}));
 
   Quote.findById(id, (err, quote) => {
@@ -104,7 +105,7 @@ router.get('/tags', (req, res) => {
 
 router.get('/tags/:id', (req, res) => {
   const id = req.params.id;
-  if (!(/^[0-9a-fA-F]{24}$/).test(id)) {
+  if (!validateId(id)) {
     return res.status(404).json({status: 404, message: 'Not found'});
   }
   getTagByIdAdmin(req.params.id).then(data => {

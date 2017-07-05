@@ -44,7 +44,7 @@ export const QuoteShow = props => (
 
 export const QuoteEdit = props => (
   <Edit {...props}>
-    <SimpleForm>
+    <SimpleForm redirect="show">
       <DisabledInput source="id"/>
       <DisabledInput source="slug"/>
       <ReferenceArrayInput label="Tags" source="tags" reference="tags">

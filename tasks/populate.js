@@ -183,3 +183,45 @@ gulp.task('populate:tags:recurrence', ['connectDB'], function(){
     })
   })
 });
+
+gulp.task('populate:meta', ['connectDB'], async () => {
+  console.log('Updating Meta...');
+  const quotes = await Quote.find({}).exec();
+  quotes.forEach(quote => {
+    let tags = Tag.find().exec();
+    const author = Author.find({_id: quote.author}).exec();
+    const path = `/frase/${quote.slug}`;
+    tags = tags.map(tag => tag.name);
+    tags = tags.join(' ');
+    const len = author.name.length + tags.length;
+
+    const ranges = []
+
+    if (len > ranges[0] && len < ranges[1]) {
+
+    } else if (len > ranges[1] && len < ranges[2]) {
+
+    } else if (len)
+
+    const fragment1 = [
+      'Cita', //4
+      'Frase', //5
+      'Cita de', //7
+      'Frase de', //8
+      'Palabras de', //11
+      'Frase Célebre', //13
+      'Frase Célebre de', //16
+    ];
+    let title = `Frase de ${author.name} sobre ${tags}`
+    const str = `Palabras de`
+    const meta = new Meta({
+      path,
+      title,
+      description,
+      og: {
+        title: ogTitle,
+        description: ogDescription
+      }
+    });
+  });
+});

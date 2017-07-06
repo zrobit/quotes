@@ -10,6 +10,13 @@ const config = {
 };
 
 const metaSchema = new Schema({
+  path: {type: String, require: true, unique: true, index: true},
+  title: {type: String, require: true, maxlength: 80},
+  description: {type: String, maxlength: 160},
+  og: {
+    title: {type: String, maxlength: 90},
+    description: {type: String, maxlength: 200}
+  },
   slug: {type: String, required: true, unique: true, index: true},
   quote: {type: Schema.Types.ObjectId, ref: 'Quote'}
 }, config);

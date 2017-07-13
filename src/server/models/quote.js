@@ -6,6 +6,8 @@ const hashId = require('shortid');
 const words = require('lodash').words;
 const slug = require('slugg');
 
+const metaSchema = require('./meta-schema');
+
 const config = {
   timestamps: true,
   toJSON: {
@@ -23,7 +25,8 @@ const quoteSchema = new Schema({
   size: {type: String, enum: ['tiny', 'small', 'medium', 'large']},
   sizeInt: Number,
   author: {type: Schema.Types.ObjectId, ref: 'Author'},
-  tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}]
+  tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}],
+  meta: metaSchema
 }, config);
 
 quoteSchema.pre('save', function (next) {

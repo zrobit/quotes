@@ -2,7 +2,7 @@ const gulp = require('gulp');
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/fraseary-local');
+mongoose.connect('mongodb://localhost/fraseary-local-copy');
 // mongoose.set('debug', true);
 
 const Author = require('../src/server/models/author');
@@ -187,41 +187,70 @@ gulp.task('populate:tags:recurrence', ['connectDB'], function(){
 gulp.task('populate:meta', ['connectDB'], async () => {
   console.log('Updating Meta...');
   const quotes = await Quote.find({}).exec();
-  quotes.forEach(quote => {
-    let tags = Tag.find().exec();
-    const author = Author.find({_id: quote.author}).exec();
-    const path = `/frase/${quote.slug}`;
+  await quotes.forEach(async quote => {
+    let tags = await Tag.find({_id: {$in: quote.tags}}).exec();
+    const author = await Author.findOne({_id: quote.author}).exec();
+
     tags = tags.map(tag => tag.name);
     tags = tags.join(' ');
+
     const len = author.name.length + tags.length;
 
-    const ranges = []
+    const ranges = [0, 25, 28, 30, 33, 34, 36, 37];
 
-    if (len > ranges[0] && len < ranges[1]) {
-
-    } else if (len > ranges[1] && len < ranges[2]) {
-
-    } else if (len)
-
-    const fragment1 = [
-      'Cita', //4
-      'Frase', //5
-      'Cita de', //7
-      'Frase de', //8
-      'Palabras de', //11
-      'Frase Célebre', //13
-      'Frase Célebre de', //16
+    const str = [
+      'Frase Célebre de ', // 16
+      'Frase Célebre ', // 13
+      'Palabras de ', // 11
+      'Frase de ', // 8
+      'Cita de ', // 7
+      'Frase ', // 5
+      'Cita ' // 4
     ];
-    let title = `Frase de ${author.name} sobre ${tags}`
-    const str = `Palabras de`
-    const meta = new Meta({
-      path,
+    let fragment;
+
+    if (len > ranges[0] && len <= ranges[1]) {
+      fragment = str[0];
+    } else if (len > ranges[1] && len <= ranges[2]) {
+      fragment = str[1];
+    } else if (len > ranges[2] && len <= ranges[3]) {
+      fragment = str[2];
+    } else if (len > ranges[3] && len <= ranges[4]) {
+      fragment = str[3];
+    } else if (len > ranges[4] && len <= ranges[5]) {
+      fragment = str[4];
+    } else if (len > ranges[5] && len <= ranges[6]) {
+      fragment = str[5];
+    } else if (len > ranges[6] && len <= ranges[7]) {
+      fragment = str[6];
+    } else {
+      fragment = '';
+    }
+    const title = `${fragment}${author.name} sobre ${tags} | Fraseary`;
+    const frase = quote.content;
+    let _quote;
+
+    if (frase.length > 120) {
+      _quote = frase.substring(0, 120).split(' ').slice(0, -1).join(' ') + '...';
+    } else {
+      _quote = frase;
+    }
+
+    const description = `Frase de ${author.name}: ${_quote}`;
+
+    const ogTitle = `${fragment}${author.name} sobre ${tags}`;
+    const ogDescription = `${_quote} - ${author.name}`;
+    const titleLen = title.length;
+    console.log(`${titleLen}:${title}`);
+
+    quote.meta = {
       title,
       description,
       og: {
         title: ogTitle,
         description: ogDescription
       }
-    });
+    };
+    quote.save();
   });
 });

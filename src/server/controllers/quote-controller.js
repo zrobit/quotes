@@ -9,12 +9,12 @@ const router = new express.Router();
 function quoteDetailController(req, res) {
   const slug = req.params.slug;
   const context = {};
-  Promise.all([getMetaBy(), getQuoteBy({slug})]).then(([meta, quote]) => {
+  Promise.all([getQuoteBy({slug})]).then(([quote]) => {
     if (quote === null) {
       return res.status(404).send('No encontrado');
     }
 
-    context.meta = meta;
+    context.meta = quote.meta;
     context.state = {
       quote: {
         detail: quote

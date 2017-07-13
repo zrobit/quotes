@@ -9,7 +9,7 @@ import {
 } from 'admin-on-rest';
 
 export const QuoteList = props => (
-  <List {...props} perPage={10}>
+  <List {...props} perPage={50}>
     <Datagrid>
       <NumberField label="Size" source="sizeInt"/>
       <ReferenceField label="Author" source="author" reference="authors">
@@ -38,6 +38,10 @@ export const QuoteShow = props => (
         </SingleFieldList>
       </ReferenceArrayField>
       <TextField source="content"/>
+      <TextField source="meta.title"/>
+      <TextField source="meta.description"/>
+      <TextField source="meta.og.title"/>
+      <TextField source="meta.og.description"/>
     </SimpleShowLayout>
   </Show>
 );
@@ -51,6 +55,10 @@ export const QuoteEdit = props => (
         <SelectArrayInput optionText="name"/>
       </ReferenceArrayInput>
       <LongTextInput source="content"/>
+      <LongTextInput source="meta.title"/>
+      <LongTextInput source="meta.description"/>
+      <LongTextInput label="OG title" source="meta.og.title"/>
+      <LongTextInput label="OG description" source="meta.og.description"/>
     </SimpleForm>
   </Edit>
 );

@@ -9,7 +9,7 @@ function countQuotes(arg = {}) {
 function getQuoteBy(arg = {}) {
   return Quote
     .findOne(arg)
-    .select('slug content author size')
+    .select('slug content author size meta')
     .populate('author', 'name slug')
     .exec();
 }

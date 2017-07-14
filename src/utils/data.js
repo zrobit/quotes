@@ -19,14 +19,22 @@ exports.fakeAuthors = (n=1) => {
   })
 }
 
-exports.fakeQuotes = (n=1) => {
+exports.fakeQuotes = (n = 1) => {
   return [...Array(n)].map(() => {
-    return  {
+    return {
       content: fake.sentences(n = Math.floor((Math.random()*8) + 1)),
-      slug: slug(fake.sentence)
-    }
-  })
-}
+      slug: slug(fake.sentence),
+      meta: {
+        title: 'Testing title',
+        description: 'Testing description',
+        og: {
+          title: 'OG Testing title',
+          description: 'Og Testing description'
+        }
+      }
+    };
+  });
+};
 
 exports.fakeTags = (n=1) => {
   return [...Array(n)].map(() => {

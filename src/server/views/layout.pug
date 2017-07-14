@@ -7,17 +7,16 @@ doctype html
 html(lang='es')
   head
     meta(charset='utf-8')
-    title fraseary
-    meta(name='description', content='')
-    meta(name='keywords', content='')
+    title= meta.title
+    meta(name='description', content=`${meta.description}`)
     meta(name="viewport", content="width=device-width, initial-scale=1")
 
     if meta
-      meta(property="og:url" content=`${meta.og.url}`)
+      meta(property="og:url" content=`${meta.url}`)
       meta(property="og:title" content=`${meta.og.title}`)
-      meta(property="og:type" content=`${meta.og.type}`)
+      meta(property="og:type" content='website')
       meta(property="og:description" content=`${meta.og.description}`)
-      meta(property="og:image" content=`${meta.og.image}`)
+      meta(property="og:image" content='#')
 
 
     if prevPage

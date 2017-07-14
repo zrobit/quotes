@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {getQuoteBy} = require('../queries/quote-query');
-const {getMetaBy} = require('../queries/meta-query');
+// const {getMetaBy} = require('../queries/meta-query');
 
 const ssr = global.ssr;
 const router = new express.Router();
@@ -15,6 +15,9 @@ function quoteDetailController(req, res) {
     }
 
     context.meta = quote.meta;
+    context.meta.url = req.baseUrl + req.path;
+    quote.meta = null;
+
     context.state = {
       quote: {
         detail: quote

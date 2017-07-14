@@ -5,6 +5,7 @@ import {Provider, useStaticRendering} from 'mobx-react';
 
 import jsonStringifySafe from 'json-stringify-safe';
 import routes from '../client/routes';
+import metaUtils from '../utils/meta-utils';
 
 import createStores from '../client/stores/';
 
@@ -38,7 +39,7 @@ export function ssr(req, res, context, template = 'layout') {
         }
 
         context.initialStateJSON = jsonStringifySafe(context.state);
-
+        context.meta = metaUtils(context.meta || undefined);
         res.render(template, context);
       }
     });

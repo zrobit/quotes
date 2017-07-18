@@ -184,8 +184,8 @@ gulp.task('populate:tags:recurrence', ['connectDB'], function(){
   })
 });
 
-gulp.task('populate:meta', ['connectDB'], async () => {
-  console.log('Updating Meta...');
+gulp.task('populate:meta:quote', ['connectDB'], async () => {
+  console.log('Updating Quotes Meta...');
   const quotes = await Quote.find({}).exec();
   await quotes.forEach(async quote => {
     let tags = await Tag.find({_id: {$in: quote.tags}}).exec();
@@ -252,5 +252,24 @@ gulp.task('populate:meta', ['connectDB'], async () => {
       }
     };
     quote.save();
+  });
+});
+
+gulp.task('populate:meta:author', ['connectDB'], async () => {
+  console.log('Updating Authors Meta...');
+  const authors = await Author.find({}).exec();
+  await authors.forEach(async author => {
+    const title = `Frases de ${author.name} | Fraseary`;
+    const description = `Frases célebres palabras famosas citas de ${author.name}`;
+    author.meta = {
+      title,
+      description,
+      og: {
+        title,
+        description
+      }
+    };
+    await author.save();
+    console.log(author.name);
   });
 });

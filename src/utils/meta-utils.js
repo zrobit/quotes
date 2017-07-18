@@ -1,6 +1,6 @@
 function metaUtils(meta = {}) {
   const _meta = {
-    title: 'Fraseary Palabras Frases Citas Refranes y Proverbios',
+    title: 'Fraseary Frases Palabras Citas Refranes y Proverbios',
     description: 'Fraseary es un repositorio de frases citas refranes y proverbios que inspiran a pensar sobre amor amistad humanidad',
     url: 'http://fraseary.com'
   };

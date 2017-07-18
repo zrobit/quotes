@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 
 const slug = require('slugg');
 
+const metaSchema = require('./meta-schema');
+
 const config = {
   timestamps: true,
   toJSON: {
@@ -22,7 +24,8 @@ const authorSchema = new Schema({
     avatar: String,
     resume: String,
     meta: [{_id: false, label: String, value: String}]
-  }
+  },
+  meta: metaSchema
 }, config);
 
 authorSchema.virtual('quotes', {

@@ -10,12 +10,15 @@ function authorDetailController(req, res) {
   const slug = req.params.slug;
   const context = {};
 
-  Promise.all([getMetaBy(), getAuthorBy({slug})]).then(values => {
-    const [meta, author] = values;
+  Promise.all([getAuthorBy({slug})]).then(([author]) => {
+    // const [meta, author] = values;
     if (author === null) {
       return res.status(404).send('No encontrado');
     }
-    context.meta = meta;
+
+    context.meta = author.meta;
+    context.meta.url = req.baseUrl + req.path;
+    author.meta = null;
 
     context.state = {
       author: {

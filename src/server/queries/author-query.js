@@ -7,7 +7,7 @@ function countAuthors(arg = {}) {
 function getAuthorBy(arg = {}) {
   return Author
     .findOne(arg)
-    .select('name slug bio')
+    .select('name slug bio meta')
     .populate({
       path: 'quotes',
       select: 'author size slug content tags -_id',

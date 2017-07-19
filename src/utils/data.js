@@ -5,6 +5,14 @@ exports.fakeAuthors = (n=1) => {
   return [...Array(n)].map(() => {
     return  {
       name: fake.full_name,
+      meta: {
+        title: 'Testing title',
+        description: 'Testing description',
+        og: {
+          title: 'OG Testing title',
+          description: 'Og Testing description'
+        }
+      },
       bio: {
         avatar: '/assets/media/images/avatar.jpg',
         resume: fake.sentences(n = 5),

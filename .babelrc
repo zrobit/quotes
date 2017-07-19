@@ -1,21 +1,18 @@
 {
-  "presets": ["node6","es2017", "react"],
-    plugins: [
+    "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ],
+        "react"
+    ],
+    "plugins": [
         'transform-decorators-legacy',
         'transform-class-properties',
         'transform-object-rest-spread'
-  ],
-    "env": {
-        "____server": {
-            "plugins": [
-                [
-                    "css-modules-transform", {
-                        "preprocessCss": "./loaders/stylus-loader.js",
-                        "generateScopedName": "[name]-[local]-[hash:base64:5]",
-                        "extensions": [".styl"]
-                    }
-                ]
-            ]
-        }
-    }
+    ],
 }

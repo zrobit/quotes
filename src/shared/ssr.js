@@ -5,7 +5,7 @@ import {Provider, useStaticRendering} from 'mobx-react';
 
 import jsonStringifySafe from 'json-stringify-safe';
 import routes from '../client/routes';
-import metaUtils from '../utils/meta-utils';
+import metaUtils from './meta-utils';
 
 import createStores from '../client/stores/';
 

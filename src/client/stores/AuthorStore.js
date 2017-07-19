@@ -28,7 +28,7 @@ export default class AuthorStore {
       return;
     }
     self.isLoading = true;
-    axios.get('/api/quotes/author/'+self.author._id+'?page=' + self.next)
+    axios.get('/api/quotes/author/'+self.author.id+'?page=' + self.next)
     .then(function (response) {
       self.quotes.push(...response.data.quotes);
       self.next = response.data.next
@@ -43,7 +43,7 @@ export default class AuthorStore {
   fetchAuthor(){
     let self = this;
     self.isLoading = true;
-    axios.get('/api/authors/' + self.author._id)
+    axios.get('/api/authors/' + self.author.id)
     .then(function (response) {
       self.author = response.data.author
       // self.bio = response.data.author.bio

@@ -26,6 +26,23 @@ export default class QuoteStore {
       console.log(error);
     });
   }
+  fetchQuotesByHome() {
+    const self = this;
+    if (self.quotes !== undefined) {
+      return;
+    }
+    self.isLoading = true;
+    self.next = 1;
+    axios.get('/api/quotes?page=1')
+    .then(response => {
+      self.quotes = response.data.quotes;
+      self.next = response.data.next;
+      self.isLoading = false;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
   mapQuotes(store, list){
     this.quotes = list.map((item) => QuoteModel.fromJS(store, item))
   }

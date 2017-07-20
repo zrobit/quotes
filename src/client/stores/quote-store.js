@@ -1,6 +1,7 @@
-import {observable, computed, action} from "mobx";
-import QuoteModel from '../models/QuoteModel'
-import axios from 'axios'
+import {observable} from 'mobx';
+import axios from 'axios';
+
+import QuoteModel from '../models/QuoteModel';
 
 export default class QuoteStore {
   @observable quotes = [];
@@ -8,22 +9,22 @@ export default class QuoteStore {
   @observable isLoading = false;
   next;
 
-  setQuoteDetail(quote){
+  setQuoteDetail(quote) {
     this.quote = quote;
   }
 
-  fetchQuotes(cb){
-    let self = this;
+  fetchQuotes(cb) {
+    const self = this;
     self.isLoading = true;
     axios.get('/api/quotes?page=' + self.next)
-    .then((response)=>{
+    .then(response => {
       self.quotes.push(...response.data.quotes);
-      self.next = response.data.next
-      self.isLoading = false
+      self.next = response.data.next;
+      self.isLoading = false;
       cb();
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(err => {
+      console.log(err);
     });
   }
   fetchQuotesByHome() {
@@ -43,20 +44,19 @@ export default class QuoteStore {
       console.log(err);
     });
   }
-  mapQuotes(store, list){
-    this.quotes = list.map((item) => QuoteModel.fromJS(store, item))
+  mapQuotes(store, list) {
+    this.quotes = list.map(item => QuoteModel.fromJS(store, item));
   }
 
-  static fromJS(state={}) {
+  static fromJS(state = {}) {
     const store = new QuoteStore();
-    if(state){
+    if (state) {
       store.quotes = state.quotes;
       store.next = state.next;
-      if(state.detail){
-        store.quote = state.detail
+      if (state.detail) {
+        store.quote = state.detail;
       }
     }
-
     return store;
   }
 }

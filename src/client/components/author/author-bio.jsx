@@ -38,7 +38,7 @@ function ContentBio({resume, meta}) {
 
 
 function AuthorBio({author, isLoading}) {
-  return(
+  return (
     <div className="card">
       <HeaderBio author={author} isLoading={isLoading}/>
       { !isLoading ?

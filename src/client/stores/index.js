@@ -1,11 +1,10 @@
-import AppStore from './AppStore'
-import UserStore from './UserStore'
-import AuthStore from './AuthStore'
-import QuoteStore from './QuoteStore'
-import AuthorStore from './AuthorStore'
+import AppStore from './app-store';
+import UserStore from './user-store';
+import AuthStore from './auth-store';
+import QuoteStore from './quote-store';
+import AuthorStore from './author-store';
 
-
-function createStores(state){
+function createStores(state) {
   return {
     authStore: new AuthStore(state.auth),
     appStore: AppStore.fromJS(state.app),

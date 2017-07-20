@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 import UserMenu from '../user/user-menu';
 import SearchForm from './search-form';
 
-@inject('userStore')
+@inject('userStore', 'quoteStore')
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ class Header extends Component {
     );
   }
   handleClick() {
-
+    this.props.quoteStore.fetchQuotesByHome();
   }
 }
 

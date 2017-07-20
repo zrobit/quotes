@@ -20,11 +20,11 @@ function HomeController(req, res) {
     nextPage: page === 1062 ? 1 : page + 1
   };
 
-  Promise.all([getPagQuotes({}, 10, page), getMetaBy()]).then(([quotes, meta]) => {
+  Promise.all([getPagQuotes({}, 10, page)]).then(([quotes]) => {
     const state = {
       quote: quotes
     };
-    context.meta = meta;
+    // context.meta = meta;
     context.state = state;
     ssr(req, res, context);
   });

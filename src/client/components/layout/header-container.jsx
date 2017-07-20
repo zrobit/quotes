@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {inject} from 'mobx-react';
 import {Link} from 'react-router';
 
-import SearchForm from './search-form';
 import UserMenu from '../user/user-menu';
+import SearchForm from './search-form';
 
+@inject('userStore')
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,7 @@ class Header extends Component {
               <SearchForm/>
             </li>
           </ul>
-          <UserMenu user={this.props.user}/>
+          <UserMenu user={this.props.userStore}/>
         </nav>
       </header>
     );
@@ -34,11 +35,5 @@ class Header extends Component {
 
   }
 }
-
-Header = inject(
-  stores => ({
-    user: stores.userStore
-  })
-)(Header);
 
 export default Header;

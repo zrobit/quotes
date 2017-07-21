@@ -36,7 +36,15 @@ module.exports = {
         ],
         options: {
           babelrc: false,
-          presets: [['es2015',{"modules":false}],'react'],
+          presets: [
+            ['env', {
+              'targets': {
+                'chrome': 59
+              },
+              'modules': false
+            }],
+            'react'
+          ],
           plugins: [
             'transform-decorators-legacy',
             'transform-class-properties',

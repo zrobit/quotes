@@ -22,7 +22,7 @@ if (process.env.DB_ENV === 'test') {
     mongoose.connect('mongodb://localhost/fraseary-test');
   }
 } else if (process.env.NODE_ENV === 'production') {
-  mongoose.connect('mongodb://localhost/fraseary-production');
+  mongoose.connect('mongodb://localhost/db-fr-prod-1');
 } else {
   mongoose.connect('mongodb://localhost/fraseary-local-copy');
 }

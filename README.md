@@ -50,8 +50,10 @@ npm run start
 ### Detener mongo
 - `sudo service mongod stop`
 
-### Exportar e importar base de datos
+### Exportar base de datos mongo
 - `mongodump -d <database_name> -o <directory_backup>`
+
+### Importar base de datos mongo
 - `mongorestore -d <database_name> <directory_backup>`
 
 ### Instalar Git

@@ -23,6 +23,12 @@ Instalar nginx
 -sudo apt-get update
 -sudo apt-get install nginx
 
+Detener, parar resetear Nginx
+- sudo systemctl stop nginx
+- sudo systemctl start nginx
+- sudo systemctl restart nginx
+- sudo systemctl reload nginx
+
 Instalar node 8, as root
 - curl -sL https://deb.nodesource.com/setup_8.x | bash -
 - apt-get install -y nodejs

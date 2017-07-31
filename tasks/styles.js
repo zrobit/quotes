@@ -1,27 +1,26 @@
-// jshint esversion: 6
-var gulp = require('gulp'),
-    concat = require('gulp-concat'),
-    rename = require('gulp-rename'),
-    nib = require('nib'),
-    stylus = require('gulp-stylus'),
-    postcss = require('gulp-postcss'),
-    gzip = require('gulp-gzip');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const rename = require('gulp-rename');
+const nib = require('nib');
+const stylus = require('gulp-stylus');
+const postcss = require('gulp-postcss');
+const gzip = require('gulp-gzip');
 
 const src = ['src/client/assets/styles/main.styl'];
 const dest = './dist/public/assets/styles/';
 
-function styles_build () {
+function stylesBuild() {
   return gulp
     .src(src)
     .pipe(stylus({use: [nib()]}))
-    .pipe(gulp.dest(dest))
+    .pipe(gulp.dest(dest));
 }
 
-function styles_prod (){
-  var plugins = [
-      require("css-mqpacker")(),
-      require('autoprefixer')(),
-      require('cssnano')(),
+function stylesProd() {
+  const plugins = [
+    require('css-mqpacker')(),
+    require('autoprefixer')(),
+    require('cssnano')()
   ];
   return gulp
     .src([
@@ -35,5 +34,5 @@ function styles_prod (){
     .pipe(gulp.dest(dest));
 }
 
-gulp.task('styles:build', styles_build);
-gulp.task('styles:prod', styles_prod);
+gulp.task('styles:build', stylesBuild);
+gulp.task('styles:prod', stylesProd);

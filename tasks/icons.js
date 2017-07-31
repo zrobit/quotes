@@ -1,11 +1,10 @@
-var gulp = require('gulp'),
-  rename = require('gulp-rename'),
-  svgSymbols = require('gulp-svg-symbols'),
-  path = require('path');
+const path = require('path');
+const gulp = require('gulp');
+const rename = require('gulp-rename');
+const svgSymbols = require('gulp-svg-symbols');
 
-
-function icons () {
-  return gulp.src('assets/images/icons/*.svg')
+function icons() {
+  return gulp.src('src/client/assets/images/icons/*.svg')
     .pipe(svgSymbols({
       id: 'icon-%f',
       svgClassname: 'svg-icons',
@@ -13,10 +12,8 @@ function icons () {
         path.join(__dirname, '../assets/templates/icons.tpl.pug')
       // 'default-svg'
       ]}))
-    .pipe(rename("icons.pug"))
+    .pipe(rename('icons.pug'))
     .pipe(gulp.dest('views/includes'));
-
 }
-
 
 gulp.task('icons', icons);

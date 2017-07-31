@@ -2,68 +2,71 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
-const User = require('../models/user')
+const User = require('../models/user');
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function (err, user) {
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
     done(err, user);
   });
 });
 
-passport.use('local-login',new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback : true
-  },
-  function(req, email, password, done) {
-    User.findOne({ email: email }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
+passport.use('local-login', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+},
+(req, email, password, done) => {
+  User.findOne({email}, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false, req.flash('loginMessage', 'Correo o password incorrectos'));
+    }
+
+    bcrypt.compare(password, user.password, (err, res) => {
+      if (err) {
+        throw err;
+      }
+      if (!res) {
         return done(null, false, req.flash('loginMessage', 'Correo o password incorrectos'));
       }
-
-      bcrypt.compare(password, user.password, function (err, res) {
-        if (!res)
-          return done(null, false, req.flash('loginMessage', 'Correo o password incorrectos'));
-        var returnUser = {
-          email: user.email,
-          id: user.id
-        };
-        return done(null, returnUser, {
-          message: 'Logged In Successfully'
-        });
+      const returnUser = {
+        email: user.email,
+        id: user.id
+      };
+      return done(null, returnUser, {
+        message: 'Logged In Successfully'
       });
     });
-  }
-));
-
-passport.use('local-signup', new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password',
-    passReqToCallback : true
-},
-function(req, email, password, done) {
-  // process.nextTick(function() {
-    User.findOne({'email': email}, function(err, user) {
-      if (err)
-        return done(err);
-      if (user) {
-        return done(null, false, req.flash('signupMessage', 'El correo ya se registro'));
-      } else {
-        var newUser = new User();
-        newUser.email = email;
-        newUser.password = password
-        newUser.save(function(err, user) {
-          if (err) throw err;
-          return done(null, newUser);
-        });
-      }
-    });
-  // });
+  });
 }));
 
-
+passport.use('local-signup', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+},
+(req, email, password, done) => {
+  User.findOne({email}, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, false, req.flash('signupMessage', 'El correo ya se registro'));
+    }
+    const newUser = new User();
+    newUser.email = email;
+    newUser.password = password;
+    newUser.save((err, user) => {
+      if (err) {
+        throw err;
+      }
+      return done(null, newUser);
+    });
+  });
+}));

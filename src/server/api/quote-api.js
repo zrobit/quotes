@@ -5,7 +5,7 @@ const slug = require('slugg');
 const {getPagQuotes, getQuoteBy} = require('../queries/quote-query');
 const Quote = require('../models/quote');
 const Author = require('../models/author');
-const isPage = require('../middleware/isPage');
+const isPage = require('../middleware/is-page');
 
 const router = new express.Router();
 

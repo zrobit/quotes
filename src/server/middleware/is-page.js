@@ -1,13 +1,11 @@
-module.exports = function(req, res, next) {
-  let {page} = req.query;
-  if(page === undefined || page === ''){
+module.exports = (req, res, next) => {
+  const {page} = req.query;
+  if (page === undefined || page === '') {
     req.query.page = 1;
   }
-
-  if (/^[1-9][0-9]*$/.test(req.query.page)){
+  if (/^[1-9][0-9]*$/.test(req.query.page)) {
     next();
-  }
-  else {
-    res.status(403).json({status:"error", message:"bad page parameter"})
+  } else {
+    res.status(403).json({status: 'error', message: 'bad page parameter'});
   }
 };

@@ -1,7 +1,5 @@
 const express = require('express');
-
 const {getQuoteBy} = require('../queries/quote-query');
-// const {getMetaBy} = require('../queries/meta-query');
 
 const ssr = global.ssr;
 const router = new express.Router();

@@ -1,5 +1,4 @@
 const express = require('express');
-const {getMetaBy} = require('../queries/meta-query');
 const {getAuthorBy} = require('../queries/author-query');
 
 const ssr = global.ssr;
@@ -11,7 +10,6 @@ function authorDetailController(req, res) {
   const context = {};
 
   Promise.all([getAuthorBy({slug})]).then(([author]) => {
-    // const [meta, author] = values;
     if (author === null) {
       return res.status(404).send('No encontrado');
     }

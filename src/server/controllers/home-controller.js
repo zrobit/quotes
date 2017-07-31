@@ -1,6 +1,5 @@
 const express = require('express');
 const {getPagQuotes} = require('../queries/quote-query');
-const {getMetaBy} = require('../queries/meta-query');
 
 const ssr = global.ssr;
 const router = new express.Router();
@@ -24,7 +23,6 @@ function HomeController(req, res) {
     const state = {
       quote: quotes
     };
-    // context.meta = meta;
     context.state = state;
     ssr(req, res, context);
   });

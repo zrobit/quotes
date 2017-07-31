@@ -6,84 +6,94 @@ const ssr = global.ssr;
 
 const router = new express.Router();
 
-router.get('/login', function(req, res){
+router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
-  let field = req.query.field;
-  if(field){
-    if(!isEmail(field)){res.redirect('/login')}
+  const field = req.query.field;
+  if (field) {
+    if (!isEmail(field)) {
+      res.redirect('/login');
+    }
   }
 
-  let context = {
-    state:{
+  const context = {
+    state: {
       auth: {
         error: req.flash('loginMessage')[0]
       }
     }
   };
-  ssr(req, res, context)
+  ssr(req, res, context);
 });
 
-router.post('/login', function(req, res, next) {
-  let password = req.body.password;
-  let email= req.body.email;
+router.post('/login', (req, res, next) => {
+  const password = req.body.password;
+  const email = req.body.email;
 
-  passport.authenticate('local-login', function(err, user, info) {
-    if (err) { return next(err); }
+  passport.authenticate('local-login', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
     if (!user) {
-      let url = isEmail(email) ? '/login?field='+ email : '/login';
+      const url = isEmail(email) ? '/login?field=' + email : '/login';
       return res.redirect(url);
     }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
+    req.logIn(user, err => {
+      if (err) {
+        return next(err);
+      }
       return res.redirect('/');
     });
   })(req, res, next);
 });
 
-router.get('/signup', function(req, res){
+router.get('/signup', (req, res) => {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
 
-  let context = {
-    state:{
+  const context = {
+    state: {
       auth: {
         ref: 'SignupSection',
         error: req.flash('loginMessage')[0]
       }
     }
   };
-  ssr(req, res, context)
+  ssr(req, res, context);
 });
 
-router.post('/signup', function(req, res, next){
-  let password = req.body.password;
-  let email= req.body.email;
+router.post('/signup', (req, res, next) => {
+  const password = req.body.password;
+  const email = req.body.email;
 
-  if(!email || !password) {
-    return res.status(403).send('Forbiden(403): invalid values :V')
-  } else if(!isEmail(email) || (password.length < 8)){
-    return res.status(403).send('Forbiden(403): invalid values :V')
+  if (!email || !password) {
+    return res.status(403).send('Forbiden(403): invalid values :V');
+  } else if (!isEmail(email) || (password.length < 8)) {
+    return res.status(403).send('Forbiden(403): invalid values :V');
   }
 
-  passport.authenticate('local-signup', function(err, user, info) {
-    if (err) { return next(err); }
+  passport.authenticate('local-signup', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
     if (!user) {
       return res.redirect('/signup');
     }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
+    req.logIn(user, err => {
+      if (err) {
+        return next(err);
+      }
       return res.redirect('/');
     });
   })(req, res, next);
 });
 
-router.get('/logout', function(req, res){
+router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
-
 
 module.exports = router;

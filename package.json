@@ -72,6 +72,7 @@
     "gulp-postcss": "^6.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.6.0",
+    "gulp-svg-symbols": "^2.0.2",
     "merge-stream": "^1.0.1",
     "morgan": "^1.8.1",
     "nib": "^1.1.2",

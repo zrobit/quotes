@@ -106,6 +106,10 @@
   "xo": {
     "space": 2,
     "extends": "xo-react",
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "envs": [
+      "node",
+      "browser"
+    ]
   }
 }

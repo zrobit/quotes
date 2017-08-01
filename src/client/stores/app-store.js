@@ -1,6 +1,6 @@
-import {observable, computed, action} from "mobx";
-import QuoteModel from '../models/QuoteModel'
-import axios from 'axios'
+import {observable} from 'mobx';
+import axios from 'axios';
+import QuoteModel from '../models/QuoteModel';
 
 export default class AppStore {
   @observable quotes = [];
@@ -11,36 +11,32 @@ export default class AppStore {
   userName = null;
   userHashId = null;
 
-
-  fetchHome(){
-    let self = this;
+  fetchHome() {
+    const self = this;
     axios.get('/api/home')
-    .then(function (response) {
+    .then(response => {
       self.quotes = response.data.quotes;
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(err => {
+      console.log(err);
     });
   }
 
-  static fromJS(state={}) {
+  static fromJS(state = {}) {
     const appStore = new AppStore();
     appStore.isAuth = state.isAuth;
-    if(appStore.isAuth){
+    if (appStore.isAuth) {
       appStore.userName = state.userName;
       appStore.userHashId = state.userHashId;
     }
-    if (state.ref === 'QuoteSection'){
-      appStore.quote = state.data.quote
+    if (state.ref === 'QuoteSection') {
+      appStore.quote = state.data.quote;
+    } else if (state.ref === 'AuthorSection') {
+      appStore.author = state.data.author;
+      appStore.quotes = state.data.author.quotes.map(item => QuoteModel.fromJS(appStore, item));
+    } else if (state.ref === 'HomeSection') {
+      appStore.quotes = state.data.quotes.map(item => QuoteModel.fromJS(appStore, item));
     }
-    else if (state.ref === "AuthorSection") {
-      appStore.author = state.data.author
-      appStore.quotes = state.data.author.quotes.map(item => QuoteModel.fromJS(appStore, item))
-    }
-    else if (state.ref==='HomeSection'){
-      appStore.quotes = state.data.quotes.map(item => QuoteModel.fromJS(appStore, item))
-    }
-
     return appStore;
   }
 }

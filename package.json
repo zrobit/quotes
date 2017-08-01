@@ -63,7 +63,7 @@
     "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
     "eslint-config-xo": "^0.18.2",
-    "eslint-config-xo-react": "^0.12.0",
+    "eslint-config-xo-react": "^0.13.0",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "gulp": "^3.9.1",

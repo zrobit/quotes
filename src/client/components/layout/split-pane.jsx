@@ -16,7 +16,6 @@ export default ({main, sidebar}) => (
   </div>
 );
 
-
 export function SplitPane({main, sidebar, decor}) {
   return (
     <div className={decor.wrap}>
@@ -63,6 +62,6 @@ export function SplitPaneThree({main, left, right}) {
     <SplitPaneLeft
       main={<SplitPaneRight main={main} sidebar={right}/>}
       sidebar={left}
-      />
+    />
   );
 }

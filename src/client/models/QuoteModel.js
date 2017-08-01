@@ -15,8 +15,8 @@ export default class QuoteModel {
     this.slug = object.slug;
     this.content = object.content;
     this.size = object.size;
-    this.tags = object.tags
-    this.author = object.author || null
+    this.tags = object.tags;
+    this.author = object.author || null;
   }
 
   static fromJS(store, object) {

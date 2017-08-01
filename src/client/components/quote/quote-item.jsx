@@ -28,7 +28,7 @@ class QuoteItem extends Component {
             className={style.link}
             to={'/frase/' + slug}
             onClick={() => this.setQuoteDetail(this.props.quote, author)}
-            >
+          >
             {content}
           </Link>
         </p>
@@ -38,7 +38,7 @@ class QuoteItem extends Component {
             <Link
               to={'/autor/' + author.slug}
               onClick={() => this.setAuthorDetail(author)}
-              >
+            >
               {author.name}
             </Link>
           </h3>

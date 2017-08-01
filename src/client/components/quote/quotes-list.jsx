@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import { observer, inject } from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 
 import hash from '../../utils/hash';
 
@@ -17,20 +17,19 @@ class QuotesList extends Component {
   cola = 1;
   grid = null;
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   render() {
-    const {quotes, author, isLoading} = this.props.quoteStore
+    const {quotes, author, isLoading} = this.props.quoteStore;
 
     return (
       <div id="grid">
-      { quotes ?  quotes.map(quote => this.quoteItem(quote, author)) : null }
+        { quotes ? quotes.map(quote => this.quoteItem(quote, author)) : null }
 
-      { isLoading ? <span>Cargando...</span> : null }
-
+        { isLoading ? <span>Cargando...</span> : null }
       </div>
     );
   }
@@ -38,18 +37,18 @@ class QuotesList extends Component {
   quoteItem(quote, author) {
     author = author || quote.author;
     return (
-      <QuoteItem key={hash()} quote={quote} author={author} />
+      <QuoteItem key={hash()} quote={quote} author={author}/>
     );
   }
 
   componentDidMount() {
-    if(this.props.quoteStore.next){
+    if (this.props.quoteStore.next) {
       window.addEventListener('scroll', this.handleScroll);
       this.grid = document.getElementById('grid');
     }
   }
-  componentWillReceiveProps(nextProps){
-    if (nextProps.quoteStore.next === null){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.quoteStore.next === null) {
       window.removeEventListener('scroll', this.handleScroll);
     }
   }
@@ -59,42 +58,42 @@ class QuotesList extends Component {
   }
 
   handleScroll() {
-    let self = this;
-    if(self.waiting){
+    const self = this;
+    if (self.waiting) {
       return;
     }
     self.waiting = true;
     clearTimeout(self.endScrollHandle);
     self.scroll();
-    setTimeout(function(){
+    setTimeout(() => {
       self.waiting = false;
     }, 300);
-    self.endScrollHandle = setTimeout(function(){
+    self.endScrollHandle = setTimeout(() => {
       self.scroll();
     }, 500);
   }
 
   scroll() {
-    let self = this;
-    let fromTop = window.scrollY;
-    let scrollTopGrid = self.grid.offsetTop;
-    let gridOffset = self.grid.offsetHeight - scrollTopGrid;
+    const self = this;
+    const fromTop = window.scrollY;
+    const scrollTopGrid = self.grid.offsetTop;
+    const gridOffset = self.grid.offsetHeight - scrollTopGrid;
     self.newDelta = Math.abs(gridOffset - fromTop);
 
-    if (self.newDelta > self.delta){
+    if (self.newDelta > self.delta) {
       self.repose = true;
     } else {
       self.repose = false;
     }
 
     self.delta = self.newDelta;
-    if(!self.repose) {
-      if(self.newDelta < 800){
-        if(self.cola > self.oldCola){
+    if (!self.repose) {
+      if (self.newDelta < 800) {
+        if (self.cola > self.oldCola) {
           self.oldCola = self.cola;
-          self.props.quoteStore.fetchQuotes(function(){
-            self.cola = self.cola + 1;
-          })
+          self.props.quoteStore.fetchQuotes(() => {
+            self.cola += 1;
+          });
         }
       }
     }

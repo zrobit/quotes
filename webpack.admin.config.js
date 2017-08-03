@@ -5,12 +5,9 @@ module.exports = {
   devServer: {
     port: 9000
   },
-  // devtool: 'eval',
   devtool: 'cheap-source-map',
   entry: {
     client: [
-      // 'webpack-dev-server/client?http://localhost:8080',
-      // 'webpack/hot/only-dev-server',
       './src/admin/index.jsx'
     ],
     vendor: [
@@ -18,9 +15,9 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname + 'dist/admin/assets/scripts'),
+    path: path.resolve(__dirname, './dist/admin/assets/scripts'),
     filename: '[name].min.js',
-    publicPath: "http://localhost:9000/assets/scripts/"
+    publicPath: 'http://localhost:9000/assets/scripts/'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -30,19 +27,19 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include:[
+        include: [
           path.resolve(__dirname, 'src/admin')
         ],
         options: {
           babelrc: false,
-          presets: [['es2015',{"modules":false}],'react'],
+          presets: [['es2015', {modules: false}], 'react'],
           plugins: [
             'transform-decorators-legacy',
             'transform-class-properties',
             'transform-object-rest-spread'
           ]
         }
-      },
+      }
     ]
   },
   plugins: [

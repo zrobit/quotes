@@ -24,6 +24,7 @@
     "opentype.js": "^0.7.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "prop-types": "^15.5.10",
     "pug": "^2.0.0-beta6",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -64,6 +65,7 @@
     "cssnano": "^3.10.0",
     "eslint-config-xo": "^0.18.2",
     "eslint-config-xo-react": "^0.13.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "gulp": "^3.9.1",
@@ -110,6 +112,7 @@
     "envs": [
       "node",
       "browser"
-    ]
+    ],
+    "settings": {"import/resolver": "webpack"}
   }
 }

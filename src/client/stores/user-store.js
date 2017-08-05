@@ -1,7 +1,3 @@
-import {observable, computed, action} from 'mobx';
-import axios from 'axios';
-import QuoteModel from '../models/QuoteModel';
-
 export default class UserStore {
   isAuth = false;
   name = null;

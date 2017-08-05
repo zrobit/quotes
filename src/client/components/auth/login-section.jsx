@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {inject, observer} from "mobx-react";
+import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
 
 import FormLogin from './form-login';
 
@@ -9,13 +9,13 @@ import s from './auth.styl';
 class LoginSection extends Component {
   render() {
     const {error} = this.props.authStore;
-    return (
+    return (
       <div className={s.section}>
-        { error
-          ? <p className={s.error}>{error}</p>
-          : null
+        { error ?
+          <p className={s.error}>{error}</p> :
+          null
         }
-        <FormLogin action="/login" />
+        <FormLogin action="/login"/>
 
       </div>
     );

@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import {inject, observer} from "mobx-react";
+import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
 
-import EmailField from './email-field'
-import PasswordField from './password-field'
-import ButtonAuth from './button-auth'
+import EmailField from './email-field';
+import PasswordField from './password-field';
+import ButtonAuth from './button-auth';
 
-import s from './auth.styl'
+import s from './auth.styl';
 
 @inject('authStore') @observer
 class FormSignup extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.authStore = this.props.authStore;
     this.EmailChange = this.EmailChange.bind(this);
@@ -24,24 +24,24 @@ class FormSignup extends Component {
     this.authStore.clearFields();
   }
 
-  EmailChange(e){
+  EmailChange(e) {
     this.authStore.emailValue = e.target.value;
   }
 
-  EmailBlur(e){
+  EmailBlur(e) {
     this.authStore.emailValidate(e.target.value);
   }
 
-  PasswordChange(e){
+  PasswordChange(e) {
     this.authStore.passwordValue = e.target.value;
   }
 
-  PasswordBlur(e){
+  PasswordBlur(e) {
     this.authStore.passwordValidate(e.target.value);
   }
 
-  render (){
-    const {action} = this.props
+  render() {
+    const {action} = this.props;
     return (
       <form className={s.form} method="post" action={action}>
         <EmailField
@@ -56,7 +56,7 @@ class FormSignup extends Component {
           onBlur={this.PasswordBlur}
           error={this.authStore.passwordError}
         />
-        <ButtonAuth display="Iniciar Sesión" />
+        <ButtonAuth display="Iniciar Sesión"/>
       </form>
     );
   }

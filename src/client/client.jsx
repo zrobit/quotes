@@ -6,7 +6,7 @@ import {Router, browserHistory} from 'react-router';
 
 import createStores from './stores';
 
-import routes from './routes.jsx';
+import routes from './routes';
 
 const initialState = window.initialState || {};
 

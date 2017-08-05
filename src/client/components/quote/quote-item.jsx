@@ -57,7 +57,6 @@ class QuoteItem extends Component {
     this.props.quoteStore.setQuoteDetail(quote);
     this.props.authorStore.setAuthor(author);
   }
-
   setAuthorDetail(author) {
     this.props.authorStore.setAuthorDetail(author);
   }

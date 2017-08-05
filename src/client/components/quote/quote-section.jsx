@@ -25,7 +25,7 @@ class QuoteDetail extends Component {
     return (
       <div className={cx(style.quoteSection)}>
         <div className={cx(style.main, 'card')}>
-          <p className = {sizes[quote.size]}>
+          <p className={sizes[quote.size]}>
             {quote.content}
           </p>
           <div className={style.quoteMeta}>

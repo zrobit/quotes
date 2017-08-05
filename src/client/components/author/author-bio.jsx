@@ -46,4 +46,5 @@ function AuthorBio({author, isLoading}) {
     </div>
   );
 }
+
 export default AuthorBio;

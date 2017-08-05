@@ -3,7 +3,7 @@ import {inject} from 'mobx-react';
 
 import SplitPane from '../layout/split-pane';
 import AuthorQuotesList from './author-quotes-list';
-import AuthorSidebar from './author-sidebar.jsx';
+import AuthorSidebar from './author-sidebar';
 
 import style from './author.styl';
 

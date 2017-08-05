@@ -11,7 +11,7 @@ function EmailField({error, ...props}) {
         type="text"
         name="email"
         {...props}
-        />
+      />
       {error ?
         <p className={s.error}>{error}</p> :
         null

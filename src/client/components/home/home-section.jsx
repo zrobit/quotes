@@ -29,7 +29,7 @@ class Home extends Component {
           main={<HomeQuotesList quoteStore={this.props.quoteStore}/>}
           left={<HomeSidebar tags={this.tags}/>}
           right={<HomeSidebar tags={this.tags}/>}
-          />
+        />
       </div>
     );
   }

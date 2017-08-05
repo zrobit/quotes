@@ -25,7 +25,7 @@ class UserMenu extends Component {
             hash={hashId}
             open={this.state.menuOpen}
             onClick={this.handleClick}
-            /> :
+          /> :
           <AuthMenu/>
         }
       </div>

@@ -43,7 +43,7 @@ export default class AuthorStore {
     axios.get('/api/authors/' + self.author.id)
     .then(response => {
       self.author = response.data.author;
-      // self.bio = response.data.author.bio
+      // #self.bio = response.data.author.bio
       self.isLoading = false;
     })
     .catch(err => {

@@ -10,7 +10,7 @@ import metaUtils from './meta-utils';
 
 useStaticRendering(true);
 
-export function ssr(req, res, context, template = 'layout') {
+function ssr(req, res, context, template = 'layout') {
   match({routes, location: req.originalUrl},
     (err, redirect, props) => {
       if (err) {
@@ -43,3 +43,5 @@ export function ssr(req, res, context, template = 'layout') {
       }
     });
 }
+
+module.exports = ssr;

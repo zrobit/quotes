@@ -3,9 +3,9 @@ const express = require('express');
 const router = new express.Router();
 
 if (process.env.NODE_ENV === 'production') {
-  global.ssr = require('../../dist/shared/ssr').ssr;
+  global.ssr = require('../../dist/shared/ssr');
 } else {
-  global.ssr = require('../shared/ssr').ssr;
+  global.ssr = require('../shared/ssr');
   router.use('/assets', require('./middleware/static'));
 }
 

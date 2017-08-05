@@ -113,6 +113,13 @@
       "node",
       "browser"
     ],
-    "settings": {"import/resolver": "webpack"}
+    "rules": {
+        "react/prop-types": 0,
+        "react/jsx-handler-names": 0,
+        "react/forbid-component-props": 0
+    },
+    "settings": {
+        "import/resolver": "webpack"
+    }
   }
 }

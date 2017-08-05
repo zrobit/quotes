@@ -31,3 +31,4 @@ function images() {
 
 gulp.task('copy:styles', styles);
 gulp.task('copy:images', images);
+gulp.task('copy:assets', ['copy:styles', 'copy:images']);

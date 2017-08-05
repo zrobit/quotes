@@ -1,13 +1,9 @@
-import {observable} from 'mobx';
-
 export default class QuoteModel {
   store;
   id;
   slug
   author;
   content;
-  // @observable foo;
-  // @observable bar;
 
   constructor(store, object) {
     this.store = store;

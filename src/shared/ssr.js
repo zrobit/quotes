@@ -2,12 +2,11 @@ import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {match, RouterContext} from 'react-router';
 import {Provider, useStaticRendering} from 'mobx-react';
-
 import jsonStringifySafe from 'json-stringify-safe';
-import routes from '../client/routes';
-import metaUtils from './meta-utils';
 
+import routes from '../client/routes';
 import createStores from '../client/stores/';
+import metaUtils from './meta-utils';
 
 useStaticRendering(true);
 

@@ -7,7 +7,7 @@ import {Author, Quote, Tag} from '../server/models';
 import {cicle} from '../utils';
 import {fakeAuthors, fakeQuotes, fakeTags} from '../utils/data';
 
-test.before('Loading Fake Data', async t => {
+test.before('Loading Fake Data', async () => {
   // This runs after the above, but before tests
   const authors = fakeAuthors(10);
   const quotes = fakeQuotes(20);

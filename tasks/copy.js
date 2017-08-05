@@ -23,21 +23,11 @@ function styles() {
   return merge(main, components);
 }
 
-function templates() {
-  return gulp
-    .src(['src/server/views/**/*.pug'])
-    .pipe(gulp.dest('dist/server/views/'));
-}
-
 function images() {
   return gulp
     .src(src.images)
     .pipe(gulp.dest(dest.images));
 }
 
-// gulp.task('copy:images', images);
-// gulp.task('copy:fonts', fonts);
 gulp.task('copy:styles', styles);
 gulp.task('copy:images', images);
-gulp.task('copy:templates', templates);
-// gulp.task('copy:assets', ['copy:scripts', 'copy:images', 'copy:fonts']);

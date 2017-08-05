@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-  List, Edit, Datagrid, DateField, SimpleForm, DisabledInput, TextInput,
+  List, Edit, Datagrid, DateField, SimpleForm, DisabledInput,
   Show, SimpleShowLayout, ShowButton,
-  ReferenceField,
-  TextField, EditButton, NumberField, LongTextInput
-
+  TextField, EditButton, NumberField
 } from 'admin-on-rest';
 
 export const TagList = props => (

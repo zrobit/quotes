@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
-const rename = require('gulp-rename');
 const nib = require('nib');
 const stylus = require('gulp-stylus');
 const postcss = require('gulp-postcss');

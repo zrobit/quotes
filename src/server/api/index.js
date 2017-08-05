@@ -10,5 +10,4 @@ router.use('/users', require('./user-api'));
 router.use('/search', require('./search-api'));
 router.use('/admin', require('./admin-api'));
 
-
 module.exports = router;

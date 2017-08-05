@@ -28,10 +28,9 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res, next) => {
-  const password = req.body.password;
   const email = req.body.email;
 
-  passport.authenticate('local-login', (err, user, info) => {
+  passport.authenticate('local-login', (err, user) => {
     if (err) {
       return next(err);
     }
@@ -75,7 +74,7 @@ router.post('/signup', (req, res, next) => {
     return res.status(403).send('Forbiden(403): invalid values :V');
   }
 
-  passport.authenticate('local-signup', (err, user, info) => {
+  passport.authenticate('local-signup', (err, user) => {
     if (err) {
       return next(err);
     }

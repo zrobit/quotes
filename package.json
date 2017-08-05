@@ -90,7 +90,7 @@
     "xo": "^0.18.2"
   },
   "scripts": {
-    "test": " DB_ENV=test ava -v src/test/**/*.js src/**/test-*.js",
+    "test": " DB_ENV=test ava -v src/test/**/*.js src/**/*.test.js",
     "start": "nodemon src/server --exec babel-node",
     "start:prod": "NODE_ENV=production babel-node src/server",
     "webpack": "webpack-dev-server --inline --hot",

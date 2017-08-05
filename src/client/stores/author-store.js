@@ -1,6 +1,6 @@
 import {observable} from 'mobx';
 import axios from 'axios';
-import QuoteModel from '../models/QuoteModel';
+import QuoteModel from '../models/quote-model';
 
 export default class AuthorStore {
   @observable author = {};

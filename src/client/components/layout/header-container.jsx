@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {inject} from 'mobx-react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 import UserMenu from '../user/user-menu';
 import SearchForm from './search-form';

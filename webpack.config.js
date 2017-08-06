@@ -12,7 +12,7 @@ module.exports = {
       './src/client/client.jsx'
     ],
     vendor: [
-      'react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios'
+      'react', 'react-dom', 'mobx', 'mobx-react', 'react-router-dom', 'axios'
     ]
   },
   output: {

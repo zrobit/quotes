@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'cheap-source-map',
   entry: {
     client: './src/client/client.jsx',
-    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router', 'axios']
+    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'react-router-dom', 'axios']
   },
   output: {
     path: path.resolve(__dirname, 'dist/public/assets/scripts'),

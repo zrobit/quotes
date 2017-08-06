@@ -2,11 +2,11 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import {Provider} from 'mobx-react';
-import {Router, browserHistory} from 'react-router';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 import createStores from './stores';
 
-import routes from './routes';
+import AppRoutes from './routes';
 
 const initialState = window.initialState || {};
 
@@ -14,7 +14,9 @@ const stores = createStores(initialState);
 
 render(
   <Provider {...stores}>
-    <Router routes={routes} history={browserHistory}/>
+    <Router>
+      <AppRoutes/>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

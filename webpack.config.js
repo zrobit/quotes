@@ -52,7 +52,7 @@ module.exports = {
       {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract({
-          loader: [
+          use: [
             {
               loader: 'css-loader',
               query: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'react-dom';
+import {hydrate} from 'react-dom';
 
 import {Provider} from 'mobx-react';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -12,7 +12,7 @@ const initialState = window.initialState || {};
 
 const stores = createStores(initialState);
 
-render(
+hydrate(
   <Provider {...stores}>
     <Router>
       <AppRoutes/>

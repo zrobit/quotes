@@ -16,15 +16,15 @@ if (process.env.DB_ENV === 'test') {
   console.log('####> Database Env: testing <####');
   if (process.env.DEV_ENV === 'ci') {
     console.log('####> Dev Env: gitlab CI <####');
-    mongoose.connect('mongodb://mongo/fraseary-test');
+    mongoose.connect('mongodb://mongo/fraseary-test', {useMongoClient: true});
   } else {
     console.log('####> Dev Env: Local <####');
-    mongoose.connect('mongodb://localhost/fraseary-test');
+    mongoose.connect('mongodb://localhost/fraseary-test', {useMongoClient: true});
   }
 } else if (process.env.NODE_ENV === 'production') {
-  mongoose.connect('mongodb://localhost/db-fr-prod-1');
+  mongoose.connect('mongodb://localhost/db-fr-prod-1', {useMongoClient: true});
 } else {
-  mongoose.connect('mongodb://localhost/fraseary-local-copy');
+  mongoose.connect('mongodb://localhost/fraseary-local-copy', {useMongoClient: true});
 }
 
 const router = require('./router');
